@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>47ED6055-9D99-4829-8387-534D7903307A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Arita</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3D0B2418B9D12B2B4FDB52734DC5E7AC064D173A</key>
+		<string>https://github.com/HyperBunny/Arita.git</string>
+		<key>615be732-fd64-5243-a233-26dbc73169d0</key>
+		<string>https://112.74.192.226/svn/AritaIOS</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Arita.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3D0B2418B9D12B2B4FDB52734DC5E7AC064D173A</key>
+		<string>..</string>
+		<key>615be732-fd64-5243-a233-26dbc73169d0</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/HyperBunny/Arita.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3D0B2418B9D12B2B4FDB52734DC5E7AC064D173A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>615be732-fd64-5243-a233-26dbc73169d0</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3D0B2418B9D12B2B4FDB52734DC5E7AC064D173A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Arita</string>
+		</dict>
+	</array>
+</dict>
+</plist>

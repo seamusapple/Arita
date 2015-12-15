@@ -1,0 +1,134 @@
+{
+<<<<<<< .mine
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "615be732-fd64-5243-a233-26dbc73169d0++2550+++3FD5712",
+=======
+<<<<<<< .mine
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3D0B2418B9D12B2B4FDB52734DC5E7AC064D173A+++E37078F",
+=======
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "615be732-fd64-5243-a233-26dbc73169d0++2550+++7419801",
+>>>>>>> .r34
+>>>>>>> .r31
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+<<<<<<< .mine
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++3FD5712" : {
+=======
+<<<<<<< .mine
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++DB50E21" : {
+=======
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++14D0975" : {
+>>>>>>> .r34
+>>>>>>> .r31
+
+<<<<<<< .mine
+    },
+<<<<<<< .mine
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++6BE4B50" : {
+=======
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++3CED042" : {
+
+    },
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++D4770CA" : {
+
+=======
+    },
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++7419801" : {
+>>>>>>> .r34
+
+>>>>>>> .r31
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+<<<<<<< .mine
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++3FD5712" : 0,
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++6BE4B50" : 0,
+    "3D0B2418B9D12B2B4FDB52734DC5E7AC064D173A+++A998171" : 0
+=======
+<<<<<<< .mine
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++3CED042" : 0,
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++DB50E21" : 0,
+    "3D0B2418B9D12B2B4FDB52734DC5E7AC064D173A+++E37078F" : 0,
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++D4770CA" : 0
+=======
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++14D0975" : 0,
+    "3D0B2418B9D12B2B4FDB52734DC5E7AC064D173A+++FE8B8E5" : 0,
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++7419801" : 0
+>>>>>>> .r34
+>>>>>>> .r31
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "47ED6055-9D99-4829-8387-534D7903307A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+<<<<<<< .mine
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++3FD5712" : "",
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++6BE4B50" : "",
+    "3D0B2418B9D12B2B4FDB52734DC5E7AC064D173A+++A998171" : "Arita\/"
+=======
+<<<<<<< .mine
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++3CED042" : "",
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++DB50E21" : "Arita\/",
+    "3D0B2418B9D12B2B4FDB52734DC5E7AC064D173A+++E37078F" : "Arita\/",
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++D4770CA" : ""
+=======
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++14D0975" : "",
+    "3D0B2418B9D12B2B4FDB52734DC5E7AC064D173A+++FE8B8E5" : "Arita\/",
+    "615be732-fd64-5243-a233-26dbc73169d0++2550+++7419801" : ""
+>>>>>>> .r34
+>>>>>>> .r31
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Arita",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Arita.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/HyperBunny\/Arita.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+<<<<<<< .mine
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3D0B2418B9D12B2B4FDB52734DC5E7AC064D173A+++A998171"
+=======
+<<<<<<< .mine
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3D0B2418B9D12B2B4FDB52734DC5E7AC064D173A+++E37078F"
+=======
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3D0B2418B9D12B2B4FDB52734DC5E7AC064D173A+++FE8B8E5"
+>>>>>>> .r34
+>>>>>>> .r31
+    },
+    {
+<<<<<<< .mine
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/112.74.192.226\/svn\/AritaIOS",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "615be732-fd64-5243-a233-26dbc73169d0++2550+++3FD5712"
+    },
+    {
+=======
+<<<<<<< .mine
+>>>>>>> .r34
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/HyperBunny\/Arita.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+<<<<<<< .mine
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "615be732-fd64-5243-a233-26dbc73169d0++2550+++6BE4B50"
+=======
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "615be732-fd64-5243-a233-26dbc73169d0++2550+++3CED042"
+    },
+    {
+=======
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/HyperBunny\/Arita.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "615be732-fd64-5243-a233-26dbc73169d0++2550+++14D0975"
+    },
+    {
+>>>>>>> .r31
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/112.74.192.226\/svn\/AritaIOS",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+<<<<<<< .mine
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "615be732-fd64-5243-a233-26dbc73169d0++2550+++D4770CA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/112.74.192.226\/svn\/AritaIOS",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "615be732-fd64-5243-a233-26dbc73169d0++2550+++DB50E21"
+=======
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "615be732-fd64-5243-a233-26dbc73169d0++2550+++7419801"
+>>>>>>> .r34
+>>>>>>> .r31
+    }
+  ]
+}
