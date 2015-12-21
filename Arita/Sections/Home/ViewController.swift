@@ -12,7 +12,8 @@ class ViewController: UIViewController
 {
     var tapGesture: UITapGestureRecognizer!
     
-    var homeViewController: HomeController!
+//    var homeViewController: HomeController!
+    var homeViewController: HomeViewController!
     var leftViewController: LeftViewController!
     var mainView: UIView! // 构造主视图。实现 UINavigationController.view 和 HomeViewController.view 一起缩放。
     var distance: CGFloat = 0
@@ -55,7 +56,7 @@ class ViewController: UIViewController
         
         // 通过 StoryBoard 取出 HomeViewController 的 view，放在背景视图上面
         mainView = UIView(frame: self.view.frame)
-        self.homeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HomeController") as! HomeController
+        self.homeViewController = HomeViewController()
         mainView.addSubview(self.homeViewController.view)
         self.view.addSubview(mainView)
         
@@ -188,20 +189,20 @@ class ViewController: UIViewController
     // 取消home页面的控件点击
     func homeViewLoseFocus() {
         self.homeViewController.menuBtn.hidden = true
-        self.homeViewController.tataBtn.enabled = false
-        self.homeViewController.cyBtn.enabled = false
-        self.homeViewController.sjBtn.enabled = false
-        self.homeViewController.shBtn.enabled = false
-        self.homeViewController.lpBtn.enabled = false
+//        self.homeViewController.tataBtn.enabled = false
+//        self.homeViewController.cyBtn.enabled = false
+//        self.homeViewController.sjBtn.enabled = false
+//        self.homeViewController.shBtn.enabled = false
+//        self.homeViewController.lpBtn.enabled = false
     }
     
     // 恢复home页面的控件点击
     func homeViewRecoverFocus() {
         self.homeViewController.menuBtn.hidden = false
-        self.homeViewController.tataBtn.enabled = true
-        self.homeViewController.cyBtn.enabled = true
-        self.homeViewController.sjBtn.enabled = true
-        self.homeViewController.shBtn.enabled = true
-        self.homeViewController.lpBtn.enabled = true
+//        self.homeViewController.tataBtn.enabled = true
+//        self.homeViewController.cyBtn.enabled = true
+//        self.homeViewController.sjBtn.enabled = true
+//        self.homeViewController.shBtn.enabled = true
+//        self.homeViewController.lpBtn.enabled = true
     }
 }
