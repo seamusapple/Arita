@@ -37,7 +37,6 @@
 		81639CDA1BD5EDA400B31AD6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81639CD91BD5EDA400B31AD6 /* MessageUI.framework */; };
 		817670B21B5FE84B00805A06 /* TataNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817670B01B5FE84B00805A06 /* TataNewsCell.swift */; };
 		817DDB721B5D2D6F0033C9F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817DDB711B5D2D6F0033C9F9 /* AppDelegate.swift */; };
-		817DDB741B5D2D6F0033C9F9 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817DDB731B5D2D6F0033C9F9 /* HomeController.swift */; };
 		817DDB771B5D2D6F0033C9F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817DDB751B5D2D6F0033C9F9 /* Main.storyboard */; };
 		817DDB791B5D2D6F0033C9F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 817DDB781B5D2D6F0033C9F9 /* Images.xcassets */; };
 		817DDB7C1B5D2D6F0033C9F9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 817DDB7A1B5D2D6F0033C9F9 /* LaunchScreen.xib */; };
@@ -123,7 +122,6 @@
 		817DDB6C1B5D2D6F0033C9F9 /* Arita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		817DDB701B5D2D6F0033C9F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		817DDB711B5D2D6F0033C9F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Arita/AppDelegate/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
-		817DDB731B5D2D6F0033C9F9 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		817DDB761B5D2D6F0033C9F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		817DDB781B5D2D6F0033C9F9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		817DDB7B1B5D2D6F0033C9F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -336,7 +334,6 @@
 		817DDB6E1B5D2D6F0033C9F9 /* Arita */ = {
 			isa = PBXGroup;
 			children = (
-				817DDB731B5D2D6F0033C9F9 /* HomeController.swift */,
 				81C343D11C282D3200E2CB83 /* Sections */,
 				813231481C28545300AC7628 /* General */,
 				814BF2E91C284CEE0074A0E1 /* Helpers */,
@@ -608,7 +605,6 @@
 				81A5852E1BCBFA1F004FE56E /* LoadMoreCell.swift in Sources */,
 				81639CD81BD5E48000B31AD6 /* TuCaoViewController.swift in Sources */,
 				814897421B83890A006EDC23 /* GoodsWebViewController.swift in Sources */,
-				817DDB741B5D2D6F0033C9F9 /* HomeController.swift in Sources */,
 				81639CD41BD5D87600B31AD6 /* ContactUsViewController.swift in Sources */,
 				8143CC7B1B9ED2A9004FA08B /* LikeController.swift in Sources */,
 				81C575921B710981008FE3BF /* SubGoodsCollectionCell.swift in Sources */,

@@ -14,3 +14,5 @@ struct Common {
 //    static let rootViewController = UIApplication.sharedApplication().keyWindow?.rootViewController as! ViewController
     static let contactsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Contacts") 
 }
+
+let SCREEN_WIDTH = UIScreen.mainScreen().bounds.size.width

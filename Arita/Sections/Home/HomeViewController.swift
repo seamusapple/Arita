@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import Kingfisher
 
 class HomeViewController: UIViewController
 {
@@ -19,7 +22,43 @@ class HomeViewController: UIViewController
     var scrollView = UIScrollView()
     var contentView = UIView()
     
-    var btn = UIButton()
+    var tataView = UIView()
+    var tataImage = UIImageView()
+    var tataLabel = UIImageView()
+    var tataBtn = UIButton()
+    
+    var cyView = UIView()
+    var cyImage1 = UIImageView()
+    var cyImage2 = UIImageView()
+    var cyImage3 = UIImageView()
+    var cyLabel = UIImageView()
+    var cyBtn = UIButton()
+    
+    var sjView = UIView()
+    var sjImage1 = UIImageView()
+    var sjImage2 = UIImageView()
+    var sjImage3 = UIImageView()
+    var sjLabel = UIImageView()
+    var sjBtn = UIButton()
+    
+    var shView = UIView()
+    var shImage1 = UIImageView()
+    var shImage2 = UIImageView()
+    var shImage3 = UIImageView()
+    var shLabel = UIImageView()
+    var shBtn = UIButton()
+    
+    var lpView = UIView()
+    var lpImage1 = UIImageView()
+    var lpImage2 = UIImageView()
+    var lpImage3 = UIImageView()
+    var lpLabel = UIImageView()
+    var lpBtn1 = UIButton()
+    var lpBtn2 = UIButton()
+    var lpBtn3 = UIButton()
+    
+    private let width = SCREEN_WIDTH - 20
+    private let height = (SCREEN_WIDTH - 20) * 2 / 3
     
     // MARK: - life cycle
     override func viewDidLoad() {
@@ -37,8 +76,24 @@ class HomeViewController: UIViewController
         print("HomeViewController memory waring.")
     }
     
+    // 隐藏status bar
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     // MARK: - init methods
     func initComponents() {
+        if isUserLogin() {
+            self.loginBtn.hidden = true
+        }
+        
+        Alamofire.request(.GET, "http://112.74.192.226/ios/get_indexdata")
+            .responseJSON { _, _, aJson in
+                self.getHomeInfo(aJson.value)
+        }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideLoginBtn", name: "UserLogin", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginBtn", name: "UserLogout", object: nil)
     }
     
     func addPageSubviews() {
@@ -51,7 +106,40 @@ class HomeViewController: UIViewController
         self.view.addSubview(self.scrollView)
         self.scrollView.addSubview(self.contentView)
         
-        self.contentView.addSubview(self.btn)
+        self.contentView.addSubview(self.tataView)
+        self.tataView.addSubview(self.tataImage)
+        self.tataView.addSubview(self.tataLabel)
+        self.tataView.addSubview(self.tataBtn)
+        
+        self.contentView.addSubview(self.cyView)
+        self.cyView.addSubview(self.cyImage1)
+        self.cyView.addSubview(self.cyImage2)
+        self.cyView.addSubview(self.cyImage3)
+        self.cyView.addSubview(self.cyLabel)
+        self.cyView.addSubview(self.cyBtn)
+        
+        self.contentView.addSubview(self.sjView)
+        self.sjView.addSubview(self.sjImage1)
+        self.sjView.addSubview(self.sjImage2)
+        self.sjView.addSubview(self.sjImage3)
+        self.sjView.addSubview(self.sjLabel)
+        self.sjView.addSubview(self.sjBtn)
+        
+        self.contentView.addSubview(self.shView)
+        self.shView.addSubview(self.shImage1)
+        self.shView.addSubview(self.shImage2)
+        self.shView.addSubview(self.shImage3)
+        self.shView.addSubview(self.shLabel)
+        self.shView.addSubview(self.shBtn)
+        
+        self.contentView.addSubview(self.lpView)
+        self.lpView.addSubview(self.lpImage1)
+        self.lpView.addSubview(self.lpImage2)
+        self.lpView.addSubview(self.lpImage3)
+        self.lpView.addSubview(self.lpLabel)
+        self.lpView.addSubview(self.lpBtn1)
+        self.lpView.addSubview(self.lpBtn2)
+        self.lpView.addSubview(self.lpBtn3)
     }
     
     // MARK: - layout and set page subviews
@@ -88,13 +176,173 @@ class HomeViewController: UIViewController
         }
         
         self.contentView.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(UIScreen.mainScreen().bounds.size.width, 800))
+            make.width.equalTo(SCREEN_WIDTH)
             make.edges.equalTo(self.scrollView).inset(0)
         }
         
-        self.btn.snp_makeConstraints { (make) -> Void in
-            make.center.equalTo(self.contentView)
-            make.size.equalTo(CGSizeMake(50, 50))
+        self.tataView.snp_makeConstraints { (make) -> Void in
+            make.top.left.equalTo(self.contentView).offset(10)
+            make.right.equalTo(self.contentView).offset(-10)
+            make.height.equalTo(self.height)
+        }
+        
+        self.tataImage.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.tataView)
+        }
+        
+        self.tataLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.tataView)
+            make.left.equalTo(self.tataView).offset(10)
+            make.size.equalTo(CGSizeMake(45, 22))
+        }
+        
+        self.tataBtn.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.tataView)
+        }
+        
+        self.cyView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.tataView.snp_bottom).offset(10)
+            make.left.equalTo(self.contentView).offset(10)
+            make.right.equalTo(self.contentView).offset(-10)
+            make.height.equalTo(self.height)
+        }
+        
+        self.cyImage1.snp_makeConstraints { (make) -> Void in
+            make.top.left.equalTo(self.cyView)
+            make.right.equalTo(self.cyImage3.snp_left).offset(-5)
+            make.height.equalTo(self.cyImage1.snp_width)
+        }
+        
+        self.cyImage2.snp_makeConstraints { (make) -> Void in
+            make.left.bottom.equalTo(self.cyView)
+            make.top.equalTo(self.cyImage1.snp_bottom).offset(5)
+            make.right.equalTo(self.cyImage1)
+        }
+        
+        self.cyImage3.snp_makeConstraints { (make) -> Void in
+            make.top.right.equalTo(self.cyView)
+            make.size.equalTo(CGSizeMake(self.height, self.height))
+        }
+        
+        self.cyLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.cyView)
+            make.right.equalTo(self.cyView).offset(-10)
+            make.size.equalTo(CGSizeMake(35, 22))
+        }
+        
+        self.cyBtn.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.cyView)
+        }
+        
+        self.sjView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.cyView.snp_bottom).offset(10)
+            make.left.equalTo(self.contentView).offset(10)
+            make.right.equalTo(self.contentView).offset(-10)
+            make.height.equalTo(self.height)
+        }
+        
+        self.sjImage1.snp_makeConstraints { (make) -> Void in
+            make.top.left.equalTo(self.sjView)
+            make.size.equalTo(CGSizeMake(self.height, self.height))
+        }
+        
+        self.sjImage2.snp_makeConstraints { (make) -> Void in
+            make.left.equalTo(self.sjImage1.snp_right).offset(5)
+            make.top.right.equalTo(self.sjView)
+            make.height.equalTo(self.sjImage2.snp_width)
+        }
+        
+        self.sjImage3.snp_makeConstraints { (make) -> Void in
+            make.right.bottom.equalTo(self.sjView)
+            make.top.equalTo(self.sjImage2.snp_bottom).offset(5)
+            make.left.equalTo(self.sjImage2)
+        }
+        
+        self.sjLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.sjView)
+            make.left.equalTo(self.sjView).offset(10)
+            make.size.equalTo(CGSizeMake(35, 22))
+        }
+        
+        self.sjBtn.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.sjView)
+        }
+        
+        self.shView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.sjView.snp_bottom).offset(10)
+            make.left.equalTo(self.contentView).offset(10)
+            make.right.equalTo(self.contentView).offset(-10)
+            make.height.equalTo(self.height)
+        }
+        
+        self.shImage1.snp_makeConstraints { (make) -> Void in
+            make.top.left.equalTo(self.shView)
+            make.right.equalTo(self.shImage3.snp_left).offset(-5)
+            make.height.equalTo(self.shImage1.snp_width)
+        }
+        
+        self.shImage2.snp_makeConstraints { (make) -> Void in
+            make.left.bottom.equalTo(self.shView)
+            make.top.equalTo(self.shImage1.snp_bottom).offset(5)
+            make.right.equalTo(self.shImage1)
+        }
+        
+        self.shImage3.snp_makeConstraints { (make) -> Void in
+            make.top.right.equalTo(self.shView)
+            make.size.equalTo(CGSizeMake(self.height, self.height))
+        }
+        
+        self.shLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.shView)
+            make.right.equalTo(self.shView).offset(-10)
+            make.size.equalTo(CGSizeMake(35, 22))
+        }
+        
+        self.shBtn.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.shView)
+        }
+        
+        self.lpView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.shView.snp_bottom).offset(10)
+            make.left.equalTo(self.contentView).offset(10)
+            make.right.equalTo(self.contentView).offset(-10)
+            make.height.equalTo(self.height)
+            make.bottom.equalTo(self.contentView).offset(-10)
+        }
+        
+        self.lpImage1.snp_makeConstraints { (make) -> Void in
+            make.top.left.equalTo(self.lpView)
+            make.size.equalTo(CGSizeMake(self.height, self.height))
+        }
+        
+        self.lpImage2.snp_makeConstraints { (make) -> Void in
+            make.left.equalTo(self.lpImage1.snp_right).offset(5)
+            make.top.right.equalTo(self.lpView)
+            make.height.equalTo(self.lpImage2.snp_width)
+        }
+        
+        self.lpImage3.snp_makeConstraints { (make) -> Void in
+            make.right.bottom.equalTo(self.lpView)
+            make.top.equalTo(self.lpImage2.snp_bottom).offset(5)
+            make.left.equalTo(self.lpImage2)
+        }
+        
+        self.lpLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.lpView)
+            make.left.equalTo(self.lpView).offset(10)
+            make.size.equalTo(CGSizeMake(35, 22))
+        }
+        
+        self.lpBtn1.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.lpImage1)
+        }
+        
+        self.lpBtn2.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.lpImage2)
+        }
+        
+        self.lpBtn3.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.lpImage3)
         }
     }
     
@@ -110,21 +358,30 @@ class HomeViewController: UIViewController
         
         self.scrollView.showsVerticalScrollIndicator = false
         
-        self.btn.backgroundColor = UIColor.greenColor()
+        self.tataLabel.image = UIImage(named: "tataLabel")
+        
+        self.cyLabel.image = UIImage(named: "cyLabel")
+        
+        self.sjLabel.image = UIImage(named: "sjLabel")
+        
+        self.shLabel.image = UIImage(named: "shLabel")
+        
+        self.lpLabel.image = UIImage(named: "lpLable")
     }
     
     // MARK: - set events
     func setPageEvents() {
-        self.btn.addTarget(self, action: Selector("callTest"), forControlEvents: UIControlEvents.TouchUpInside)
         self.loginBtn.addTarget(self, action: Selector("userLogin"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.tataBtn.addTarget(self, action: Selector("goTata"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.cyBtn.addTarget(self, action: Selector("goCy"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.sjBtn.addTarget(self, action: Selector("goSj"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.shBtn.addTarget(self, action: Selector("goSh"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.lpBtn1.addTarget(self, action: Selector("goLp:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.lpBtn2.addTarget(self, action: Selector("goLp:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.lpBtn3.addTarget(self, action: Selector("goLp:"), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     // MARK: - event response
-    func callTest() {
-        let tataController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TataController") as! TataController
-        self.view.window!.rootViewController!.presentViewController(tataController, animated: true, completion: nil)
-    }
-    
     func userLogin() {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             let thirdPartLoginController = ThirdPartLoginController()
@@ -134,5 +391,98 @@ class HomeViewController: UIViewController
             thirdPartLoginController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
             self.view.window!.rootViewController!.presentViewController(thirdPartLoginController , animated:true, completion: nil)
         })
+    }
+    
+    func hideLoginBtn() {
+        self.loginBtn.hidden = true
+    }
+    
+    func showLoginBtn() {
+        self.loginBtn.hidden = false
+    }
+    
+    func goTata() {
+        let tataController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TataController") as! TataController
+        self.view.window!.rootViewController!.presentViewController(tataController, animated: true, completion: nil)
+    }
+    
+    func goCy() {
+        let cyController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InterestingController") as! InterestingController
+        cyController.segueId = "cySegue"
+        self.view.window!.rootViewController!.presentViewController(cyController, animated: true, completion: nil)
+    }
+    
+    func goSj() {
+        let sjController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InterestingController") as! InterestingController
+        sjController.segueId = "sjSegue"
+        self.view.window!.rootViewController!.presentViewController(sjController, animated: true, completion: nil)
+    }
+    
+    func goSh() {
+        let shController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InterestingController") as! InterestingController
+        shController.segueId = "shSegue"
+        self.view.window!.rootViewController!.presentViewController(shController, animated: true, completion: nil)
+    }
+    
+    func goLp(sender: UIButton) {
+        let lpController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ThingsController") as! ThingsController
+        self.view.window!.rootViewController!.presentViewController(lpController, animated: true, completion: nil)
+    }
+    
+    //MARK: - private methods
+    func isUserLogin() -> Bool {
+        let userId = NSUserDefaults.standardUserDefaults().stringForKey("userid")
+        if userId != nil {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func getHomeInfo(data: AnyObject?) {
+        let jsonString = JSON(data!)
+//        var imageArray = [String]()
+//        for (_, subJson): (String, JSON) in jsonString {
+//            let categoryId = subJson["category_ID"].string
+//            let title = subJson["title"].string
+//            let imageUrl = subJson["thumb_path"].string
+//            switch categoryId! {
+//            case "1":
+//                self.tataImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
+//                
+//            case "2":
+//                self.cyImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
+//                
+//            case "3":
+//                self.shImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
+//                
+//            case "4":
+//                self.sjImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
+//                
+//            case "5":
+//                imageArray.append(subJson["thumb_path"].string!)
+//                continue
+//                
+//            default:
+//                break
+//            }
+//        }
+//        var index = 0
+//        for image in imageArray {
+//            ++index
+//            switch index {
+//            case 1:
+//                self.lpImage1.kf_setImageWithURL(NSURL(string: image)!, placeholderImage: nil)
+//                
+//            case 2:
+//                self.lpImage2.kf_setImageWithURL(NSURL(string: image)!, placeholderImage: nil)
+//                
+//            case 3:
+//                self.lpImage3.kf_setImageWithURL(NSURL(string: image)!, placeholderImage: nil)
+//                
+//            default:
+//                break
+//            }
+//        }
     }
 }

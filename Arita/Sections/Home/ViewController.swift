@@ -188,7 +188,8 @@ class ViewController: UIViewController
     //MARK: - private methods
     // 取消home页面的控件点击
     func homeViewLoseFocus() {
-        self.homeViewController.menuBtn.hidden = true
+        self.homeViewController.menuBtn.userInteractionEnabled = false
+        self.homeViewController.scrollView.userInteractionEnabled = false
 //        self.homeViewController.tataBtn.enabled = false
 //        self.homeViewController.cyBtn.enabled = false
 //        self.homeViewController.sjBtn.enabled = false
@@ -198,7 +199,8 @@ class ViewController: UIViewController
     
     // 恢复home页面的控件点击
     func homeViewRecoverFocus() {
-        self.homeViewController.menuBtn.hidden = false
+        self.homeViewController.menuBtn.userInteractionEnabled = true
+        self.homeViewController.scrollView.userInteractionEnabled = true
 //        self.homeViewController.tataBtn.enabled = true
 //        self.homeViewController.cyBtn.enabled = true
 //        self.homeViewController.sjBtn.enabled = true
