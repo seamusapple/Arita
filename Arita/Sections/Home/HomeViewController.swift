@@ -69,6 +69,7 @@ class HomeViewController: UIViewController
         self.layoutPageSubviews()
         self.setPageSubviews()
         self.setPageEvents()
+        self.loadDataFromServer()
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,15 +84,6 @@ class HomeViewController: UIViewController
     
     // MARK: - init methods
     func initComponents() {
-        if isUserLogin() {
-            self.loginBtn.hidden = true
-        }
-        
-        Alamofire.request(.GET, "http://112.74.192.226/ios/get_indexdata")
-            .responseJSON { _, _, aJson in
-                self.getHomeInfo(aJson.value)
-        }
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideLoginBtn", name: "UserLogin", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginBtn", name: "UserLogout", object: nil)
     }
@@ -367,6 +359,10 @@ class HomeViewController: UIViewController
         self.shLabel.image = UIImage(named: "shLabel")
         
         self.lpLabel.image = UIImage(named: "lpLable")
+        
+        if isUserLogin() {
+            self.loginBtn.hidden = true
+        }
     }
     
     // MARK: - set events
@@ -379,6 +375,14 @@ class HomeViewController: UIViewController
         self.lpBtn1.addTarget(self, action: Selector("goLp:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.lpBtn2.addTarget(self, action: Selector("goLp:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.lpBtn3.addTarget(self, action: Selector("goLp:"), forControlEvents: UIControlEvents.TouchUpInside)
+    }
+    
+    // MARK: - load data from server
+    func loadDataFromServer() {
+        Alamofire.request(.GET, "http://112.74.192.226/ios/get_indexdata2")
+            .responseJSON { _, _, aJson in
+                self.getHomeInfo(aJson.value)
+        }
     }
     
     // MARK: - event response
@@ -441,48 +445,54 @@ class HomeViewController: UIViewController
     
     func getHomeInfo(data: AnyObject?) {
         let jsonString = JSON(data!)
-//        var imageArray = [String]()
-//        for (_, subJson): (String, JSON) in jsonString {
-//            let categoryId = subJson["category_ID"].string
-//            let title = subJson["title"].string
-//            let imageUrl = subJson["thumb_path"].string
-//            switch categoryId! {
-//            case "1":
-//                self.tataImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
-//                
-//            case "2":
-//                self.cyImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
-//                
-//            case "3":
-//                self.shImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
-//                
-//            case "4":
-//                self.sjImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
-//                
+        var cyArray = [String]()
+        var sjArray = [String]()
+        var shArray = [String]()
+//        var lpArray = [String]()
+        for (_, subJson): (String, JSON) in jsonString {
+            let categoryId = subJson["category_ID"].stringValue
+            let imageUrl = subJson["thumb_path"].stringValue
+            switch categoryId {
+            case "1":
+                self.tataImage.kf_setImageWithURL(NSURL(string: imageUrl)!, placeholderImage: nil)
+                
+            case "2":
+                cyArray.append(imageUrl)
+                
+            case "3":
+                sjArray.append(imageUrl)
+                
+            case "4":
+                shArray.append(imageUrl)
+                
 //            case "5":
-//                imageArray.append(subJson["thumb_path"].string!)
-//                continue
-//                
-//            default:
-//                break
-//            }
-//        }
-//        var index = 0
-//        for image in imageArray {
-//            ++index
-//            switch index {
-//            case 1:
-//                self.lpImage1.kf_setImageWithURL(NSURL(string: image)!, placeholderImage: nil)
-//                
-//            case 2:
-//                self.lpImage2.kf_setImageWithURL(NSURL(string: image)!, placeholderImage: nil)
-//                
-//            case 3:
-//                self.lpImage3.kf_setImageWithURL(NSURL(string: image)!, placeholderImage: nil)
-//                
-//            default:
-//                break
-//            }
-//        }
+//                lpArray.append(imageUrl)
+                
+            default:
+                break
+            }
+        }
+        
+        for i in 0...2 {
+            switch i {
+            case 0:
+                self.cyImage1.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
+                self.sjImage1.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
+                self.shImage1.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
+//                self.lpImage1.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+            case 1:
+                self.cyImage2.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
+                self.sjImage2.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
+                self.shImage2.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
+//                self.lpImage2.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+            case 2:
+                self.cyImage3.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
+                self.sjImage3.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
+                self.shImage3.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
+//                self.lpImage3.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+            default:
+                break
+            }
+        }
     }
 }
