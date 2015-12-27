@@ -448,7 +448,7 @@ class HomeViewController: UIViewController
         var cyArray = [String]()
         var sjArray = [String]()
         var shArray = [String]()
-//        var lpArray = [String]()
+        var lpArray = [String]()
         for (_, subJson): (String, JSON) in jsonString {
             let categoryId = subJson["category_ID"].stringValue
             let imageUrl = subJson["thumb_path"].stringValue
@@ -465,8 +465,8 @@ class HomeViewController: UIViewController
             case "4":
                 shArray.append(imageUrl)
                 
-//            case "5":
-//                lpArray.append(imageUrl)
+            case "5":
+                lpArray.append(imageUrl)
                 
             default:
                 break
@@ -479,17 +479,17 @@ class HomeViewController: UIViewController
                 self.cyImage1.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
                 self.sjImage1.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
                 self.shImage1.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
-//                self.lpImage1.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+                self.lpImage1.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
             case 1:
                 self.cyImage2.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
                 self.sjImage2.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
                 self.shImage2.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
-//                self.lpImage2.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+                self.lpImage2.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
             case 2:
                 self.cyImage3.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
                 self.sjImage3.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
                 self.shImage3.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
-//                self.lpImage3.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+                self.lpImage3.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
             default:
                 break
             }
