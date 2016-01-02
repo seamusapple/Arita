@@ -406,8 +406,8 @@ class HomeViewController: UIViewController
     }
     
     func goTata() {
-        let tataController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TataController") as! TataController
-        self.view.window!.rootViewController!.presentViewController(tataController, animated: true, completion: nil)
+        let tata = TataViewController()
+        self.view.window!.rootViewController!.presentViewController(tata, animated: true, completion: nil)
     }
     
     func goCy() {
