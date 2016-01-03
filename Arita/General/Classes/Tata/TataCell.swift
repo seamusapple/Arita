@@ -90,7 +90,7 @@ class TataCell: UITableViewCell
         
         self.cellView.backgroundColor = UIColor.whiteColor()
         
-        self.timestampIcon.backgroundColor = UIColor(red: 255 / 255.0, green: 83 / 255.0, blue: 43 / 255.0, alpha: 1.0)
+        self.timestampIcon.image = UIImage(named: "tata_time_icon")
         
         self.timestamp.textColor = UIColor.whiteColor()
         self.timestamp.font = UIFont.boldSystemFontOfSize(13)
