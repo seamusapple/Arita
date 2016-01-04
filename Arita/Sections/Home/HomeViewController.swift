@@ -345,6 +345,7 @@ class HomeViewController: UIViewController
         self.titleLabel.text = "阿里塔"
         self.titleLabel.font = UIFont.systemFontOfSize(16)
         self.titleLabel.textColor = UIColor(red: 255 / 255.0, green: 82 / 255.0, blue: 43 / 255.0, alpha: 1.0)
+        self.titleLabel.textAlignment = NSTextAlignment.Center
         self.menuBtn.setBackgroundImage(UIImage(named: "menuBtn"), forState: UIControlState.Normal)
         self.loginBtn.setBackgroundImage(UIImage(named: "userBtn"), forState: UIControlState.Normal)
         
@@ -411,21 +412,24 @@ class HomeViewController: UIViewController
     }
     
     func goCy() {
-        let cyController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InterestingController") as! InterestingController
-        cyController.segueId = "cySegue"
-        self.view.window!.rootViewController!.presentViewController(cyController, animated: true, completion: nil)
+//        let cyController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InterestingController") as! InterestingController
+        let cy = ArticleViewController()
+        cy.segueId = "cySegue"
+        self.view.window!.rootViewController!.presentViewController(cy, animated: true, completion: nil)
     }
     
     func goSj() {
-        let sjController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InterestingController") as! InterestingController
-        sjController.segueId = "sjSegue"
-        self.view.window!.rootViewController!.presentViewController(sjController, animated: true, completion: nil)
+//        let sjController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InterestingController") as! InterestingController
+        let sj = ArticleViewController()
+        sj.segueId = "sjSegue"
+        self.view.window!.rootViewController!.presentViewController(sj, animated: true, completion: nil)
     }
     
     func goSh() {
-        let shController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InterestingController") as! InterestingController
-        shController.segueId = "shSegue"
-        self.view.window!.rootViewController!.presentViewController(shController, animated: true, completion: nil)
+//        let shController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InterestingController") as! InterestingController
+        let sh = ArticleViewController()
+        sh.segueId = "shSegue"
+        self.view.window!.rootViewController!.presentViewController(sh, animated: true, completion: nil)
     }
     
     func goLp(sender: UIButton) {

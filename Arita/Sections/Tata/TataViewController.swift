@@ -110,6 +110,7 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.titleLabel.text = "塔塔报"
         self.titleLabel.font = UIFont.systemFontOfSize(16)
         self.titleLabel.textColor = UIColor.whiteColor()
+        self.titleLabel.textAlignment = NSTextAlignment.Center
         self.backBtn.setBackgroundImage(UIImage(named: "upBackBtn"), forState: UIControlState.Normal)
         self.loginBtn.setBackgroundImage(UIImage(named: "upUser"), forState: UIControlState.Normal)
         if isUserLogin() {

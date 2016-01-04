@@ -56,6 +56,9 @@
 		81C575901B70BA95008FE3BF /* SubGoodsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5758F1B70BA95008FE3BF /* SubGoodsController.swift */; };
 		81C575921B710981008FE3BF /* SubGoodsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C575911B710981008FE3BF /* SubGoodsCollectionCell.swift */; };
 		81DCFED31B824896003CF443 /* AboutUsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DCFED21B824896003CF443 /* AboutUsController.swift */; };
+		81DE22531C3AC1E300F9A78B /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE22521C3AC1E300F9A78B /* ArticleViewController.swift */; };
+		81DE22561C3AC5B500F9A78B /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DE22551C3AC5B500F9A78B /* HMSegmentedControl.m */; };
+		81DE22581C3AC87700F9A78B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DE22571C3AC87700F9A78B /* QuartzCore.framework */; };
 		81E789561BB42F2E002D0534 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E789551BB42F2E002D0534 /* CommentViewController.swift */; };
 		81E789581BB42F8F002D0534 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E789571BB42F8F002D0534 /* CommentTableViewCell.swift */; };
 		81F066C21B9F2F9C0022D736 /* LikeArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F066C11B9F2F9C0022D736 /* LikeArticleCell.swift */; };
@@ -112,7 +115,7 @@
 		814BF3051C2851D30074A0E1 /* ShareSDKExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKExtension.framework; sourceTree = "<group>"; };
 		814BF3061C2851D30074A0E1 /* ShareSDKUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKUI.bundle; sourceTree = "<group>"; };
 		814BF3071C2851D30074A0E1 /* ShareSDKUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKUI.framework; sourceTree = "<group>"; };
-		816108A31B5EAA9A002BDFA6 /* InterestingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestingController.swift; sourceTree = "<group>"; };
+		816108A31B5EAA9A002BDFA6 /* InterestingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterestingController.swift; path = ../InterestingController.swift; sourceTree = "<group>"; };
 		816108A51B5EAAB4002BDFA6 /* ThingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThingsController.swift; sourceTree = "<group>"; };
 		81639CD31BD5D87600B31AD6 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		81639CD51BD5E29E00B31AD6 /* TouGaoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouGaoViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +147,10 @@
 		81C5758F1B70BA95008FE3BF /* SubGoodsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubGoodsController.swift; sourceTree = "<group>"; };
 		81C575911B710981008FE3BF /* SubGoodsCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubGoodsCollectionCell.swift; sourceTree = "<group>"; };
 		81DCFED21B824896003CF443 /* AboutUsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsController.swift; sourceTree = "<group>"; };
+		81DE22521C3AC1E300F9A78B /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		81DE22541C3AC5B500F9A78B /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		81DE22551C3AC5B500F9A78B /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		81DE22571C3AC87700F9A78B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		81E789551BB42F2E002D0534 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		81E789571BB42F8F002D0534 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		81F066C11B9F2F9C0022D736 /* LikeArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeArticleCell.swift; sourceTree = "<group>"; };
@@ -159,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81DE22581C3AC87700F9A78B /* QuartzCore.framework in Frameworks */,
 				814BF30D1C2851D30074A0E1 /* MOBFoundation.framework in Frameworks */,
 				81639CDA1BD5EDA400B31AD6 /* MessageUI.framework in Frameworks */,
 				814BF3111C2851D30074A0E1 /* ShareSDKExtension.framework in Frameworks */,
@@ -212,6 +220,8 @@
 				817DDBAA1B5D4A9D0033C9F9 /* RMParallaxItem.swift */,
 				812E43F31B6B550700E3ED64 /* SMSegmentView.swift */,
 				812E43F41B6B550700E3ED64 /* SMSegment.swift */,
+				81DE22541C3AC5B500F9A78B /* HMSegmentedControl.h */,
+				81DE22551C3AC5B500F9A78B /* HMSegmentedControl.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -394,7 +404,7 @@
 			children = (
 				814BF2E81C284BF70074A0E1 /* Home */,
 				8173B7121C3635D500017B95 /* Tata */,
-				816108A31B5EAA9A002BDFA6 /* InterestingController.swift */,
+				81DE22511C3ABF4F00F9A78B /* Article */,
 				816108A51B5EAAB4002BDFA6 /* ThingsController.swift */,
 				81C5758F1B70BA95008FE3BF /* SubGoodsController.swift */,
 				8143CC781B9EBF82004FA08B /* UserInfoController.swift */,
@@ -421,6 +431,15 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
+		81DE22511C3ABF4F00F9A78B /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				816108A31B5EAA9A002BDFA6 /* InterestingController.swift */,
+				81DE22521C3AC1E300F9A78B /* ArticleViewController.swift */,
+			);
+			path = Article;
+			sourceTree = "<group>";
+		};
 		D2BC62B6A64C13951A33F83C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +452,7 @@
 		E45FE2F7789584892EC321C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81DE22571C3AC87700F9A78B /* QuartzCore.framework */,
 				81639CD91BD5EDA400B31AD6 /* MessageUI.framework */,
 				81BD2CC61BA3A1D300EA0E58 /* libsqlite3.dylib */,
 				81BD2CC41BA3A1B700EA0E58 /* ImageIO.framework */,
@@ -620,6 +640,7 @@
 				81A5852E1BCBFA1F004FE56E /* LoadMoreCell.swift in Sources */,
 				81639CD81BD5E48000B31AD6 /* TuCaoViewController.swift in Sources */,
 				814897421B83890A006EDC23 /* GoodsWebViewController.swift in Sources */,
+				81DE22531C3AC1E300F9A78B /* ArticleViewController.swift in Sources */,
 				81639CD41BD5D87600B31AD6 /* ContactUsViewController.swift in Sources */,
 				8143CC7B1B9ED2A9004FA08B /* LikeController.swift in Sources */,
 				81C575921B710981008FE3BF /* SubGoodsCollectionCell.swift in Sources */,
@@ -628,6 +649,7 @@
 				81C575901B70BA95008FE3BF /* SubGoodsController.swift in Sources */,
 				812E43F51B6B550700E3ED64 /* SMSegmentView.swift in Sources */,
 				817DDBAB1B5D4A9D0033C9F9 /* RMParallax.swift in Sources */,
+				81DE22561C3AC5B500F9A78B /* HMSegmentedControl.m in Sources */,
 				817DDBAC1B5D4A9D0033C9F9 /* RMParallaxItem.swift in Sources */,
 				81A6A52B1B837B6C007E8A37 /* ContentWebViewController.swift in Sources */,
 				81A6A5291B837461007E8A37 /* VersonViewController.swift in Sources */,
