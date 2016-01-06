@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class ArticleViewController: UIViewController
+class ArticleViewController: UIViewController, UIScrollViewDelegate
 {
     var segueId: String!
     
@@ -22,6 +22,10 @@ class ArticleViewController: UIViewController
     
     var segmentedControl = HMSegmentedControl()
     var scrollView = UIScrollView()
+    
+    var view1 = UIView()
+    var view2 = UIView()
+    var view3 = UIView()
     
     // MARK: - life cycle
     override func viewDidLoad() {
@@ -65,6 +69,9 @@ class ArticleViewController: UIViewController
         
         self.view.addSubview(self.segmentedControl)
         self.view.addSubview(self.scrollView)
+        self.scrollView.addSubview(self.view1)
+        self.scrollView.addSubview(self.view2)
+        self.scrollView.addSubview(self.view3)
     }
     
     // MARK: - layout and set page subviews
@@ -105,6 +112,26 @@ class ArticleViewController: UIViewController
             make.top.equalTo(self.segmentedControl.snp_bottom)
             make.left.right.bottom.equalTo(self.view)
         }
+        
+        self.view1.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(SCREEN_WIDTH)
+            make.height.equalTo(self.scrollView.snp_height)
+            make.top.left.equalTo(self.scrollView)
+        }
+        
+        self.view2.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(SCREEN_WIDTH)
+            make.height.equalTo(self.scrollView.snp_height)
+            make.top.equalTo(self.scrollView)
+            make.left.equalTo(self.view1.snp_right)
+        }
+        
+        self.view3.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(SCREEN_WIDTH)
+            make.height.equalTo(self.scrollView.snp_height)
+            make.top.equalTo(self.scrollView)
+            make.left.equalTo(self.view2.snp_right)
+        }
     }
     
     func setPageSubviews() {
@@ -138,46 +165,36 @@ class ArticleViewController: UIViewController
         
         // Tying up the segmented control to a scroll view
         self.segmentedControl.sectionTitles = ["我是", "无敌", "胖胖"]
-        self.segmentedControl.selectedSegmentIndex = 1
+        self.segmentedControl.selectedSegmentIndex = 0
         self.segmentedControl.backgroundColor = UIColor.whiteColor()
         self.segmentedControl.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 172 / 255.0, green: 172 / 255.0, blue: 172 / 255.0, alpha: 1)]
         self.segmentedControl.selectedTitleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 240 / 255.0, green: 182 / 255.0, blue: 31 / 255.0, alpha: 1.0)]
-        self.segmentedControl.selectionIndicatorColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
-        self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox
-        self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp
+        self.segmentedControl.selectionIndicatorColor = UIColor(red: 240 / 255.0, green: 182 / 255.0, blue: 31 / 255.0, alpha: 1.0)
+        self.segmentedControl.selectionIndicatorHeight = 2.0
+        self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe
+        self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown
+
+        let height = self.scrollView.frame.height
         
         self.segmentedControl.indexChangeBlock = {(index: NSInteger) -> Void in
             let x = SCREEN_WIDTH * CGFloat(index)
-            self.scrollView.scrollRectToVisible(CGRectMake(x, 0, SCREEN_WIDTH, 200), animated: true)
+            self.scrollView.scrollRectToVisible(CGRectMake(x, 0, SCREEN_WIDTH, height), animated: true)
         }
+
+        self.scrollView.backgroundColor = UIColor.grayColor()
+        self.scrollView.pagingEnabled = true
+        self.scrollView.showsHorizontalScrollIndicator = false
+        self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 3, height)
+        self.scrollView.scrollRectToVisible(CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, height), animated: false)
         
-//        self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 310, viewWidth, 210)];
-//        self.scrollView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
-//        self.scrollView.pagingEnabled = YES;
-//        self.scrollView.showsHorizontalScrollIndicator = NO;
-//        self.scrollView.contentSize = CGSizeMake(viewWidth * 3, 200);
-//        self.scrollView.delegate = self;
-//        [self.scrollView scrollRectToVisible:CGRectMake(viewWidth, 0, viewWidth, 200) animated:NO];
-//        [self.view addSubview:self.scrollView];
-//        
-//        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, viewWidth, 210)];
-//        [self setApperanceForLabel:label1];
-//        label1.text = @"Worldwide";
-//        [self.scrollView addSubview:label1];
-//        
-//        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(viewWidth, 0, viewWidth, 210)];
-//        [self setApperanceForLabel:label2];
-//        label2.text = @"Local";
-//        [self.scrollView addSubview:label2];
-//        
-//        UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(viewWidth * 2, 0, viewWidth, 210)];
-//        [self setApperanceForLabel:label3];
-//        label3.text = @"Headlines";
-//        [self.scrollView addSubview:label3];
+        self.view1.backgroundColor = UIColor.whiteColor()
+        self.view2.backgroundColor = UIColor.whiteColor()
+        self.view3.backgroundColor = UIColor.whiteColor()
     }
     
     // MARK: - set datasource, delegate and events
     func setDatasourceAndDelegate() {
+        self.scrollView.delegate = self
     }
     
     func setPageEvents() {
@@ -187,6 +204,14 @@ class ArticleViewController: UIViewController
     
     // MARK: - load data from server
     func loadDataFromServer() {
+    }
+    
+    // MARK: - UIScrollViewDelegate
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let pageWidth = scrollView.frame.size.width
+        let page = scrollView.contentOffset.x / pageWidth
+        
+        self.segmentedControl.setSelectedSegmentIndex(UInt(page), animated: true)
     }
     
     // MARK: - UITableViewDataSource
