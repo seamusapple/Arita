@@ -343,8 +343,8 @@ class HomeViewController: UIViewController
         
         self.titleViewBg.image = UIImage(named: "homeTitle")
         self.titleLabel.text = "阿里塔"
-        self.titleLabel.font = UIFont.systemFontOfSize(16)
-        self.titleLabel.textColor = UIColor(red: 255 / 255.0, green: 82 / 255.0, blue: 43 / 255.0, alpha: 1.0)
+        self.titleLabel.font = FONT_TITLE
+        self.titleLabel.textColor = COLOR_TATA
         self.titleLabel.textAlignment = NSTextAlignment.Center
         self.menuBtn.setBackgroundImage(UIImage(named: "menuBtn"), forState: UIControlState.Normal)
         self.loginBtn.setBackgroundImage(UIImage(named: "userBtn"), forState: UIControlState.Normal)

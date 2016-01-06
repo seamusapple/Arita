@@ -12,8 +12,6 @@ import SwiftyJSON
 
 class TataViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
-    let cellHeight = 120 + (SCREEN_WIDTH - 20) * 2 / 3
-    
     var titleView = UIView()
     var titleViewBg = UIImageView()
     var titleLabel = UILabel()
@@ -108,7 +106,7 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.titleViewBg.image = UIImage(named: "tataTitle")
         self.titleLabel.text = "塔塔报"
-        self.titleLabel.font = UIFont.systemFontOfSize(16)
+        self.titleLabel.font = FONT_TITLE
         self.titleLabel.textColor = UIColor.whiteColor()
         self.titleLabel.textAlignment = NSTextAlignment.Center
         self.backBtn.setBackgroundImage(UIImage(named: "upBackBtn"), forState: UIControlState.Normal)
@@ -188,7 +186,7 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row != self.newsArray.count {
-            return self.cellHeight
+            return CELL_HEIGHT
         } else {
             return 44
         }

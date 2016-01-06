@@ -17,6 +17,8 @@
 		8143CC791B9EBF82004FA08B /* UserInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8143CC781B9EBF82004FA08B /* UserInfoController.swift */; };
 		8143CC7B1B9ED2A9004FA08B /* LikeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8143CC7A1B9ED2A9004FA08B /* LikeController.swift */; };
 		814897421B83890A006EDC23 /* GoodsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814897411B83890A006EDC23 /* GoodsWebViewController.swift */; };
+		8150A4ED1C3D551E00666A8E /* UtilMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8150A4EC1C3D551E00666A8E /* UtilMacro.swift */; };
+		8150A4F01C3D5CD300666A8E /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8150A4EF1C3D5CD300666A8E /* ArticleCell.swift */; };
 		816108A41B5EAA9A002BDFA6 /* InterestingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816108A31B5EAA9A002BDFA6 /* InterestingController.swift */; };
 		816108A61B5EAAB4002BDFA6 /* ThingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816108A51B5EAAB4002BDFA6 /* ThingsController.swift */; };
 		81639CD41BD5D87600B31AD6 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81639CD31BD5D87600B31AD6 /* ContactUsViewController.swift */; };
@@ -85,7 +87,7 @@
 		6DA232FB9534B1F4A8BF46D5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		810AA3571BA1D21100E06EAA /* ThirdPartLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPartLoginController.swift; sourceTree = "<group>"; };
 		810AA3591BA1DDD000E06EAA /* ThirdPartShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPartShareController.swift; sourceTree = "<group>"; };
-		810C61C41B6DC4CB00B2EDA9 /* InterestingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestingCell.swift; sourceTree = "<group>"; };
+		810C61C41B6DC4CB00B2EDA9 /* InterestingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterestingCell.swift; path = ../InterestingCell.swift; sourceTree = "<group>"; };
 		811ED7EB1BB192C2007BA907 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		81213C681C376A2C008D50F0 /* TataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TataCell.swift; sourceTree = "<group>"; };
 		812E43F31B6B550700E3ED64 /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
@@ -93,6 +95,8 @@
 		8143CC781B9EBF82004FA08B /* UserInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoController.swift; sourceTree = "<group>"; };
 		8143CC7A1B9ED2A9004FA08B /* LikeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeController.swift; sourceTree = "<group>"; };
 		814897411B83890A006EDC23 /* GoodsWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsWebViewController.swift; sourceTree = "<group>"; };
+		8150A4EC1C3D551E00666A8E /* UtilMacro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilMacro.swift; sourceTree = "<group>"; };
+		8150A4EF1C3D5CD300666A8E /* ArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		816108A31B5EAA9A002BDFA6 /* InterestingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterestingController.swift; path = ../InterestingController.swift; sourceTree = "<group>"; };
 		816108A51B5EAAB4002BDFA6 /* ThingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThingsController.swift; sourceTree = "<group>"; };
 		81639CD31BD5D87600B31AD6 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
@@ -235,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				81213C671C3769F1008D50F0 /* Tata */,
-				810C61C41B6DC4CB00B2EDA9 /* InterestingCell.swift */,
+				8150A4EE1C3D5C1800666A8E /* Ariticle */,
 				81C5758D1B707EE6008FE3BF /* GoodsCollectionCell.swift */,
 				81C575911B710981008FE3BF /* SubGoodsCollectionCell.swift */,
 				81F066C11B9F2F9C0022D736 /* LikeArticleCell.swift */,
@@ -272,6 +276,24 @@
 			path = Vendors;
 			sourceTree = "<group>";
 		};
+		8150A4EB1C3D548F00666A8E /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				8150A4EC1C3D551E00666A8E /* UtilMacro.swift */,
+			);
+			path = Macro;
+			sourceTree = "<group>";
+		};
+		8150A4EE1C3D5C1800666A8E /* Ariticle */ = {
+			isa = PBXGroup;
+			children = (
+				8150A4EF1C3D5CD300666A8E /* ArticleCell.swift */,
+				810C61C41B6DC4CB00B2EDA9 /* InterestingCell.swift */,
+			);
+			name = Ariticle;
+			path = Article;
+			sourceTree = "<group>";
+		};
 		8173B7121C3635D500017B95 /* Tata */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +328,7 @@
 				81C343D11C282D3200E2CB83 /* Sections */,
 				813231481C28545300AC7628 /* General */,
 				814BF2E91C284CEE0074A0E1 /* Helpers */,
+				8150A4EB1C3D548F00666A8E /* Macro */,
 				814BF2EA1C284E1A0074A0E1 /* Vendors */,
 				81C343D21C28377500E2CB83 /* AppDelegate */,
 				817DDB781B5D2D6F0033C9F9 /* Images.xcassets */,
@@ -635,6 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81FF18FD1B7F040D00F793CA /* Common.swift in Sources */,
+				8150A4ED1C3D551E00666A8E /* UtilMacro.swift in Sources */,
 				810AA3581BA1D21100E06EAA /* ThirdPartLoginController.swift in Sources */,
 				81F066C21B9F2F9C0022D736 /* LikeArticleCell.swift in Sources */,
 				81FF18FB1B7F02F900F793CA /* ViewController.swift in Sources */,
@@ -665,6 +689,7 @@
 				81A6A5291B837461007E8A37 /* VersonViewController.swift in Sources */,
 				81F18F321C245878003C79B9 /* HomeViewController.swift in Sources */,
 				81FF19031B7F079700F793CA /* LeftViewController.swift in Sources */,
+				8150A4F01C3D5CD300666A8E /* ArticleCell.swift in Sources */,
 				8173B7141C36360700017B95 /* TataViewController.swift in Sources */,
 				810AA35A1BA1DDD000E06EAA /* ThirdPartShareController.swift in Sources */,
 				817DDB721B5D2D6F0033C9F9 /* AppDelegate.swift in Sources */,

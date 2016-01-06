@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 class ArticleViewController: UIViewController, UIScrollViewDelegate
+//    , UITableViewDataSource, UITableViewDelegate
 {
     var segueId: String!
     
@@ -26,6 +27,8 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
     var view1 = UIView()
     var view2 = UIView()
     var view3 = UIView()
+    
+    private var menuColor: UIColor!
     
     // MARK: - life cycle
     override func viewDidLoad() {
@@ -109,7 +112,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
         }
         
         self.scrollView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.segmentedControl.snp_bottom)
+            make.top.equalTo(self.segmentedControl.snp_bottom).offset(10)
             make.left.right.bottom.equalTo(self.view)
         }
         
@@ -135,26 +138,29 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
     }
     
     func setPageSubviews() {
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = COLOR_BACKGROUND
         
         // set title field
         switch self.segueId {
         case "cySegue":
             self.titleLabel.text = "创意"
             self.titleViewBg.image = UIImage(named: "cyTitle")!
+            self.menuColor = COLOR_CY
             
         case "sjSegue":
             self.titleLabel.text = "设计"
             self.titleViewBg.image = UIImage(named: "sjTitle")!
+            self.menuColor = COLOR_SJ
             
         case "shSegue":
             self.titleLabel.text = "生活"
             self.titleViewBg.image = UIImage(named: "shTitle")!
+            self.menuColor = COLOR_SH
             
         default:
             break
         }
-        self.titleLabel.font = UIFont.systemFontOfSize(16)
+        self.titleLabel.font = FONT_TITLE
         self.titleLabel.textColor = UIColor.whiteColor()
         self.titleLabel.textAlignment = NSTextAlignment.Center
         self.backBtn.setBackgroundImage(UIImage(named: "upBackBtn"), forState: UIControlState.Normal)
@@ -167,9 +173,9 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
         self.segmentedControl.sectionTitles = ["我是", "无敌", "胖胖"]
         self.segmentedControl.selectedSegmentIndex = 0
         self.segmentedControl.backgroundColor = UIColor.whiteColor()
-        self.segmentedControl.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 172 / 255.0, green: 172 / 255.0, blue: 172 / 255.0, alpha: 1)]
-        self.segmentedControl.selectedTitleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 240 / 255.0, green: 182 / 255.0, blue: 31 / 255.0, alpha: 1.0)]
-        self.segmentedControl.selectionIndicatorColor = UIColor(red: 240 / 255.0, green: 182 / 255.0, blue: 31 / 255.0, alpha: 1.0)
+        self.segmentedControl.titleTextAttributes = [NSForegroundColorAttributeName: COLOR_ARTICLE_MENU_TEXT_UNSELECTED_COLOR, NSFontAttributeName: FONT_ARTICLE_MENU_TEXT]
+        self.segmentedControl.selectedTitleTextAttributes = [NSForegroundColorAttributeName: self.menuColor, NSFontAttributeName: FONT_ARTICLE_MENU_TEXT]
+        self.segmentedControl.selectionIndicatorColor = self.menuColor
         self.segmentedControl.selectionIndicatorHeight = 2.0
         self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe
         self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown
@@ -187,9 +193,9 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
         self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 3, height)
         self.scrollView.scrollRectToVisible(CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, height), animated: false)
         
-        self.view1.backgroundColor = UIColor.whiteColor()
-        self.view2.backgroundColor = UIColor.whiteColor()
-        self.view3.backgroundColor = UIColor.whiteColor()
+        self.view1.backgroundColor = COLOR_CY
+        self.view2.backgroundColor = COLOR_SJ
+        self.view3.backgroundColor = COLOR_SH
     }
     
     // MARK: - set datasource, delegate and events
@@ -215,8 +221,69 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
     }
     
     // MARK: - UITableViewDataSource
+//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if self.articleArray.count < self.articleNum {
+//            return self.articleArray.count + 1
+//        } else {
+//            return self.articleArray.count
+//        }
+//        return 3
+//    }
+    
+//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        if indexPath.row != self.articleArray.count {
+//            let cellId = "interestingCell"
+//            let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! InterestingCell
+//            cell.titleLabel.text = self.articleArray[indexPath.row]["title"].string
+//            
+//            switch self.segueId {
+//            case "cySegue":
+//                cell.thumbnailImage.backgroundColor = COLOR_CY
+//                
+//            case "sjSegue":
+//                cell.thumbnailImage.backgroundColor = UIColor(red: 152 / 255.0, green: 199 / 255.0, blue: 63 / 255.0, alpha: 1.0)
+//                
+//            case "shSegue":
+//                cell.thumbnailImage.backgroundColor = UIColor(red: 233 / 255.0, green: 37 / 255.0, blue: 39 / 255.0, alpha: 1.0)
+//                
+//            default:
+//                break
+//            }
+//            let imageUrl = self.articleArray[indexPath.row]["thumb_path"].string
+//            cell.thumbnailImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
+//            
+//            return cell
+//        } else {
+//            let cell = LoadMoreCell()
+//            return cell
+//        }
+//        let cellId = "ArticleCell"
+//        let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ArticleCell
+//        print(tableView.tag)
+//        return cell
+//    }
     
     // MARK: - UITableViewDelegate
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if indexPath.row != self.articleArray.count {
+//            return 270
+//        } else {
+//            return 44
+//        }
+//        return CELL_HEIGHT
+//    }
+    
+//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if (indexPath.row == self.articleArray.count)
+//        {
+//            let channelIdSelected = self.channelId[self.segueId]![self.segmentId]
+//            let id = self.articleArray[self.articleArray.count - 1]["ID"]
+//            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=\(id)&articlesNum=10")
+//                .responseJSON { aRequest, aResponse, aJson in
+//                    self.getMoreArticles(aJson.value)
+//            }
+//        }
+//    }
     
     // MARK: - event response
     func backToUpLevel() {

@@ -146,7 +146,7 @@ class InterestingController: UIViewController, SMSegmentViewDelegate, UITableVie
             
             switch self.segueId {
             case "cySegue":
-                cell.thumbnailImage.backgroundColor = UIColor(red: 240 / 255.0, green: 182 / 255.0, blue: 31 / 255.0, alpha: 1.0)
+                cell.thumbnailImage.backgroundColor = COLOR_CY
                 
             case "sjSegue":
                 cell.thumbnailImage.backgroundColor = UIColor(red: 152 / 255.0, green: 199 / 255.0, blue: 63 / 255.0, alpha: 1.0)

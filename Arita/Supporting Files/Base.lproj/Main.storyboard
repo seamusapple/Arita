@@ -5090,7 +5090,7 @@
         <image name="xtTitle" width="320" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PaV-84-Ghx"/>
         <segue reference="pi4-lm-5o3"/>
+        <segue reference="369-eH-QIb"/>
     </inferredMetricsTieBreakers>
 </document>
