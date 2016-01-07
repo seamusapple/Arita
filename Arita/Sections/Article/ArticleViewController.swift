@@ -27,8 +27,24 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
     var view1 = UIView()
     var view2 = UIView()
     var view3 = UIView()
+    var rc = UIRefreshControl()
     
     private var menuColor: UIColor!
+    
+    private let segmentTitle: [String:[String]] = [
+        "cySegue": ["创意", "摄影", "趣味", "手工", "艺术", "插画"],
+        "sjSegue": ["设计", "建筑", "汽车", "家居", "科技", "时尚"],
+        "shSegue": ["生活", "盘点", "旅行", "美食", "异国", "萌物"]]
+    private let channelId: [String:[String]] = [
+        "cySegue": ["1", "2", "3", "4", "5", "6"],
+        "sjSegue": ["13", "14", "15", "16", "17", "18"],
+        "shSegue": ["7", "8", "9", "10", "11", "12"]]
+    
+    private var segmentId = 0
+    
+    private var articleArray: [JSON] = []
+
+    private var articleNum = 0
     
     // MARK: - life cycle
     override func viewDidLoad() {
@@ -112,7 +128,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
         }
         
         self.scrollView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.segmentedControl.snp_bottom).offset(10)
+            make.top.equalTo(self.segmentedControl.snp_bottom)
             make.left.right.bottom.equalTo(self.view)
         }
         
@@ -170,7 +186,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
         }
         
         // Tying up the segmented control to a scroll view
-        self.segmentedControl.sectionTitles = ["我是", "无敌", "胖胖"]
+        self.segmentedControl.sectionTitles = self.segmentTitle[self.segueId]
         self.segmentedControl.selectedSegmentIndex = 0
         self.segmentedControl.backgroundColor = UIColor.whiteColor()
         self.segmentedControl.titleTextAttributes = [NSForegroundColorAttributeName: COLOR_ARTICLE_MENU_TEXT_UNSELECTED_COLOR, NSFontAttributeName: FONT_ARTICLE_MENU_TEXT]
@@ -180,27 +196,40 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
         self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe
         self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown
 
-        let height = self.scrollView.frame.height
+        let height = SCREEN_HEIGHT - 75
         
-        self.segmentedControl.indexChangeBlock = {(index: NSInteger) -> Void in
+        self.segmentedControl.indexChangeBlock = { [weak self] (index: NSInteger) -> Void in
             let x = SCREEN_WIDTH * CGFloat(index)
-            self.scrollView.scrollRectToVisible(CGRectMake(x, 0, SCREEN_WIDTH, height), animated: true)
+            self!.scrollView.scrollRectToVisible(CGRectMake(x, 0, SCREEN_WIDTH, height), animated: true)
+            
+//            let channelIdSelected = self.channelId[self.segueId]![index]
+            self!.segmentId = index
+            self!.titleLabel.text = self!.segmentTitle[self!.segueId]![index]
+//            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
+//                .responseJSON { _, _, aJson in
+//                    self.getArticle(aJson.value)
+//            }
         }
 
         self.scrollView.backgroundColor = UIColor.grayColor()
         self.scrollView.pagingEnabled = true
         self.scrollView.showsHorizontalScrollIndicator = false
-        self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 3, height)
-        self.scrollView.scrollRectToVisible(CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, height), animated: false)
+        self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 6, height)
+        self.scrollView.scrollRectToVisible(CGRectMake(0, 0, SCREEN_WIDTH, height), animated: false)
         
         self.view1.backgroundColor = COLOR_CY
         self.view2.backgroundColor = COLOR_SJ
         self.view3.backgroundColor = COLOR_SH
+        
+//        self.table1.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
     }
     
     // MARK: - set datasource, delegate and events
     func setDatasourceAndDelegate() {
         self.scrollView.delegate = self
+        
+//        self.table1.delegate = self
+//        self.table1.dataSource = self
     }
     
     func setPageEvents() {
@@ -217,6 +246,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
         let pageWidth = scrollView.frame.size.width
         let page = scrollView.contentOffset.x / pageWidth
         
+        self.titleLabel.text = self.segmentTitle[self.segueId]![Int(page)]
         self.segmentedControl.setSelectedSegmentIndex(UInt(page), animated: true)
     }
     
@@ -227,7 +257,6 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
 //        } else {
 //            return self.articleArray.count
 //        }
-//        return 3
 //    }
     
 //    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -257,20 +286,15 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
 //            let cell = LoadMoreCell()
 //            return cell
 //        }
-//        let cellId = "ArticleCell"
-//        let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ArticleCell
-//        print(tableView.tag)
-//        return cell
 //    }
     
     // MARK: - UITableViewDelegate
 //    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 //        if indexPath.row != self.articleArray.count {
-//            return 270
+//            return CELL_HEIGHT
 //        } else {
 //            return 44
 //        }
-//        return CELL_HEIGHT
 //    }
     
 //    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {

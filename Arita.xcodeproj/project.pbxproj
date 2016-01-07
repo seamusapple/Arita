@@ -551,7 +551,6 @@
 				TargetAttributes = {
 					817DDB6B1B5D2D6F0033C9F9 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = MUGPCKW3CX;
 					};
 					817DDB801B5D2D6F0033C9F9 = {
 						CreatedOnToolsVersion = 6.4;

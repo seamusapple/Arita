@@ -16,3 +16,4 @@ struct Common {
 }
 
 let SCREEN_WIDTH = UIScreen.mainScreen().bounds.size.width
+let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.size.height
