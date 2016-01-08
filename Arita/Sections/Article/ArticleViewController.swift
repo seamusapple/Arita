@@ -10,8 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class ArticleViewController: UIViewController, UIScrollViewDelegate
-//    , UITableViewDataSource, UITableViewDelegate
+class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate
 {
     var segueId: String!
     
@@ -24,9 +23,12 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
     var segmentedControl = HMSegmentedControl()
     var scrollView = UIScrollView()
     
-    var view1 = UIView()
-    var view2 = UIView()
-    var view3 = UIView()
+    var table1 = UITableView()
+    var table2 = UITableView()
+    var table3 = UITableView()
+    var table4 = UITableView()
+    var table5 = UITableView()
+    var table6 = UITableView()
     var rc = UIRefreshControl()
     
     private var menuColor: UIColor!
@@ -45,6 +47,8 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
     private var articleArray: [JSON] = []
 
     private var articleNum = 0
+    
+    private var tableArray: [UITableView] = []
     
     // MARK: - life cycle
     override func viewDidLoad() {
@@ -88,9 +92,19 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
         
         self.view.addSubview(self.segmentedControl)
         self.view.addSubview(self.scrollView)
-        self.scrollView.addSubview(self.view1)
-        self.scrollView.addSubview(self.view2)
-        self.scrollView.addSubview(self.view3)
+        self.scrollView.addSubview(self.table1)
+        self.scrollView.addSubview(self.table2)
+        self.scrollView.addSubview(self.table3)
+        self.scrollView.addSubview(self.table4)
+        self.scrollView.addSubview(self.table5)
+        self.scrollView.addSubview(self.table6)
+        
+        self.tableArray.append(self.table1)
+        self.tableArray.append(self.table2)
+        self.tableArray.append(self.table3)
+        self.tableArray.append(self.table4)
+        self.tableArray.append(self.table5)
+        self.tableArray.append(self.table6)
     }
     
     // MARK: - layout and set page subviews
@@ -132,24 +146,45 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
             make.left.right.bottom.equalTo(self.view)
         }
         
-        self.view1.snp_makeConstraints { (make) -> Void in
+        self.table1.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(SCREEN_WIDTH)
             make.height.equalTo(self.scrollView.snp_height)
             make.top.left.equalTo(self.scrollView)
         }
         
-        self.view2.snp_makeConstraints { (make) -> Void in
+        self.table2.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(SCREEN_WIDTH)
             make.height.equalTo(self.scrollView.snp_height)
             make.top.equalTo(self.scrollView)
-            make.left.equalTo(self.view1.snp_right)
+            make.left.equalTo(self.table1.snp_right)
         }
         
-        self.view3.snp_makeConstraints { (make) -> Void in
+        self.table3.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(SCREEN_WIDTH)
             make.height.equalTo(self.scrollView.snp_height)
             make.top.equalTo(self.scrollView)
-            make.left.equalTo(self.view2.snp_right)
+            make.left.equalTo(self.table2.snp_right)
+        }
+        
+        self.table4.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(SCREEN_WIDTH)
+            make.height.equalTo(self.scrollView.snp_height)
+            make.top.equalTo(self.scrollView)
+            make.left.equalTo(self.table3.snp_right)
+        }
+        
+        self.table5.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(SCREEN_WIDTH)
+            make.height.equalTo(self.scrollView.snp_height)
+            make.top.equalTo(self.scrollView)
+            make.left.equalTo(self.table4.snp_right)
+        }
+        
+        self.table6.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(SCREEN_WIDTH)
+            make.height.equalTo(self.scrollView.snp_height)
+            make.top.equalTo(self.scrollView)
+            make.left.equalTo(self.table5.snp_right)
         }
     }
     
@@ -199,115 +234,159 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
         let height = SCREEN_HEIGHT - 75
         
         self.segmentedControl.indexChangeBlock = { [weak self] (index: NSInteger) -> Void in
+            self!.reSetTableDatasourceAndDelegate(index)
+            
             let x = SCREEN_WIDTH * CGFloat(index)
             self!.scrollView.scrollRectToVisible(CGRectMake(x, 0, SCREEN_WIDTH, height), animated: true)
             
-//            let channelIdSelected = self.channelId[self.segueId]![index]
             self!.segmentId = index
             self!.titleLabel.text = self!.segmentTitle[self!.segueId]![index]
-//            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
-//                .responseJSON { _, _, aJson in
-//                    self.getArticle(aJson.value)
-//            }
+            
+            let channelIdSelected = self!.channelId[self!.segueId]![index]
+            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
+                .responseJSON { _, _, aJson in
+                    self!.getArticle(aJson.value, index: index)
+            }
         }
 
-        self.scrollView.backgroundColor = UIColor.grayColor()
         self.scrollView.pagingEnabled = true
         self.scrollView.showsHorizontalScrollIndicator = false
         self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 6, height)
-        self.scrollView.scrollRectToVisible(CGRectMake(0, 0, SCREEN_WIDTH, height), animated: false)
         
-        self.view1.backgroundColor = COLOR_CY
-        self.view2.backgroundColor = COLOR_SJ
-        self.view3.backgroundColor = COLOR_SH
+        self.table1.backgroundColor = UIColor.clearColor()
+        self.table1.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.table1.showsVerticalScrollIndicator = false
         
-//        self.table1.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
+        self.table2.backgroundColor = UIColor.clearColor()
+        self.table2.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.table2.showsVerticalScrollIndicator = false
+        
+        self.table3.backgroundColor = UIColor.clearColor()
+        self.table3.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.table3.showsVerticalScrollIndicator = false
+        
+        self.table4.backgroundColor = UIColor.clearColor()
+        self.table4.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.table4.showsVerticalScrollIndicator = false
+        
+        self.table5.backgroundColor = UIColor.clearColor()
+        self.table5.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.table5.showsVerticalScrollIndicator = false
+        
+        self.table6.backgroundColor = UIColor.clearColor()
+        self.table6.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.table6.showsVerticalScrollIndicator = false
+        
+        self.rc.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
     }
     
     // MARK: - set datasource, delegate and events
     func setDatasourceAndDelegate() {
         self.scrollView.delegate = self
-        
-//        self.table1.delegate = self
-//        self.table1.dataSource = self
     }
     
     func setPageEvents() {
         self.backBtn.addTarget(self, action: Selector("backToUpLevel"), forControlEvents: UIControlEvents.TouchUpInside)
         self.loginBtn.addTarget(self, action: Selector("userLogin"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.table1.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
+        self.table2.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
+        self.table3.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
+        self.table4.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
+        self.table5.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
+        self.table6.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
     }
     
     // MARK: - load data from server
     func loadDataFromServer() {
+        self.reSetTableDatasourceAndDelegate(0)
+        let channelIdSelected = self.channelId[self.segueId]![0]
+        Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
+            .responseJSON { _, _, aJson in
+                self.getArticle(aJson.value, index: 0)
+        }
     }
     
     // MARK: - UIScrollViewDelegate
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        let pageWidth = scrollView.frame.size.width
-        let page = scrollView.contentOffset.x / pageWidth
-        
-        self.titleLabel.text = self.segmentTitle[self.segueId]![Int(page)]
-        self.segmentedControl.setSelectedSegmentIndex(UInt(page), animated: true)
+        if scrollView == self.scrollView {
+            let pageWidth = scrollView.frame.size.width
+            let page = scrollView.contentOffset.x / pageWidth
+            
+            self.titleLabel.text = self.segmentTitle[self.segueId]![Int(page)]
+            self.segmentedControl.setSelectedSegmentIndex(UInt(page), animated: true)
+            
+            self.reSetTableDatasourceAndDelegate(Int(page))
+            let channelIdSelected = self.channelId[self.segueId]![Int(page)]
+            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
+                .responseJSON { _, _, aJson in
+                    self.getArticle(aJson.value, index: Int(page))
+            }
+        }
     }
     
     // MARK: - UITableViewDataSource
-//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if self.articleArray.count < self.articleNum {
-//            return self.articleArray.count + 1
-//        } else {
-//            return self.articleArray.count
-//        }
-//    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.articleArray.count < self.articleNum {
+            return self.articleArray.count + 1
+        } else {
+            return self.articleArray.count
+        }
+    }
     
-//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        if indexPath.row != self.articleArray.count {
-//            let cellId = "interestingCell"
-//            let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! InterestingCell
-//            cell.titleLabel.text = self.articleArray[indexPath.row]["title"].string
-//            
-//            switch self.segueId {
-//            case "cySegue":
-//                cell.thumbnailImage.backgroundColor = COLOR_CY
-//                
-//            case "sjSegue":
-//                cell.thumbnailImage.backgroundColor = UIColor(red: 152 / 255.0, green: 199 / 255.0, blue: 63 / 255.0, alpha: 1.0)
-//                
-//            case "shSegue":
-//                cell.thumbnailImage.backgroundColor = UIColor(red: 233 / 255.0, green: 37 / 255.0, blue: 39 / 255.0, alpha: 1.0)
-//                
-//            default:
-//                break
-//            }
-//            let imageUrl = self.articleArray[indexPath.row]["thumb_path"].string
-//            cell.thumbnailImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
-//            
-//            return cell
-//        } else {
-//            let cell = LoadMoreCell()
-//            return cell
-//        }
-//    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.row != self.articleArray.count {
+            let cellId = "ArticleCell"
+            let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ArticleCell
+            cell.articleTitle.text = self.articleArray[indexPath.row]["title"].string
+            let imageUrl = self.articleArray[indexPath.row]["thumb_path"].string
+            cell.articleImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
+            
+            let infoString = self.articleArray[indexPath.row]["content"].stringValue
+            let attributedString = NSMutableAttributedString(string: infoString)
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 5
+            attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+            cell.articleInfo.attributedText = attributedString
+            cell.articleInfo.sizeToFit()
+            
+            return cell
+        } else {
+            let cell = LoadMoreCell()
+            return cell
+        }
+    }
     
     // MARK: - UITableViewDelegate
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        if indexPath.row != self.articleArray.count {
-//            return CELL_HEIGHT
-//        } else {
-//            return 44
-//        }
-//    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row != self.articleArray.count {
+            return CELL_HEIGHT
+        } else {
+            return 44
+        }
+    }
     
-//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if (indexPath.row == self.articleArray.count)
-//        {
-//            let channelIdSelected = self.channelId[self.segueId]![self.segmentId]
-//            let id = self.articleArray[self.articleArray.count - 1]["ID"]
-//            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=\(id)&articlesNum=10")
-//                .responseJSON { aRequest, aResponse, aJson in
-//                    self.getMoreArticles(aJson.value)
-//            }
-//        }
-//    }
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (indexPath.row == self.articleArray.count)
+        {
+            let channelIdSelected = self.channelId[self.segueId]![self.segmentId]
+            let id = self.articleArray[self.articleArray.count - 1]["ID"]
+            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=\(id)&articlesNum=10")
+                .responseJSON { aRequest, aResponse, aJson in
+                    self.getMoreArticles(aJson.value, index: self.segmentId)
+            }
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let destinationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ContentView") as! ContentWebViewController
+        destinationController.articleJson = self.articleArray[indexPath.row]
+        destinationController.segueId = self.segueId
+        destinationController.viewTitle = self.titleLabel.text!
+        self.presentViewController(destinationController, animated: true, completion: {})
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
     
     // MARK: - event response
     func backToUpLevel() {
@@ -333,6 +412,18 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
         self.loginBtn.hidden = false
     }
     
+    func refreshTableView() {
+        if (self.rc.refreshing) {
+            let channelIdSelected = self.channelId[self.segueId]![self.segmentId]
+            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
+                .responseJSON { _, _, aJson in
+                    self.getArticle(aJson.value, index: self.segmentId)
+            }
+            
+            self.rc.endRefreshing()
+        }
+    }
+    
     // MARK: - private methods
     func isUserLogin() -> Bool {
         let userId = NSUserDefaults.standardUserDefaults().stringForKey("userid")
@@ -341,5 +432,61 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate
         } else {
             return false
         }
+    }
+    
+    func reSetTableDatasourceAndDelegate(index: Int) {
+        self.rc.removeFromSuperview()
+        for var i = 0; i < self.tableArray.count; ++i {
+            if i == index {
+                self.tableArray[i].dataSource = self
+                self.tableArray[i].delegate = self
+                self.tableArray[i].addSubview(self.rc)
+            } else {
+                self.tableArray[i].dataSource = nil
+                self.tableArray[i].delegate = nil
+            }
+        }
+    }
+    
+    func getArticle(data: AnyObject?, index: Int) {
+        let jsonString = JSON(data!)
+        self.articleNum = jsonString["articlesNum"].intValue
+        var tmpDic = [Int: JSON]()
+        for (_, subJson): (String, JSON) in jsonString["articleArrNew"] {
+            let id = subJson["ID"].intValue
+            tmpDic[id] = subJson
+        }
+        var tmpKeys = [Int]()
+        for key in tmpDic.keys {
+            tmpKeys.append(key)
+        }
+        tmpKeys.sortInPlace({$0 > $1})
+        self.articleArray.removeAll()
+        for id in tmpKeys {
+            self.articleArray.append(tmpDic[id]!)
+        }
+        
+        self.tableArray[index].reloadData()
+    }
+    
+    func getMoreArticles(data: AnyObject?, index: Int) {
+        let jsonString = JSON(data!)
+        self.articleNum = jsonString["articlesNum"].intValue
+        var tmpDic = [Int: JSON]()
+        for (_, subJson): (String, JSON) in jsonString["articleArrNew"] {
+            let id = subJson["ID"].intValue
+            tmpDic[id] = subJson
+        }
+        var tmpKeys = [Int]()
+        for key in tmpDic.keys {
+            tmpKeys.append(key)
+        }
+        tmpKeys.sortInPlace({$0 > $1})
+        
+        for id in tmpKeys {
+            self.articleArray.append(tmpDic[id]!)
+        }
+        
+        self.tableArray[index].reloadData()
     }
 }

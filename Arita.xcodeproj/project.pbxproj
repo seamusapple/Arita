@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		810AA3581BA1D21100E06EAA /* ThirdPartLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810AA3571BA1D21100E06EAA /* ThirdPartLoginController.swift */; };
 		810AA35A1BA1DDD000E06EAA /* ThirdPartShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810AA3591BA1DDD000E06EAA /* ThirdPartShareController.swift */; };
-		810C61C51B6DC4CB00B2EDA9 /* InterestingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C61C41B6DC4CB00B2EDA9 /* InterestingCell.swift */; };
 		811ED7EC1BB192C2007BA907 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 811ED7EB1BB192C2007BA907 /* area.plist */; };
 		81213C691C376A2C008D50F0 /* TataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81213C681C376A2C008D50F0 /* TataCell.swift */; };
 		812E43F51B6B550700E3ED64 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812E43F31B6B550700E3ED64 /* SMSegmentView.swift */; };
@@ -19,7 +18,6 @@
 		814897421B83890A006EDC23 /* GoodsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814897411B83890A006EDC23 /* GoodsWebViewController.swift */; };
 		8150A4ED1C3D551E00666A8E /* UtilMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8150A4EC1C3D551E00666A8E /* UtilMacro.swift */; };
 		8150A4F01C3D5CD300666A8E /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8150A4EF1C3D5CD300666A8E /* ArticleCell.swift */; };
-		816108A41B5EAA9A002BDFA6 /* InterestingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816108A31B5EAA9A002BDFA6 /* InterestingController.swift */; };
 		816108A61B5EAAB4002BDFA6 /* ThingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816108A51B5EAAB4002BDFA6 /* ThingsController.swift */; };
 		81639CD41BD5D87600B31AD6 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81639CD31BD5D87600B31AD6 /* ContactUsViewController.swift */; };
 		81639CD61BD5E29E00B31AD6 /* TouGaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81639CD51BD5E29E00B31AD6 /* TouGaoViewController.swift */; };
@@ -87,7 +85,6 @@
 		6DA232FB9534B1F4A8BF46D5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		810AA3571BA1D21100E06EAA /* ThirdPartLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPartLoginController.swift; sourceTree = "<group>"; };
 		810AA3591BA1DDD000E06EAA /* ThirdPartShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPartShareController.swift; sourceTree = "<group>"; };
-		810C61C41B6DC4CB00B2EDA9 /* InterestingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterestingCell.swift; path = ../InterestingCell.swift; sourceTree = "<group>"; };
 		811ED7EB1BB192C2007BA907 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		81213C681C376A2C008D50F0 /* TataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TataCell.swift; sourceTree = "<group>"; };
 		812E43F31B6B550700E3ED64 /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
@@ -97,7 +94,6 @@
 		814897411B83890A006EDC23 /* GoodsWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsWebViewController.swift; sourceTree = "<group>"; };
 		8150A4EC1C3D551E00666A8E /* UtilMacro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilMacro.swift; sourceTree = "<group>"; };
 		8150A4EF1C3D5CD300666A8E /* ArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
-		816108A31B5EAA9A002BDFA6 /* InterestingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterestingController.swift; path = ../InterestingController.swift; sourceTree = "<group>"; };
 		816108A51B5EAAB4002BDFA6 /* ThingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThingsController.swift; sourceTree = "<group>"; };
 		81639CD31BD5D87600B31AD6 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		81639CD51BD5E29E00B31AD6 /* TouGaoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouGaoViewController.swift; sourceTree = "<group>"; };
@@ -288,7 +284,6 @@
 			isa = PBXGroup;
 			children = (
 				8150A4EF1C3D5CD300666A8E /* ArticleCell.swift */,
-				810C61C41B6DC4CB00B2EDA9 /* InterestingCell.swift */,
 			);
 			name = Ariticle;
 			path = Article;
@@ -400,7 +395,6 @@
 		81DE22511C3ABF4F00F9A78B /* Article */ = {
 			isa = PBXGroup;
 			children = (
-				816108A31B5EAA9A002BDFA6 /* InterestingController.swift */,
 				81DE22521C3AC1E300F9A78B /* ArticleViewController.swift */,
 			);
 			path = Article;
@@ -663,7 +657,6 @@
 				81FF18FB1B7F02F900F793CA /* ViewController.swift in Sources */,
 				81C5758E1B707EE6008FE3BF /* GoodsCollectionCell.swift in Sources */,
 				81DCFED31B824896003CF443 /* AboutUsController.swift in Sources */,
-				810C61C51B6DC4CB00B2EDA9 /* InterestingCell.swift in Sources */,
 				81E789561BB42F2E002D0534 /* CommentViewController.swift in Sources */,
 				816108A61B5EAAB4002BDFA6 /* ThingsController.swift in Sources */,
 				81213C691C376A2C008D50F0 /* TataCell.swift in Sources */,
@@ -677,7 +670,6 @@
 				81639CD41BD5D87600B31AD6 /* ContactUsViewController.swift in Sources */,
 				8143CC7B1B9ED2A9004FA08B /* LikeController.swift in Sources */,
 				81C575921B710981008FE3BF /* SubGoodsCollectionCell.swift in Sources */,
-				816108A41B5EAA9A002BDFA6 /* InterestingController.swift in Sources */,
 				81639CD61BD5E29E00B31AD6 /* TouGaoViewController.swift in Sources */,
 				81C575901B70BA95008FE3BF /* SubGoodsController.swift in Sources */,
 				812E43F51B6B550700E3ED64 /* SMSegmentView.swift in Sources */,
