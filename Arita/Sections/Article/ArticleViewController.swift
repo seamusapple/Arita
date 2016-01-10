@@ -138,7 +138,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
         self.segmentedControl.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(self.titleView.snp_bottom)
             make.left.right.equalTo(self.view)
-            make.height.equalTo(40)
+            make.height.equalTo(30)
         }
         
         self.scrollView.snp_makeConstraints { (make) -> Void in
@@ -231,13 +231,13 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
         self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe
         self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown
 
-        let height = SCREEN_HEIGHT - 75
+        let height = SCREEN_HEIGHT - 65
         
         self.segmentedControl.indexChangeBlock = { [weak self] (index: NSInteger) -> Void in
             self!.reSetTableDatasourceAndDelegate(index)
             
             let x = SCREEN_WIDTH * CGFloat(index)
-            self!.scrollView.scrollRectToVisible(CGRectMake(x, 0, SCREEN_WIDTH, height), animated: true)
+            self!.scrollView.scrollRectToVisible(CGRectMake(x, 0, SCREEN_WIDTH, height), animated: false)
             
             self!.segmentId = index
             self!.titleLabel.text = self!.segmentTitle[self!.segueId]![index]
@@ -256,26 +256,32 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
         self.table1.backgroundColor = UIColor.clearColor()
         self.table1.separatorStyle = UITableViewCellSeparatorStyle.None
         self.table1.showsVerticalScrollIndicator = false
+        self.table1.tag = 1
         
         self.table2.backgroundColor = UIColor.clearColor()
         self.table2.separatorStyle = UITableViewCellSeparatorStyle.None
         self.table2.showsVerticalScrollIndicator = false
+        self.table2.tag = 2
         
         self.table3.backgroundColor = UIColor.clearColor()
         self.table3.separatorStyle = UITableViewCellSeparatorStyle.None
         self.table3.showsVerticalScrollIndicator = false
+        self.table3.tag = 3
         
         self.table4.backgroundColor = UIColor.clearColor()
         self.table4.separatorStyle = UITableViewCellSeparatorStyle.None
         self.table4.showsVerticalScrollIndicator = false
+        self.table4.tag = 4
         
         self.table5.backgroundColor = UIColor.clearColor()
         self.table5.separatorStyle = UITableViewCellSeparatorStyle.None
         self.table5.showsVerticalScrollIndicator = false
+        self.table5.tag = 5
         
         self.table6.backgroundColor = UIColor.clearColor()
         self.table6.separatorStyle = UITableViewCellSeparatorStyle.None
         self.table6.showsVerticalScrollIndicator = false
+        self.table6.tag = 6
         
         self.rc.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
     }
@@ -289,12 +295,12 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
         self.backBtn.addTarget(self, action: Selector("backToUpLevel"), forControlEvents: UIControlEvents.TouchUpInside)
         self.loginBtn.addTarget(self, action: Selector("userLogin"), forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.table1.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
-        self.table2.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
-        self.table3.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
-        self.table4.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
-        self.table5.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
-        self.table6.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
+        self.table1.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell1")
+        self.table2.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell2")
+        self.table3.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell3")
+        self.table4.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell4")
+        self.table5.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell5")
+        self.table6.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell6")
     }
     
     // MARK: - load data from server
@@ -336,7 +342,23 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row != self.articleArray.count {
-            let cellId = "ArticleCell"
+            var cellId = ""
+            switch tableView.tag {
+            case 1:
+                cellId = "ArticleCell1"
+            case 2:
+                cellId = "ArticleCell2"
+            case 3:
+                cellId = "ArticleCell3"
+            case 4:
+                cellId = "ArticleCell4"
+            case 5:
+                cellId = "ArticleCell5"
+            case 6:
+                cellId = "ArticleCell6"
+            default:
+                break
+            }
             let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ArticleCell
             cell.articleTitle.text = self.articleArray[indexPath.row]["title"].string
             let imageUrl = self.articleArray[indexPath.row]["thumb_path"].string

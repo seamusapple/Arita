@@ -2371,7 +2371,8 @@
                                                             <exclude reference="2tC-dl-mpY"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="128" y="0.0" width="184" height="15"/>
                                                         <mask key="constraints">
                                                             <include reference="2tC-dl-mpY"/>
                                                         </mask>
@@ -2392,7 +2393,8 @@
                                                             <exclude reference="agd-j6-Zur"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="128" y="18" width="184" height="25"/>
                                                         <mask key="constraints">
                                                             <include reference="agd-j6-Zur"/>
                                                         </mask>
@@ -2403,6 +2405,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="128" y="46" width="184" height="61"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

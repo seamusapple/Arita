@@ -348,6 +348,9 @@ class HomeViewController: UIViewController
         self.titleLabel.textAlignment = NSTextAlignment.Center
         self.menuBtn.setBackgroundImage(UIImage(named: "menuBtn"), forState: UIControlState.Normal)
         self.loginBtn.setBackgroundImage(UIImage(named: "userBtn"), forState: UIControlState.Normal)
+        if isUserLogin() {
+            self.loginBtn.hidden = true
+        }
         
         self.scrollView.showsVerticalScrollIndicator = false
         
@@ -361,9 +364,9 @@ class HomeViewController: UIViewController
         
         self.lpLabel.image = UIImage(named: "lpLable")
         
-        if isUserLogin() {
-            self.loginBtn.hidden = true
-        }
+        self.lpBtn1.tag = 0
+        self.lpBtn2.tag = 1
+        self.lpBtn3.tag = 2
     }
     
     // MARK: - set events
@@ -412,29 +415,28 @@ class HomeViewController: UIViewController
     }
     
     func goCy() {
-//        let cyController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InterestingController") as! InterestingController
         let cy = ArticleViewController()
         cy.segueId = "cySegue"
         self.view.window!.rootViewController!.presentViewController(cy, animated: true, completion: nil)
     }
     
     func goSj() {
-//        let sjController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InterestingController") as! InterestingController
         let sj = ArticleViewController()
         sj.segueId = "sjSegue"
         self.view.window!.rootViewController!.presentViewController(sj, animated: true, completion: nil)
     }
     
     func goSh() {
-//        let shController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InterestingController") as! InterestingController
         let sh = ArticleViewController()
         sh.segueId = "shSegue"
         self.view.window!.rootViewController!.presentViewController(sh, animated: true, completion: nil)
     }
     
     func goLp(sender: UIButton) {
-        let lpController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ThingsController") as! ThingsController
-        self.view.window!.rootViewController!.presentViewController(lpController, animated: true, completion: nil)
+//        let lpController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ThingsController") as! ThingsController
+        let goods = GoodsHomeController()
+        goods.segmentId = sender.tag
+        self.view.window!.rootViewController!.presentViewController(goods, animated: true, completion: nil)
     }
     
     //MARK: - private methods
