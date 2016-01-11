@@ -38,7 +38,8 @@ class GoodsCell: UICollectionViewCell
     
     func layoutCellSubviews() {
         self.goodImage.snp_makeConstraints { (make) -> Void in
-            make.left.top.right.equalTo(self.contentView).offset(5)
+            make.left.top.equalTo(self.contentView).offset(5)
+            make.right.equalTo(self.contentView).offset(-5)
             make.height.equalTo(self.goodImage.snp_width)
         }
         
@@ -57,7 +58,7 @@ class GoodsCell: UICollectionViewCell
         
         self.goodPrice.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(self.goodTitle.snp_centerX)
-            make.right.equalTo(self.goodTitle)
+            make.right.equalTo(self.goodTitle.snp_right)
             make.top.equalTo(self.goodTitle.snp_bottom).offset(9)
             make.height.equalTo(15)
         }
@@ -68,11 +69,14 @@ class GoodsCell: UICollectionViewCell
         
         self.goodTitle.font = UIFont.systemFontOfSize(11)
         self.goodTitle.textColor = COLOR_GOODS_TITLE
+        self.goodTitle.numberOfLines = 2
         
         self.goodCategory.font = UIFont.systemFontOfSize(10)
         self.goodCategory.textColor = UIColor.blackColor()
+        self.goodCategory.textAlignment = NSTextAlignment.Left
         
         self.goodPrice.font = UIFont.boldSystemFontOfSize(10)
         self.goodPrice.textColor = COLOR_GOODS_MENU_TEXT_UNSELECTED_COLOR
+        self.goodPrice.textAlignment = NSTextAlignment.Right
     }
 }

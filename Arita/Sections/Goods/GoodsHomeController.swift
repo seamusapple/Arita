@@ -46,14 +46,8 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.reSetTableDatasourceAndDelegate(self.segmentId)
-        
         let x = SCREEN_WIDTH * CGFloat(self.segmentId)
         self.scrollView.scrollRectToVisible(CGRectMake(x, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 75), animated: false)
-        
-        if self.segmentId == 0 {
-            self.newGoodsCollection.reloadData()
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,11 +71,14 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         self.view.addSubview(self.segmentedControl)
         self.view.addSubview(self.scrollView)
         
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = UICollectionViewScrollDirection.Vertical
-        self.newGoodsCollection = UICollectionView(frame: CGRectMake(10, 75, SCREEN_WIDTH - 20, SCREEN_HEIGHT - 75), collectionViewLayout: layout)
+        let newGoodsLayout = UICollectionViewFlowLayout()
+        newGoodsLayout.scrollDirection = UICollectionViewScrollDirection.Vertical
+        self.newGoodsCollection = UICollectionView(frame: CGRectMake(10, 75, SCREEN_WIDTH - 20, SCREEN_HEIGHT - 75), collectionViewLayout: newGoodsLayout)
         self.scrollView.addSubview(self.newGoodsCollection)
-        self.categoryCollection = UICollectionView(frame: CGRectMake(0, 75, SCREEN_WIDTH, SCREEN_HEIGHT - 75), collectionViewLayout: layout)
+        
+        let categoryLayout = UICollectionViewFlowLayout()
+        categoryLayout.scrollDirection = UICollectionViewScrollDirection.Vertical
+        self.categoryCollection = UICollectionView(frame: CGRectMake(0, 75, SCREEN_WIDTH, SCREEN_HEIGHT - 75), collectionViewLayout: categoryLayout)
         self.scrollView.addSubview(self.categoryCollection)
         
         self.newGoodsCollection.addSubview(self.rc)
@@ -128,17 +125,17 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         }
         
         self.newGoodsCollection.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(SCREEN_WIDTH)
+            make.width.equalTo(SCREEN_WIDTH - 20)
             make.height.equalTo(self.scrollView.snp_height)
             make.top.equalTo(self.scrollView)
-            make.left.equalTo(self.scrollView)
+            make.left.equalTo(self.scrollView).offset(10)
         }
         
         self.categoryCollection.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(SCREEN_WIDTH)
             make.height.equalTo(self.scrollView.snp_height)
             make.top.equalTo(self.scrollView)
-            make.left.equalTo(self.newGoodsCollection.snp_right)
+            make.left.equalTo(self.newGoodsCollection.snp_right).offset(10)
         }
     }
     
@@ -173,24 +170,25 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         let height = SCREEN_HEIGHT - 75
         
         self.segmentedControl.indexChangeBlock = { [weak self] (index: NSInteger) -> Void in
-            self!.reSetTableDatasourceAndDelegate(index)
+            self!.reSetDatasourceAndDelegate(index)
             
             let x = SCREEN_WIDTH * CGFloat(index)
             self!.scrollView.scrollRectToVisible(CGRectMake(x, 0, SCREEN_WIDTH, height), animated: false)
             
             self!.segmentId = index
-            if index == 0 {
-                self!.newGoodsCollection.reloadData()
+            if index == 0 && self!.goodArray.count == 0 {
+                Alamofire.request(.GET, "http://112.74.192.226/ios/get_all_goods")
+                    .responseJSON { _, _, aJson in
+                        self!.getGoods(aJson.value)
+                }
             }
         }
         
         self.scrollView.pagingEnabled = true
         self.scrollView.showsHorizontalScrollIndicator = false
         self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 3, height)
-        let x = SCREEN_WIDTH * CGFloat(self.segmentId)
-        self.scrollView.scrollRectToVisible(CGRectMake(x, 0, SCREEN_WIDTH, height), animated: false)
         
-        self.newGoodsCollection.backgroundColor = UIColor.greenColor()
+        self.newGoodsCollection.backgroundColor = UIColor.clearColor()
         self.newGoodsCollection.showsVerticalScrollIndicator = false
         self.newGoodsCollection.tag = 1
         
@@ -202,6 +200,8 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     // MARK: - set datasource, delegate and events
     func setDatasourceAndDelegate() {
         self.scrollView.delegate = self
+        
+        self.reSetDatasourceAndDelegate(self.segmentId)
     }
     
     func setPageEvents() {
@@ -216,9 +216,11 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     
     // MARK: - load data from server
     func loadDataFromServer() {
-        Alamofire.request(.GET, "http://112.74.192.226/ios/get_all_goods")
-            .responseJSON { _, _, aJson in
-                self.getGoods(aJson.value)
+        if self.segmentId == 0 {
+            Alamofire.request(.GET, "http://112.74.192.226/ios/get_all_goods")
+                .responseJSON { _, _, aJson in
+                    self.getGoods(aJson.value)
+            }
         }
     }
     
@@ -230,9 +232,12 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
             
             self.segmentedControl.setSelectedSegmentIndex(UInt(page), animated: true)
             
-            self.reSetTableDatasourceAndDelegate(Int(page))
-            if page == 0 {
-                self.newGoodsCollection.reloadData()
+            self.reSetDatasourceAndDelegate(Int(page))
+            if Int(page) == 0 && self.goodArray.count == 0 {
+                Alamofire.request(.GET, "http://112.74.192.226/ios/get_all_goods")
+                    .responseJSON { _, _, aJson in
+                        self.getGoods(aJson.value)
+                }
             }
         }
     }
@@ -240,10 +245,8 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     // MARK: - UICollectionViewDatasource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         if collectionView.tag == 1 {
-            print("new good")
             return (self.goodArray.count + 1) / 2
         } else {
-            print("category")
             return 4
         }
     }
@@ -326,8 +329,7 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     }
     
     //MARK: - private methods
-    func reSetTableDatasourceAndDelegate(index: Int) {
-//        self.rc.removeFromSuperview()
+    func reSetDatasourceAndDelegate(index: Int) {
         switch index {
         case 0:
             self.newGoodsCollection.dataSource = self
@@ -378,7 +380,6 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
             self.goodArray.append(tmpDic[id]!)
         }
 
-        self.reSetTableDatasourceAndDelegate(0)
         self.newGoodsCollection.reloadData()
     }
 }
