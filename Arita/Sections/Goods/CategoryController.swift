@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import WebKit
 
-class CategoryController: UIViewController
+class CategoryController: UIViewController, WKScriptMessageHandler
 {
     var goodsCategory = ""
     var channelId = ""
@@ -19,6 +20,8 @@ class CategoryController: UIViewController
     var backBtn = UIButton()
     var loginBtn = UIButton()
     
+    var webView: WKWebView!
+    
     // MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +29,6 @@ class CategoryController: UIViewController
         self.addPageSubviews()
         self.layoutPageSubviews()
         self.setPageSubviews()
-        self.setDatasourceAndDelegate()
         self.setPageEvents()
     }
     
@@ -47,6 +49,13 @@ class CategoryController: UIViewController
         self.titleView.addSubview(self.titleLabel)
         self.titleView.addSubview(self.backBtn)
         self.titleView.addSubview(self.loginBtn)
+        
+        let contentController = WKUserContentController()
+        contentController.addScriptMessageHandler(self, name: "notification")
+        let config = WKWebViewConfiguration()
+        config.userContentController = contentController
+        self.webView = WKWebView(frame: self.view.bounds, configuration: config)
+        self.view.addSubview(self.webView)
     }
     
     // MARK: - layout and set page subviews
@@ -76,6 +85,11 @@ class CategoryController: UIViewController
             make.centerY.equalTo(self.titleView.snp_centerY)
             make.size.equalTo(CGSizeMake(20, 20))
         }
+        
+        self.webView.snp_makeConstraints { (make) -> Void in
+            make.left.right.bottom.equalTo(self.view)
+            make.top.equalTo(self.titleView.snp_bottom)
+        }
     }
     
     func setPageSubviews() {
@@ -88,15 +102,27 @@ class CategoryController: UIViewController
         self.titleLabel.textAlignment = NSTextAlignment.Center
         self.backBtn.setBackgroundImage(UIImage(named: "upBackBtn"), forState: UIControlState.Normal)
         self.loginBtn.setBackgroundImage(UIImage(named: "upUser"), forState: UIControlState.Normal)
+        
+        let url = NSURL(string: "http://112.74.192.226/ios/goods_list?channel_ID=\(self.channelId)")
+        let request = NSURLRequest(URL: url!)
+        self.webView.loadRequest(request)
     }
     
     // MARK: - set datasource, delegate and events
-    func setDatasourceAndDelegate() {
-    }
-    
     func setPageEvents() {
         self.backBtn.addTarget(self, action: Selector("backToUpLevel"), forControlEvents: UIControlEvents.TouchUpInside)
-//        self.loginBtn.addTarget(self, action: Selector("userLogin"), forControlEvents: UIControlEvents.TouchUpInside)
+        //        self.loginBtn.addTarget(self, action: Selector("userLogin"), forControlEvents: UIControlEvents.TouchUpInside)
+    }
+    
+    // MARK: - WKScriptMessageHandler
+    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+        let dataFromString = message.body.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        print(dataFromString)
+//        let msg = JSON(data: dataFromString!)
+//        if msg["name"].stringValue == "tel" {
+//            let telString = msg["param"]["info"].stringValue
+//            self.makePhoneCall(telString)
+//        }
     }
     
     // MARK: - event response
