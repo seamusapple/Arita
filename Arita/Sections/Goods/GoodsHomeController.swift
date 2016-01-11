@@ -31,6 +31,11 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     private let goodsArray: [String] = ["g1","g2","g3","g4","g5","g6","g7","g8","g9","g10","g11","g12"]
     private let goodsCategoryArray: [String] = ["趣玩","数码","文具","日用","母婴","箱包","电器","厨房","家居","女装","男装","配饰"]
     private let channelId: [String] = ["20","21","22","23","24","25","26","27","28","29","30","31"]
+    let categoryArray: [String: String] = [
+        "20": "趣玩", "21": "数码", "22": "文具", "23": "日用",
+        "24": "母婴", "25": "箱包", "26": "电器", "27": "厨房",
+        "28": "家居", "29": "女装", "30": "男装", "31": "配饰"
+    ]
     private var goodArray: [JSON] = []
     
     // MARK: - life cycle
@@ -272,6 +277,7 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
             let cellId = "GoodsCell"
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellId, forIndexPath: indexPath) as! GoodsCell
             cell.goodTitle.text = self.goodArray[indexPath.section * 2 + indexPath.row]["title"].string
+            cell.goodCategory.text = self.categoryArray[self.goodArray[indexPath.section * 2 + indexPath.row]["channel_ID"].stringValue]!
             cell.goodPrice.text = "¥ " + self.goodArray[indexPath.section * 2 + indexPath.row]["price"].string!
             let imageUrl = self.goodArray[indexPath.section * 2 + indexPath.row]["thumb_path"].string
             cell.goodImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
@@ -287,6 +293,25 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
             
             return cell
         }
+    }
+    
+    // MARK: - UICollectionViewDelegate
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if collectionView.tag == 1 {
+            let goodViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GoodContentView") as! GoodsWebViewController
+            goodViewController.goodJson = self.goodArray[indexPath.section * 2 + indexPath.row]
+            self.presentViewController(goodViewController, animated: true, completion: {})
+        } else {
+            let selectedGoods = self.goodsCategoryArray[indexPath.section * 3 + indexPath.row]
+            let selectedChannel = self.channelId[indexPath.section * 3 + indexPath.row]
+            
+            let categoryController = CategoryController()
+            categoryController.goodsCategory = selectedGoods
+            categoryController.channelId = selectedChannel
+            self.presentViewController(categoryController, animated: true, completion: {})
+        }
+        
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout

@@ -20,7 +20,6 @@
 		814897421B83890A006EDC23 /* GoodsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814897411B83890A006EDC23 /* GoodsWebViewController.swift */; };
 		8150A4ED1C3D551E00666A8E /* UtilMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8150A4EC1C3D551E00666A8E /* UtilMacro.swift */; };
 		8150A4F01C3D5CD300666A8E /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8150A4EF1C3D5CD300666A8E /* ArticleCell.swift */; };
-		816108A61B5EAAB4002BDFA6 /* ThingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816108A51B5EAAB4002BDFA6 /* ThingsController.swift */; };
 		81639CD41BD5D87600B31AD6 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81639CD31BD5D87600B31AD6 /* ContactUsViewController.swift */; };
 		81639CD61BD5E29E00B31AD6 /* TouGaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81639CD51BD5E29E00B31AD6 /* TouGaoViewController.swift */; };
 		81639CD81BD5E48000B31AD6 /* TuCaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81639CD71BD5E48000B31AD6 /* TuCaoViewController.swift */; };
@@ -33,6 +32,9 @@
 		817DDB881B5D2D6F0033C9F9 /* AritaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817DDB871B5D2D6F0033C9F9 /* AritaTests.swift */; };
 		817DDBAB1B5D4A9D0033C9F9 /* RMParallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817DDBA91B5D4A9D0033C9F9 /* RMParallax.swift */; };
 		817DDBAC1B5D4A9D0033C9F9 /* RMParallaxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817DDBAA1B5D4A9D0033C9F9 /* RMParallaxItem.swift */; };
+		81839EB91C434E640067D47C /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81839EB81C434E640067D47C /* CategoryController.swift */; };
+		81839EBB1C4352210067D47C /* SubGoodsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81839EBA1C4352210067D47C /* SubGoodsCollectionCell.swift */; };
+		81839EBD1C4356370067D47C /* SubGoodsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81839EBC1C4356370067D47C /* SubGoodsController.swift */; };
 		81910CB21C40ADF2003265CA /* GoodsHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81910CB11C40ADF2003265CA /* GoodsHomeController.swift */; };
 		81A5852E1BCBFA1F004FE56E /* LoadMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5852D1BCBFA1F004FE56E /* LoadMoreCell.swift */; };
 		81A6A5291B837461007E8A37 /* VersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A6A5281B837461007E8A37 /* VersonViewController.swift */; };
@@ -43,9 +45,6 @@
 		81BD2CC31BA3A1AA00EA0E58 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BD2CC21BA3A1AA00EA0E58 /* JavaScriptCore.framework */; };
 		81BD2CC51BA3A1B700EA0E58 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BD2CC41BA3A1B700EA0E58 /* ImageIO.framework */; };
 		81BD2CC71BA3A1D300EA0E58 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BD2CC61BA3A1D300EA0E58 /* libsqlite3.dylib */; };
-		81C5758E1B707EE6008FE3BF /* GoodsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5758D1B707EE6008FE3BF /* GoodsCollectionCell.swift */; };
-		81C575901B70BA95008FE3BF /* SubGoodsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5758F1B70BA95008FE3BF /* SubGoodsController.swift */; };
-		81C575921B710981008FE3BF /* SubGoodsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C575911B710981008FE3BF /* SubGoodsCollectionCell.swift */; };
 		81DCFED31B824896003CF443 /* AboutUsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DCFED21B824896003CF443 /* AboutUsController.swift */; };
 		81DE22531C3AC1E300F9A78B /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE22521C3AC1E300F9A78B /* ArticleViewController.swift */; };
 		81DE22561C3AC5B500F9A78B /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DE22551C3AC5B500F9A78B /* HMSegmentedControl.m */; };
@@ -99,7 +98,6 @@
 		814897411B83890A006EDC23 /* GoodsWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsWebViewController.swift; sourceTree = "<group>"; };
 		8150A4EC1C3D551E00666A8E /* UtilMacro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilMacro.swift; sourceTree = "<group>"; };
 		8150A4EF1C3D5CD300666A8E /* ArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
-		816108A51B5EAAB4002BDFA6 /* ThingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThingsController.swift; sourceTree = "<group>"; };
 		81639CD31BD5D87600B31AD6 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		81639CD51BD5E29E00B31AD6 /* TouGaoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouGaoViewController.swift; sourceTree = "<group>"; };
 		81639CD71BD5E48000B31AD6 /* TuCaoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuCaoViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +114,9 @@
 		817DDB871B5D2D6F0033C9F9 /* AritaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AritaTests.swift; sourceTree = "<group>"; };
 		817DDBA91B5D4A9D0033C9F9 /* RMParallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMParallax.swift; sourceTree = "<group>"; };
 		817DDBAA1B5D4A9D0033C9F9 /* RMParallaxItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMParallaxItem.swift; sourceTree = "<group>"; };
+		81839EB81C434E640067D47C /* CategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
+		81839EBA1C4352210067D47C /* SubGoodsCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubGoodsCollectionCell.swift; sourceTree = "<group>"; };
+		81839EBC1C4356370067D47C /* SubGoodsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubGoodsController.swift; sourceTree = "<group>"; };
 		81910CB11C40ADF2003265CA /* GoodsHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsHomeController.swift; sourceTree = "<group>"; };
 		81A5852D1BCBFA1F004FE56E /* LoadMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreCell.swift; sourceTree = "<group>"; };
 		81A6A5281B837461007E8A37 /* VersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersonViewController.swift; sourceTree = "<group>"; };
@@ -127,9 +128,6 @@
 		81BD2CC41BA3A1B700EA0E58 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		81BD2CC61BA3A1D300EA0E58 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		81BD2CC81BA3A21F00EA0E58 /* ShareSDK-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ShareSDK-Bridging-Header.h"; sourceTree = "<group>"; };
-		81C5758D1B707EE6008FE3BF /* GoodsCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsCollectionCell.swift; sourceTree = "<group>"; };
-		81C5758F1B70BA95008FE3BF /* SubGoodsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubGoodsController.swift; sourceTree = "<group>"; };
-		81C575911B710981008FE3BF /* SubGoodsCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubGoodsCollectionCell.swift; sourceTree = "<group>"; };
 		81DCFED21B824896003CF443 /* AboutUsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsController.swift; sourceTree = "<group>"; };
 		81DE22521C3AC1E300F9A78B /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		81DE22541C3AC5B500F9A78B /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
@@ -391,9 +389,9 @@
 		81910CAE1C40ABCE003265CA /* Goods */ = {
 			isa = PBXGroup;
 			children = (
-				816108A51B5EAAB4002BDFA6 /* ThingsController.swift */,
 				81910CB11C40ADF2003265CA /* GoodsHomeController.swift */,
-				81C5758F1B70BA95008FE3BF /* SubGoodsController.swift */,
+				81839EB81C434E640067D47C /* CategoryController.swift */,
+				81839EBC1C4356370067D47C /* SubGoodsController.swift */,
 				814897411B83890A006EDC23 /* GoodsWebViewController.swift */,
 			);
 			path = Goods;
@@ -404,8 +402,7 @@
 			children = (
 				810BBA8D1C42039000F806C2 /* CategoryCell.swift */,
 				810BBA8F1C42541E00F806C2 /* GoodsCell.swift */,
-				81C5758D1B707EE6008FE3BF /* GoodsCollectionCell.swift */,
-				81C575911B710981008FE3BF /* SubGoodsCollectionCell.swift */,
+				81839EBA1C4352210067D47C /* SubGoodsCollectionCell.swift */,
 			);
 			path = Goods;
 			sourceTree = "<group>";
@@ -702,27 +699,25 @@
 				81FF18FD1B7F040D00F793CA /* Common.swift in Sources */,
 				8150A4ED1C3D551E00666A8E /* UtilMacro.swift in Sources */,
 				810AA3581BA1D21100E06EAA /* ThirdPartLoginController.swift in Sources */,
+				81839EB91C434E640067D47C /* CategoryController.swift in Sources */,
 				81F066C21B9F2F9C0022D736 /* LikeArticleCell.swift in Sources */,
 				81FF18FB1B7F02F900F793CA /* ViewController.swift in Sources */,
-				81C5758E1B707EE6008FE3BF /* GoodsCollectionCell.swift in Sources */,
 				810BBA901C42541E00F806C2 /* GoodsCell.swift in Sources */,
 				81DCFED31B824896003CF443 /* AboutUsController.swift in Sources */,
 				81E789561BB42F2E002D0534 /* CommentViewController.swift in Sources */,
-				816108A61B5EAAB4002BDFA6 /* ThingsController.swift in Sources */,
 				81213C691C376A2C008D50F0 /* TataCell.swift in Sources */,
 				81E789581BB42F8F002D0534 /* CommentTableViewCell.swift in Sources */,
 				8143CC791B9EBF82004FA08B /* UserInfoController.swift in Sources */,
 				81910CB21C40ADF2003265CA /* GoodsHomeController.swift in Sources */,
 				812E43F61B6B550700E3ED64 /* SMSegment.swift in Sources */,
+				81839EBB1C4352210067D47C /* SubGoodsCollectionCell.swift in Sources */,
 				81A5852E1BCBFA1F004FE56E /* LoadMoreCell.swift in Sources */,
 				81639CD81BD5E48000B31AD6 /* TuCaoViewController.swift in Sources */,
 				814897421B83890A006EDC23 /* GoodsWebViewController.swift in Sources */,
 				81DE22531C3AC1E300F9A78B /* ArticleViewController.swift in Sources */,
 				81639CD41BD5D87600B31AD6 /* ContactUsViewController.swift in Sources */,
 				8143CC7B1B9ED2A9004FA08B /* LikeController.swift in Sources */,
-				81C575921B710981008FE3BF /* SubGoodsCollectionCell.swift in Sources */,
 				81639CD61BD5E29E00B31AD6 /* TouGaoViewController.swift in Sources */,
-				81C575901B70BA95008FE3BF /* SubGoodsController.swift in Sources */,
 				810BBA8E1C42039000F806C2 /* CategoryCell.swift in Sources */,
 				812E43F51B6B550700E3ED64 /* SMSegmentView.swift in Sources */,
 				817DDBAB1B5D4A9D0033C9F9 /* RMParallax.swift in Sources */,
@@ -734,6 +729,7 @@
 				81FF19031B7F079700F793CA /* LeftViewController.swift in Sources */,
 				8150A4F01C3D5CD300666A8E /* ArticleCell.swift in Sources */,
 				8173B7141C36360700017B95 /* TataViewController.swift in Sources */,
+				81839EBD1C4356370067D47C /* SubGoodsController.swift in Sources */,
 				810AA35A1BA1DDD000E06EAA /* ThirdPartShareController.swift in Sources */,
 				817DDB721B5D2D6F0033C9F9 /* AppDelegate.swift in Sources */,
 			);
