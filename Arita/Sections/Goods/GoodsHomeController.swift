@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
-class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate
 {
     var segmentId: Int!
     
@@ -25,18 +25,22 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     
     var newGoodsCollection: UICollectionView!
     var categoryCollection: UICollectionView!
+    var recommendTable = UITableView()
     
-    var rc = UIRefreshControl()
+    var newRc = UIRefreshControl()
+    var recommendRc = UIRefreshControl()
     
     private let goodsArray: [String] = ["g1","g2","g3","g4","g5","g6","g7","g8","g9","g10","g11","g12"]
     private let goodsCategoryArray: [String] = ["趣玩","数码","文具","日用","母婴","箱包","电器","厨房","家居","女装","男装","配饰"]
     private let channelId: [String] = ["20","21","22","23","24","25","26","27","28","29","30","31"]
-    let categoryArray: [String: String] = [
+    private let categoryArray: [String: String] = [
         "20": "趣玩", "21": "数码", "22": "文具", "23": "日用",
         "24": "母婴", "25": "箱包", "26": "电器", "27": "厨房",
         "28": "家居", "29": "女装", "30": "男装", "31": "配饰"
     ]
+    
     private var goodArray: [JSON] = []
+    private var recommendArray: [JSON] = []
     
     // MARK: - life cycle
     override func viewDidLoad() {
@@ -86,7 +90,10 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         self.categoryCollection = UICollectionView(frame: CGRectMake(0, 75, SCREEN_WIDTH, SCREEN_HEIGHT - 75), collectionViewLayout: categoryLayout)
         self.scrollView.addSubview(self.categoryCollection)
         
-        self.newGoodsCollection.addSubview(self.rc)
+        self.scrollView.addSubview(self.recommendTable)
+        
+        self.newGoodsCollection.addSubview(self.newRc)
+        self.recommendTable.addSubview(self.recommendRc)
     }
     
     // MARK: - layout and set page subviews
@@ -142,6 +149,13 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
             make.top.equalTo(self.scrollView)
             make.left.equalTo(self.newGoodsCollection.snp_right).offset(10)
         }
+        
+        self.recommendTable.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(SCREEN_WIDTH)
+            make.height.equalTo(self.scrollView.snp_height)
+            make.top.equalTo(self.scrollView)
+            make.left.equalTo(self.categoryCollection.snp_right)
+        }
     }
     
     func setPageSubviews() {
@@ -186,6 +200,11 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
                     .responseJSON { _, _, aJson in
                         self!.getGoods(aJson.value)
                 }
+            } else if index == 2 && self!.recommendArray.count == 0 {
+                Alamofire.request(.GET, "http://112.74.192.226/ios/get_recommend_goods")
+                    .responseJSON { _, _, aJson in
+                        self!.getRecommendGoods(aJson.value)
+                }
             }
         }
         
@@ -200,6 +219,10 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         self.categoryCollection.backgroundColor = UIColor.clearColor()
         self.categoryCollection.showsVerticalScrollIndicator = false
         self.categoryCollection.tag = 2
+        
+        self.recommendTable.backgroundColor = UIColor.clearColor()
+        self.recommendTable.showsVerticalScrollIndicator = false
+        self.recommendTable.separatorStyle = UITableViewCellSeparatorStyle.None
     }
     
     // MARK: - set datasource, delegate and events
@@ -215,8 +238,10 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         
         self.newGoodsCollection.registerClass(GoodsCell.self, forCellWithReuseIdentifier: "GoodsCell")
         self.categoryCollection.registerClass(CategoryCell.self, forCellWithReuseIdentifier: "CategoryCell")
+        self.recommendTable.registerClass(RecommendGoodCell.self, forCellReuseIdentifier: "RecommendGoodCell")
         
-        self.rc.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
+        self.newRc.addTarget(self, action: "refreshCollectionView", forControlEvents: UIControlEvents.ValueChanged)
+        self.recommendRc.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
     }
     
     // MARK: - load data from server
@@ -225,6 +250,11 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
             Alamofire.request(.GET, "http://112.74.192.226/ios/get_all_goods")
                 .responseJSON { _, _, aJson in
                     self.getGoods(aJson.value)
+            }
+        } else if self.segmentId == 2 {
+            Alamofire.request(.GET, "http://112.74.192.226/ios/get_recommend_goods")
+                .responseJSON { _, _, aJson in
+                    self.getRecommendGoods(aJson.value)
             }
         }
     }
@@ -242,6 +272,11 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
                 Alamofire.request(.GET, "http://112.74.192.226/ios/get_all_goods")
                     .responseJSON { _, _, aJson in
                         self.getGoods(aJson.value)
+                }
+            } else if Int(page) == 2 && self.recommendArray.count == 0 {
+                Alamofire.request(.GET, "http://112.74.192.226/ios/get_recommend_goods")
+                    .responseJSON { _, _, aJson in
+                        self.getRecommendGoods(aJson.value)
                 }
             }
         }
@@ -332,21 +367,43 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     }
     
     // MARK: - UITableViewDataSource
-//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.recommendArray.count
+    }
     
-//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellId = "RecommendGoodCell"
+        let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! RecommendGoodCell
+        
+        let imageUrl = self.recommendArray[indexPath.row]["thumb_path"].stringValue
+        cell.goodImage.kf_setImageWithURL(NSURL(string: imageUrl)!, placeholderImage: nil)
+        cell.goodTitle.text = self.recommendArray[indexPath.row]["title"].stringValue
+        cell.goodPrice.text = "¥ " + self.recommendArray[indexPath.row]["price"].stringValue
+        cell.likeNum.text = self.recommendArray[indexPath.row]["favorite_num"].stringValue
+        
+        let infoString = self.recommendArray[indexPath.row]["description"].stringValue
+        let attributedString = NSMutableAttributedString(string: infoString)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+        cell.goodInfo.attributedText = attributedString
+        cell.goodInfo.sizeToFit()
+        
+        return cell
+    }
     
     // MARK: - UITableViewDelegate
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return GOOD_CELL_HEIGHT
+    }
     
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//    }
-    
-//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let goodViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GoodContentView") as! GoodsWebViewController
+        goodViewController.goodJson = self.recommendArray[indexPath.row]
+        self.presentViewController(goodViewController, animated: true, completion: {})
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
     
     // MARK: - event response
     func backToUpLevel() {
@@ -362,29 +419,51 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
             
             self.categoryCollection.dataSource = nil
             self.categoryCollection.delegate = nil
+            
+            self.recommendTable.dataSource = nil
+            self.recommendTable.delegate = nil
+            
         case 1:
             self.newGoodsCollection.dataSource = nil
             self.newGoodsCollection.delegate = nil
             
             self.categoryCollection.dataSource = self
             self.categoryCollection.delegate = self
+            
+            self.recommendTable.dataSource = nil
+            self.recommendTable.delegate = nil
+            
         default:
             self.newGoodsCollection.dataSource = nil
             self.newGoodsCollection.delegate = nil
             
             self.categoryCollection.dataSource = nil
             self.categoryCollection.delegate = nil
+            
+            self.recommendTable.dataSource = self
+            self.recommendTable.delegate = self
         }
     }
     
-    func refreshTableView() {
-        if (self.rc.refreshing) {
+    func refreshCollectionView() {
+        if (self.newRc.refreshing) {
             Alamofire.request(.GET, "http://112.74.192.226/ios/get_all_goods")
                 .responseJSON { _, _, aJson in
                     self.getGoods(aJson.value)
             }
             
-            self.rc.endRefreshing()
+            self.newRc.endRefreshing()
+        }
+    }
+    
+    func refreshTableView() {
+        if (self.recommendRc.refreshing) {
+            Alamofire.request(.GET, "http://112.74.192.226/ios/get_recommend_goods")
+                .responseJSON { _, _, aJson in
+                    self.getRecommendGoods(aJson.value)
+            }
+            
+            self.recommendRc.endRefreshing()
         }
     }
     
@@ -406,5 +485,25 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         }
 
         self.newGoodsCollection.reloadData()
+    }
+    
+    func getRecommendGoods(data: AnyObject?) {
+        let jsonString = JSON(data!)
+        var tmpDic = [Int: JSON]()
+        for (_, subJson): (String, JSON) in jsonString {
+            let id = subJson["ID"].intValue
+            tmpDic[id] = subJson
+        }
+        var tmpKeys = [Int]()
+        for key in tmpDic.keys {
+            tmpKeys.append(key)
+        }
+        tmpKeys.sortInPlace({$0 > $1})
+        self.recommendArray.removeAll()
+        for id in tmpKeys {
+            self.recommendArray.append(tmpDic[id]!)
+        }
+        
+        self.recommendTable.reloadData()
     }
 }

@@ -64,3 +64,6 @@ let FONT_ARTICLE_MENU_TEXT = UIFont.systemFontOfSize(14)
 
 /* 塔塔报列表／文章列表单元格高度 */
 let CELL_HEIGHT = 120 + (SCREEN_WIDTH - 20) * 2 / 3
+
+/* 良品推荐列表单元格高度 */
+let GOOD_CELL_HEIGHT = 150 + (SCREEN_WIDTH - 20)

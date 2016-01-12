@@ -54,8 +54,7 @@ class RecommendGoodCell: UITableViewCell
         self.goodImage.snp_makeConstraints { (make) -> Void in
             make.top.left.equalTo(self.cellView).offset(10)
             make.right.equalTo(self.cellView).offset(-10)
-            let width = SCREEN_WIDTH - 20
-            make.height.equalTo(width * 2 / 3)
+            make.height.equalTo(self.goodImage.snp_width)
         }
         
         self.goodTitle.snp_makeConstraints { (make) -> Void in
@@ -91,7 +90,7 @@ class RecommendGoodCell: UITableViewCell
         self.likeIcon.snp_makeConstraints { (make) -> Void in
             make.size.equalTo(CGSizeMake(10, 10))
             make.centerY.equalTo(self.likeNum.snp_centerY)
-            make.right.equalTo(self.likeNum.snp_left)
+            make.right.equalTo(self.likeNum.snp_left).offset(-5)
         }
     }
     
@@ -111,7 +110,7 @@ class RecommendGoodCell: UITableViewCell
         self.goodPrice.textColor = COLOR_GOODS_MENU_TEXT_UNSELECTED_COLOR
         self.goodPrice.font = UIFont.boldSystemFontOfSize(13)
         
-        self.likeIcon.image = UIImage(named: "downCollect")
+        self.likeIcon.image = UIImage(named: "good_like_icon")
         
         self.likeNum.textColor = COLOR_INFO
         self.likeNum.textAlignment = NSTextAlignment.Right
