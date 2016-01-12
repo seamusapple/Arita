@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import SwiftyJSON
 
 class CategoryController: UIViewController, WKScriptMessageHandler
 {
@@ -116,13 +117,11 @@ class CategoryController: UIViewController, WKScriptMessageHandler
     
     // MARK: - WKScriptMessageHandler
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
-        let dataFromString = message.body.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-        print(dataFromString)
-//        let msg = JSON(data: dataFromString!)
-//        if msg["name"].stringValue == "tel" {
-//            let telString = msg["param"]["info"].stringValue
-//            self.makePhoneCall(telString)
-//        }
+        let dataFromString = message.body.dataUsingEncoding(NSUTF8StringEncoding)
+        let msg = JSON(data: dataFromString!)
+        let goodViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GoodContentView") as! GoodsWebViewController
+        goodViewController.goodJson = msg
+        self.presentViewController(goodViewController, animated: true, completion: {})
     }
     
     // MARK: - event response

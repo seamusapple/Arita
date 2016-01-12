@@ -99,7 +99,7 @@ class TataCell: UITableViewCell
         self.tataTitle.font = UIFont.systemFontOfSize(14)
         
         self.tataInfo.numberOfLines = 3
-        self.tataInfo.textColor = UIColor(red: 119 / 255.0, green: 119 / 255.0, blue: 119 / 255.0, alpha: 1.0)
+        self.tataInfo.textColor = COLOR_INFO
         self.tataInfo.font = UIFont.systemFontOfSize(11)
     }
 }

@@ -38,6 +38,6 @@ class LoadMoreCell: UITableViewCell
         self.titleLabel.textAlignment = NSTextAlignment.Center
         self.titleLabel.text = "加载更多"
         self.titleLabel.font = UIFont.systemFontOfSize(12)
-        self.titleLabel.textColor = UIColor(red: 119 / 255.0, green: 119 / 255.0, blue: 119 / 255.0, alpha: 1.0)
+        self.titleLabel.textColor = COLOR_INFO
     }
 }

@@ -44,6 +44,12 @@ let COLOR_GOODS_CATEGORY_TEXT = UIColor(red: 85 / 255.0, green: 85 / 255.0, blue
 /* 良品名称字体颜色 */
 let COLOR_GOODS_TITLE = UIColor(red: 34 / 255.0, green: 34 / 255.0, blue: 34 / 255.0, alpha: 1.0)
 
+/* 良品推荐分割线颜色 */
+let COLOR_GOODS_SEPARATE = UIColor(red: 230 / 255.0, green: 230 / 255.0, blue: 230 / 255.0, alpha: 1.0)
+
+/* 塔塔报、文章、良品推荐列表中内容的字体颜色 */
+let COLOR_INFO = UIColor(red: 119 / 255.0, green: 119 / 255.0, blue: 119 / 255.0, alpha: 1.0)
+
 /**
 *
 * 字体／字号常量

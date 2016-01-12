@@ -130,9 +130,9 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
         // comment title
         self.titleView.backgroundColor = UIColor.whiteColor()
         self.backBtn.setImage(UIImage(named: "up_back02"), forState: UIControlState.Normal)
-        self.splitLine.backgroundColor = UIColor(red: 119 / 255.0, green: 119 / 255.0, blue: 119 / 255.0, alpha: 1.0)
+        self.splitLine.backgroundColor = COLOR_INFO
         self.titleLabel.font = UIFont.systemFontOfSize(13)
-        self.titleLabel.textColor = UIColor(red: 119 / 255.0, green: 119 / 255.0, blue: 119 / 255.0, alpha: 1.0)
+        self.titleLabel.textColor = COLOR_INFO
         
         let userId = NSUserDefaults.standardUserDefaults().stringForKey("userid")
         if userId != nil {

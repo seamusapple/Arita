@@ -93,7 +93,7 @@ class CommentTableViewCell: UITableViewCell
         
         self.commentLabel.text = "我只是想试一下特别长的评论是如何显示的，其实没有别的意思，哇咔咔～～！"
         self.commentLabel.font = UIFont.systemFontOfSize(13)
-        self.commentLabel.textColor = UIColor(red: 119 / 255.0, green: 119 / 255.0, blue: 119 / 255.0, alpha: 1.0)
+        self.commentLabel.textColor = COLOR_INFO
         self.commentLabel.numberOfLines = 0
         self.commentLabel.sizeToFit()
     }

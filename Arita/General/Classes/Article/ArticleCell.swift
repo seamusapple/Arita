@@ -71,7 +71,7 @@ class ArticleCell: UITableViewCell
         self.articleTitle.font = UIFont.systemFontOfSize(14)
         
         self.articleInfo.numberOfLines = 3
-        self.articleInfo.textColor = UIColor(red: 119 / 255.0, green: 119 / 255.0, blue: 119 / 255.0, alpha: 1.0)
+        self.articleInfo.textColor = COLOR_INFO
         self.articleInfo.font = UIFont.systemFontOfSize(11)
     }
 }

@@ -25,6 +25,7 @@
 		81639CD81BD5E48000B31AD6 /* TuCaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81639CD71BD5E48000B31AD6 /* TuCaoViewController.swift */; };
 		81639CDA1BD5EDA400B31AD6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81639CD91BD5EDA400B31AD6 /* MessageUI.framework */; };
 		8173B7141C36360700017B95 /* TataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173B7131C36360700017B95 /* TataViewController.swift */; };
+		817C845E1C44893B00788B5E /* RecommendGoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817C845D1C44893B00788B5E /* RecommendGoodCell.swift */; };
 		817DDB721B5D2D6F0033C9F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817DDB711B5D2D6F0033C9F9 /* AppDelegate.swift */; };
 		817DDB771B5D2D6F0033C9F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817DDB751B5D2D6F0033C9F9 /* Main.storyboard */; };
 		817DDB791B5D2D6F0033C9F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 817DDB781B5D2D6F0033C9F9 /* Images.xcassets */; };
@@ -103,6 +104,7 @@
 		81639CD71BD5E48000B31AD6 /* TuCaoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuCaoViewController.swift; sourceTree = "<group>"; };
 		81639CD91BD5EDA400B31AD6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		8173B7131C36360700017B95 /* TataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TataViewController.swift; sourceTree = "<group>"; };
+		817C845D1C44893B00788B5E /* RecommendGoodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendGoodCell.swift; sourceTree = "<group>"; };
 		817DDB6C1B5D2D6F0033C9F9 /* Arita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		817DDB701B5D2D6F0033C9F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		817DDB711B5D2D6F0033C9F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Arita/AppDelegate/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -402,6 +404,7 @@
 			children = (
 				810BBA8D1C42039000F806C2 /* CategoryCell.swift */,
 				810BBA8F1C42541E00F806C2 /* GoodsCell.swift */,
+				817C845D1C44893B00788B5E /* RecommendGoodCell.swift */,
 				81839EBA1C4352210067D47C /* SubGoodsCollectionCell.swift */,
 			);
 			path = Goods;
@@ -721,6 +724,7 @@
 				810BBA8E1C42039000F806C2 /* CategoryCell.swift in Sources */,
 				812E43F51B6B550700E3ED64 /* SMSegmentView.swift in Sources */,
 				817DDBAB1B5D4A9D0033C9F9 /* RMParallax.swift in Sources */,
+				817C845E1C44893B00788B5E /* RecommendGoodCell.swift in Sources */,
 				81DE22561C3AC5B500F9A78B /* HMSegmentedControl.m in Sources */,
 				817DDBAC1B5D4A9D0033C9F9 /* RMParallaxItem.swift in Sources */,
 				81A6A52B1B837B6C007E8A37 /* ContentWebViewController.swift in Sources */,
