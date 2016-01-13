@@ -24,8 +24,11 @@
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
 
-//HMSegmentedControl.h
+//HMSegmentedControl
 #import "HMSegmentedControl.h"
+
+//CMSCoinView
+#import "CMSCoinView.h"
 
 
 #endif

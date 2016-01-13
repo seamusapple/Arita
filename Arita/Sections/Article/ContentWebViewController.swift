@@ -104,6 +104,7 @@ class ContentWebViewController: UIViewController, UIWebViewDelegate
             thirdPartShareController.providesPresentationContextTransitionStyle = true
             thirdPartShareController.definesPresentationContext = true
             thirdPartShareController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+            thirdPartShareController.shareType = 0
             thirdPartShareController.articleJson = self.articleJson
             let articleId = self.articleJson["ID"].stringValue
             thirdPartShareController.articleUrl = NSURL(string: "http://112.74.192.226/ios/article_detail?id=\(articleId)")!

@@ -86,6 +86,7 @@ class GoodsWebViewController: UIViewController, UIWebViewDelegate
             thirdPartShareController.providesPresentationContextTransitionStyle = true
             thirdPartShareController.definesPresentationContext = true
             thirdPartShareController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+            thirdPartShareController.shareType = 1
             thirdPartShareController.articleJson = self.goodJson
             let goodId = self.goodJson["ID"].stringValue
             thirdPartShareController.articleUrl = NSURL(string: "http://112.74.192.226/ios/goods_detail?id=\(goodId)")!

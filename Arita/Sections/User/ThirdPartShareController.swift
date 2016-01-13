@@ -9,11 +9,13 @@
 import UIKit
 import SnapKit
 import SwiftyJSON
+import Alamofire
 
 class ThirdPartShareController: UIViewController
 {
     var articleJson: JSON = ""
     var articleUrl = NSURL()
+    var shareType: Int!
     
     let alphaView = UIView()
     let baseView = UIView()
@@ -287,6 +289,21 @@ class ThirdPartShareController: UIViewController
                 if shareType == SSDKPlatformType.TypeSinaWeibo {
                     let alert = UIAlertView(title: "", message: "分享成功", delegate: self, cancelButtonTitle: "确定")
                     alert.show()
+                    
+                    var url = ""
+                    var parameters: [String: String]!
+                    if self.shareType == 0 {
+                        url = "http://112.74.192.226/ios/add_article_recommend"
+                        parameters = ["articleID": self.articleJson["ID"].stringValue]
+                    } else {
+                        url = "http://112.74.192.226/ios/add_goods_recommend"
+                        parameters = ["goodsID": self.articleJson["ID"].stringValue]
+                    }
+                    
+                    Alamofire.request(.GET, url, parameters: parameters)
+                        .response { request, _, aJson, error in
+                            _ = NSString(data: aJson!, encoding: NSUTF8StringEncoding)
+                    }
                 }
                 
                 self.dismissViewControllerAnimated(true, completion: {})

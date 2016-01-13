@@ -28,7 +28,9 @@ class HomeViewController: UIViewController
     var tataBtn = UIButton()
     
     var cyView = UIView()
-    var cyImage1 = UIImageView()
+    var cyCMSView1 = CMSCoinView()
+//    var cyImage1 = UIImageView()
+//    var cyView1 = UIView()
     var cyImage2 = UIImageView()
     var cyImage3 = UIImageView()
     var cyLabel = UIImageView()
@@ -104,7 +106,9 @@ class HomeViewController: UIViewController
         self.tataView.addSubview(self.tataBtn)
         
         self.contentView.addSubview(self.cyView)
-        self.cyView.addSubview(self.cyImage1)
+        self.cyView.addSubview(self.cyCMSView1)
+//        self.cyCMSView1.addSubview(self.cyImage1)
+//        self.cyCMSView1.addSubview(self.cyView1)
         self.cyView.addSubview(self.cyImage2)
         self.cyView.addSubview(self.cyImage3)
         self.cyView.addSubview(self.cyLabel)
@@ -199,16 +203,24 @@ class HomeViewController: UIViewController
             make.height.equalTo(self.height)
         }
         
-        self.cyImage1.snp_makeConstraints { (make) -> Void in
+        self.cyCMSView1.snp_makeConstraints { (make) -> Void in
             make.top.left.equalTo(self.cyView)
             make.right.equalTo(self.cyImage3.snp_left).offset(-5)
-            make.height.equalTo(self.cyImage1.snp_width)
+            make.height.equalTo(self.cyCMSView1.snp_width)
         }
+        
+//        self.cyView1.snp_makeConstraints { (make) -> Void in
+//            make.edges.equalTo(self.cyCMSView1).inset(0)
+//        }
+//        
+//        self.cyImage1.snp_makeConstraints { (make) -> Void in
+//            make.edges.equalTo(self.cyCMSView1).inset(0)
+//        }
         
         self.cyImage2.snp_makeConstraints { (make) -> Void in
             make.left.bottom.equalTo(self.cyView)
-            make.top.equalTo(self.cyImage1.snp_bottom).offset(5)
-            make.right.equalTo(self.cyImage1)
+            make.top.equalTo(self.cyCMSView1.snp_bottom).offset(5)
+            make.right.equalTo(self.cyCMSView1)
         }
         
         self.cyImage3.snp_makeConstraints { (make) -> Void in
@@ -482,7 +494,14 @@ class HomeViewController: UIViewController
         for i in 0...2 {
             switch i {
             case 0:
-                self.cyImage1.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
+//                self.cyImage1.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
+                let cyImage1 = UIImageView()
+                cyImage1.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
+                self.cyCMSView1.primaryView = cyImage1
+                let cyTitleView1 = UIView()
+                cyTitleView1.backgroundColor = COLOR_TATA
+                self.cyCMSView1.secondaryView = cyTitleView1
+                self.cyCMSView1.spinTime = 1.0
                 self.sjImage1.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
                 self.shImage1.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
                 self.lpImage1.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
@@ -500,5 +519,7 @@ class HomeViewController: UIViewController
                 break
             }
         }
+        
+        self.cyCMSView1.flip()
     }
 }
