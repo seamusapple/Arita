@@ -19,7 +19,7 @@ class CategoryController: UIViewController, WKScriptMessageHandler
     var titleViewBg = UIImageView()
     var titleLabel = UILabel()
     var backBtn = UIButton()
-    var loginBtn = UIButton()
+//    var loginBtn = UIButton()
     
     var webView: WKWebView!
     
@@ -49,7 +49,7 @@ class CategoryController: UIViewController, WKScriptMessageHandler
         self.titleView.addSubview(self.titleViewBg)
         self.titleView.addSubview(self.titleLabel)
         self.titleView.addSubview(self.backBtn)
-        self.titleView.addSubview(self.loginBtn)
+//        self.titleView.addSubview(self.loginBtn)
         
         let contentController = WKUserContentController()
         contentController.addScriptMessageHandler(self, name: "notification")
@@ -81,11 +81,11 @@ class CategoryController: UIViewController, WKScriptMessageHandler
             make.size.equalTo(CGSizeMake(20, 20))
         }
         
-        self.loginBtn.snp_makeConstraints { (make) -> Void in
-            make.right.equalTo(self.titleView).offset(-10)
-            make.centerY.equalTo(self.titleView.snp_centerY)
-            make.size.equalTo(CGSizeMake(20, 20))
-        }
+//        self.loginBtn.snp_makeConstraints { (make) -> Void in
+//            make.right.equalTo(self.titleView).offset(-10)
+//            make.centerY.equalTo(self.titleView.snp_centerY)
+//            make.size.equalTo(CGSizeMake(20, 20))
+//        }
         
         self.webView.snp_makeConstraints { (make) -> Void in
             make.left.right.bottom.equalTo(self.view)
@@ -102,7 +102,7 @@ class CategoryController: UIViewController, WKScriptMessageHandler
         self.titleLabel.textColor = UIColor.whiteColor()
         self.titleLabel.textAlignment = NSTextAlignment.Center
         self.backBtn.setBackgroundImage(UIImage(named: "upBackBtn"), forState: UIControlState.Normal)
-        self.loginBtn.setBackgroundImage(UIImage(named: "upUser"), forState: UIControlState.Normal)
+//        self.loginBtn.setBackgroundImage(UIImage(named: "upUser"), forState: UIControlState.Normal)
         
         let url = NSURL(string: "http://112.74.192.226/ios/goods_list?channel_ID=\(self.channelId)")
         let request = NSURLRequest(URL: url!)
@@ -112,7 +112,7 @@ class CategoryController: UIViewController, WKScriptMessageHandler
     // MARK: - set datasource, delegate and events
     func setPageEvents() {
         self.backBtn.addTarget(self, action: Selector("backToUpLevel"), forControlEvents: UIControlEvents.TouchUpInside)
-        //        self.loginBtn.addTarget(self, action: Selector("userLogin"), forControlEvents: UIControlEvents.TouchUpInside)
+//        self.loginBtn.addTarget(self, action: Selector("userLogin"), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     // MARK: - WKScriptMessageHandler

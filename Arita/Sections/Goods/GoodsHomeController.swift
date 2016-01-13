@@ -18,7 +18,7 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     var titleViewBg = UIImageView()
     var titleLabel = UILabel()
     var backBtn = UIButton()
-    var loginBtn = UIButton()
+    var searchBtn = UIButton()
     
     var segmentedControl = HMSegmentedControl()
     var scrollView = UIScrollView()
@@ -75,7 +75,7 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         self.titleView.addSubview(self.titleViewBg)
         self.titleView.addSubview(self.titleLabel)
         self.titleView.addSubview(self.backBtn)
-        self.titleView.addSubview(self.loginBtn)
+        self.titleView.addSubview(self.searchBtn)
         
         self.view.addSubview(self.segmentedControl)
         self.view.addSubview(self.scrollView)
@@ -118,7 +118,7 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
             make.size.equalTo(CGSizeMake(20, 20))
         }
         
-        self.loginBtn.snp_makeConstraints { (make) -> Void in
+        self.searchBtn.snp_makeConstraints { (make) -> Void in
             make.right.equalTo(self.titleView).offset(-10)
             make.centerY.equalTo(self.titleView.snp_centerY)
             make.size.equalTo(CGSizeMake(20, 20))
@@ -167,7 +167,7 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         self.titleLabel.textColor = UIColor.whiteColor()
         self.titleLabel.textAlignment = NSTextAlignment.Center
         self.backBtn.setBackgroundImage(UIImage(named: "upBackBtn"), forState: UIControlState.Normal)
-        self.loginBtn.setBackgroundImage(UIImage(named: "upUser"), forState: UIControlState.Normal)
+        self.searchBtn.setBackgroundImage(UIImage(named: "search_icon"), forState: UIControlState.Normal)
         
         // Tying up the segmented control to a scroll view
         self.segmentedControl.sectionTitles = ["最新", "分类", "推荐"]
@@ -234,7 +234,7 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     
     func setPageEvents() {
         self.backBtn.addTarget(self, action: Selector("backToUpLevel"), forControlEvents: UIControlEvents.TouchUpInside)
-//        self.loginBtn.addTarget(self, action: Selector("userLogin"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.searchBtn.addTarget(self, action: Selector("searchGoods"), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.newGoodsCollection.registerClass(GoodsCell.self, forCellWithReuseIdentifier: "GoodsCell")
         self.categoryCollection.registerClass(CategoryCell.self, forCellWithReuseIdentifier: "CategoryCell")
@@ -408,6 +408,17 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     // MARK: - event response
     func backToUpLevel() {
         self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    func searchGoods() {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            let searchInputController = SearchInputController()
+            searchInputController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            searchInputController.providesPresentationContextTransitionStyle = true
+            searchInputController.definesPresentationContext = true
+            searchInputController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+            self.presentViewController(searchInputController , animated:true, completion: nil)
+        })
     }
     
     //MARK: - private methods
