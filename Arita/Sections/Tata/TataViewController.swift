@@ -156,7 +156,20 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if indexPath.row != self.newsArray.count {
             let cellId = "TataCell"
             let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! TataCell
+            
+//            var cell = tableView.cellForRowAtIndexPath(indexPath) as? TataCell
+//            if cell == nil {
+//                cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId) as? TataCell
+//            }
+            
             cell.tataTitle.text = self.newsArray[indexPath.row]["title"].string
+            
+            let transition = CATransition()
+            transition.duration = 2
+            transition.type = kCATransitionMoveIn
+            transition.subtype = kCATransitionFromLeft
+            cell.timestampIcon.layer.addAnimation(transition, forKey: nil)
+            
             let dateOfArticle = self.newsArray[indexPath.row]["publish_time"].string
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"

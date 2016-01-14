@@ -41,11 +41,6 @@ class TataCell: UITableViewCell
         
         self.cellView.addSubview(self.tataImage)
         
-        let transition = CATransition()
-        transition.duration = 1.0
-        transition.type = kCATransitionMoveIn
-        transition.subtype = kCATransitionFromLeft
-        self.timestampIcon.layer.addAnimation(transition, forKey: nil)
         self.cellView.addSubview(self.timestampIcon)
         self.timestampIcon.addSubview(self.timestamp)
         
