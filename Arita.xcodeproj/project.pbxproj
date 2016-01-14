@@ -13,6 +13,7 @@
 		810BBA901C42541E00F806C2 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810BBA8F1C42541E00F806C2 /* GoodsCell.swift */; };
 		811ED7EC1BB192C2007BA907 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 811ED7EB1BB192C2007BA907 /* area.plist */; };
 		81213C691C376A2C008D50F0 /* TataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81213C681C376A2C008D50F0 /* TataCell.swift */; };
+		812228161C4736FF00738D57 /* SearchGoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812228151C4736FF00738D57 /* SearchGoodCell.swift */; };
 		812E43F51B6B550700E3ED64 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812E43F31B6B550700E3ED64 /* SMSegmentView.swift */; };
 		812E43F61B6B550700E3ED64 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812E43F41B6B550700E3ED64 /* SMSegment.swift */; };
 		8143CC791B9EBF82004FA08B /* UserInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8143CC781B9EBF82004FA08B /* UserInfoController.swift */; };
@@ -95,6 +96,7 @@
 		810BBA8F1C42541E00F806C2 /* GoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
 		811ED7EB1BB192C2007BA907 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		81213C681C376A2C008D50F0 /* TataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TataCell.swift; sourceTree = "<group>"; };
+		812228151C4736FF00738D57 /* SearchGoodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchGoodCell.swift; sourceTree = "<group>"; };
 		812E43F31B6B550700E3ED64 /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
 		812E43F41B6B550700E3ED64 /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
 		8143CC781B9EBF82004FA08B /* UserInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoController.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				810BBA8D1C42039000F806C2 /* CategoryCell.swift */,
 				810BBA8F1C42541E00F806C2 /* GoodsCell.swift */,
 				817C845D1C44893B00788B5E /* RecommendGoodCell.swift */,
+				812228151C4736FF00738D57 /* SearchGoodCell.swift */,
 				81839EBA1C4352210067D47C /* SubGoodsCollectionCell.swift */,
 			);
 			path = Goods;
@@ -746,6 +749,7 @@
 				81FF19031B7F079700F793CA /* LeftViewController.swift in Sources */,
 				8150A4F01C3D5CD300666A8E /* ArticleCell.swift in Sources */,
 				8173B7141C36360700017B95 /* TataViewController.swift in Sources */,
+				812228161C4736FF00738D57 /* SearchGoodCell.swift in Sources */,
 				81839EBD1C4356370067D47C /* SubGoodsController.swift in Sources */,
 				817C84841C45F86E00788B5E /* CMSCoinView.m in Sources */,
 				810AA35A1BA1DDD000E06EAA /* ThirdPartShareController.swift in Sources */,

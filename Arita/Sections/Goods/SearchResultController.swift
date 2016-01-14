@@ -7,13 +7,21 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
-class SearchResultController: UIViewController
+class SearchResultController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
+    var keyWord = ""
+    
     var titleView = UIView()
     var titleViewBg = UIImageView()
     var titleLabel = UILabel()
     var backBtn = UIButton()
+    
+    var resultTable = UITableView()
+    
+    private var goodArray: [JSON] = []
     
     // MARK: - life cycle
     override func viewDidLoad() {
@@ -38,6 +46,8 @@ class SearchResultController: UIViewController
         self.titleView.addSubview(self.titleViewBg)
         self.titleView.addSubview(self.titleLabel)
         self.titleView.addSubview(self.backBtn)
+        
+        self.view.addSubview(self.resultTable)
     }
     
     // MARK: - layout and set page subviews
@@ -61,6 +71,12 @@ class SearchResultController: UIViewController
             make.centerY.equalTo(self.titleView.snp_centerY)
             make.size.equalTo(CGSizeMake(20, 20))
         }
+        
+        self.resultTable.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.titleView.snp_bottom)
+            make.left.bottom.right.equalTo(self.view)
+        }
+
     }
     
     func setPageSubviews() {
@@ -72,88 +88,63 @@ class SearchResultController: UIViewController
         self.titleLabel.textColor = UIColor.whiteColor()
         self.titleLabel.textAlignment = NSTextAlignment.Center
         self.backBtn.setBackgroundImage(UIImage(named: "upBackBtn"), forState: UIControlState.Normal)
+        
+        self.resultTable.backgroundColor = UIColor.clearColor()
+        self.resultTable.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.resultTable.showsVerticalScrollIndicator = false
     }
     
     // MARK: - set datasource, delegate and events
     func setDatasourceAndDelegate() {
+        self.resultTable.dataSource = self
+        self.resultTable.delegate = self
     }
     
     func setPageEvents() {
         self.backBtn.addTarget(self, action: Selector("backToUpLevel"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.resultTable.registerClass(SearchGoodCell.self, forCellReuseIdentifier: "SearchGoodCell")
     }
     
     // MARK: - load data from server
     func loadDataFromServer() {
-//        Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=19&id=0&articlesNum=10")
-//            .responseJSON { aRequest, aResponse, aJson in
-//                self.getNews(aJson.value)
-//        }
+        let parameters = ["search_word": self.keyWord]
+        
+        Alamofire.request(.GET, "http://112.74.192.226/ios/search_goods", parameters: parameters)
+            .responseJSON { _, _, aJson in
+                self.getGoods(aJson.value)
+        }
     }
     
     //MARK: - UITableViewDataSource
-//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if self.newsArray.count < self.articleNum {
-//            return self.newsArray.count + 1
-//        } else {
-//            return self.newsArray.count
-//        }
-//    }
-//    
-//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        if indexPath.row != self.newsArray.count {
-//            let cellId = "TataCell"
-//            let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! TataCell
-//            cell.tataTitle.text = self.newsArray[indexPath.row]["title"].string
-//            let dateOfArticle = self.newsArray[indexPath.row]["publish_time"].string
-//            let dateFormatter = NSDateFormatter()
-//            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//            let date = dateFormatter.dateFromString(dateOfArticle!)
-//            let dateFormaterForMY = NSDateFormatter()
-//            dateFormaterForMY.dateFormat = "dd MMM."
-//            dateFormaterForMY.locale = NSLocale(localeIdentifier: "en_US")
-//            cell.timestamp.text = dateFormaterForMY.stringFromDate(date!)
-//            let imageUrl = self.newsArray[indexPath.row]["thumb_path"].string
-//            cell.tataImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
-//            
-//            let infoString = self.newsArray[indexPath.row]["content"].stringValue
-//            let attributedString = NSMutableAttributedString(string: infoString)
-//            let paragraphStyle = NSMutableParagraphStyle()
-//            paragraphStyle.lineSpacing = 5
-//            attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-//            cell.tataInfo.attributedText = attributedString
-//            cell.tataInfo.sizeToFit()
-//            
-//            return cell
-//        } else {
-//            let cell = LoadMoreCell()
-//            return cell
-//        }
-//    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.goodArray.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellId = "SearchGoodCell"
+        let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! SearchGoodCell
+        
+        let imageUrl = self.goodArray[indexPath.row]["thumb_path"].stringValue
+        cell.goodImage.kf_setImageWithURL(NSURL(string: imageUrl)!, placeholderImage: nil)
+        cell.goodTitle.text = self.goodArray[indexPath.row]["title"].stringValue
+        cell.goodPrice.text = "¥ " + self.goodArray[indexPath.row]["price"].stringValue
+        
+        return cell
+    }
     
     // MARK: - UITableViewDelegate
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        if indexPath.row != self.newsArray.count {
-//            return CELL_HEIGHT
-//        } else {
-//            return 44
-//        }
-//    }
-//    
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let destinationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ContentView") as! ContentWebViewController
-//        destinationController.articleJson = self.newsArray[indexPath.row]
-//        destinationController.segueId = "Tata"
-//        let time = self.newsArray[indexPath.row]["publish_time"].string
-//        let dateFormatter = NSDateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//        let date = dateFormatter.dateFromString(time!)
-//        let dateFormatterForDay = NSDateFormatter()
-//        dateFormatterForDay.dateFormat = "MMdd"
-//        destinationController.viewTitle = "塔塔报 | " + dateFormatterForDay.stringFromDate(date!)
-//        self.presentViewController(destinationController, animated: true, completion: {})
-//        
-//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 110
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let goodViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GoodContentView") as! GoodsWebViewController
+        goodViewController.goodJson = self.goodArray[indexPath.row]
+        self.presentViewController(goodViewController, animated: true, completion: {})
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
     
     // MARK: - event response
     func backToUpLevel() {
@@ -161,24 +152,23 @@ class SearchResultController: UIViewController
     }
     
     //MARK: - private methods
-//    func getNews(data: AnyObject?) {
-//        let jsonString = JSON(data!)
-//        self.articleNum = jsonString["articlesNum"].intValue
-//        var tmpDic = [Int: JSON]()
-//        for (_, subJson): (String, JSON) in jsonString["articleArrNew"] {
-//            let id = subJson["ID"].intValue
-//            tmpDic[id] = subJson
-//        }
-//        var tmpKeys = [Int]()
-//        for key in tmpDic.keys {
-//            tmpKeys.append(key)
-//        }
-//        tmpKeys.sortInPlace({$0 > $1})
-//        self.newsArray.removeAll()
-//        for id in tmpKeys {
-//            self.newsArray.append(tmpDic[id]!)
-//        }
-//        
-//        self.tataTable.reloadData()
-//    }
+    func getGoods(data: AnyObject?) {
+        let jsonString = JSON(data!)
+        var tmpDic = [Int: JSON]()
+        for (_, subJson): (String, JSON) in jsonString {
+            let id = subJson["ID"].intValue
+            tmpDic[id] = subJson
+        }
+        var tmpKeys = [Int]()
+        for key in tmpDic.keys {
+            tmpKeys.append(key)
+        }
+        tmpKeys.sortInPlace({$0 > $1})
+        self.goodArray.removeAll()
+        for id in tmpKeys {
+            self.goodArray.append(tmpDic[id]!)
+        }
+        
+        self.resultTable.reloadData()
+    }
 }

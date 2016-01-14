@@ -40,6 +40,10 @@ class SearchInputController: UIViewController, UITextFieldDelegate
         setDelegate()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        self.searchField.becomeFirstResponder()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -127,6 +131,7 @@ class SearchInputController: UIViewController, UITextFieldDelegate
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         let resultController = SearchResultController()
+        resultController.keyWord = textField.text!
         self.presentViewController(resultController, animated: true, completion: {})
         return true
     }
