@@ -50,6 +50,20 @@ let COLOR_GOODS_SEPARATE = UIColor(red: 230 / 255.0, green: 230 / 255.0, blue: 2
 /* 塔塔报、文章、良品推荐列表中内容的字体颜色 */
 let COLOR_INFO = UIColor(red: 119 / 255.0, green: 119 / 255.0, blue: 119 / 255.0, alpha: 1.0)
 
+/* 良品子标签字体颜色 */
+let COLOR_QW = UIColor(red: 233 / 255.0, green: 97 / 255.0, blue: 147 / 255.0, alpha: 1.0)
+let COLOR_DZ = UIColor(red: 28 / 255.0, green: 185 / 255.0, blue: 224 / 255.0, alpha: 1.0)
+let COLOR_PS = UIColor(red: 142 / 255.0, green: 179 / 255.0, blue: 21 / 255.0, alpha: 1.0)
+let COLOR_MS = UIColor(red: 243 / 255.0, green: 123 / 255.0, blue: 49 / 255.0, alpha: 1.0)
+let COLOR_CF = UIColor(red: 147 / 255.0, green: 107 / 255.0, blue: 190 / 255.0, alpha: 1.0)
+let COLOR_MY = UIColor(red: 255 / 255.0, green: 191 / 255.0, blue: 0 / 255.0, alpha: 1.0)
+let COLOR_RC = UIColor(red: 236 / 255.0, green: 213 / 255.0, blue: 93 / 255.0, alpha: 1.0)
+let COLOR_JJ = UIColor(red: 239 / 255.0, green: 75 / 255.0, blue: 20 / 255.0, alpha: 1.0)
+let COLOR_WJ = UIColor(red: 232 / 255.0, green: 50 / 255.0, blue: 45 / 255.0, alpha: 1.0)
+let COLOR_WZ = UIColor(red: 240 / 255.0, green: 139 / 255.0, blue: 97 / 255.0, alpha: 1.0)
+let COLOR_MZ = UIColor(red: 126 / 255.0, green: 159 / 255.0, blue: 202 / 255.0, alpha: 1.0)
+let COLOR_XB = UIColor(red: 184 / 255.0, green: 212 / 255.0, blue: 52 / 255.0, alpha: 1.0)
+
 /**
 *
 * 字体／字号常量
@@ -66,4 +80,4 @@ let FONT_ARTICLE_MENU_TEXT = UIFont.systemFontOfSize(14)
 let CELL_HEIGHT = 120 + (SCREEN_WIDTH - 20) * 2 / 3
 
 /* 良品推荐列表单元格高度 */
-let GOOD_CELL_HEIGHT = 150 + (SCREEN_WIDTH - 20)
+let GOOD_CELL_HEIGHT = 85 + (SCREEN_WIDTH - 20)

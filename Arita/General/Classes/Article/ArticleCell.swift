@@ -39,8 +39,8 @@ class ArticleCell: UITableViewCell
     
     func layoutCellSubviews() {
         self.cellView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView).offset(10)
-            make.left.bottom.right.equalTo(self.contentView)
+            make.top.left.right.equalTo(self.contentView)
+            make.bottom.equalTo(self.contentView).offset(-10)
         }
         
         self.articleImage.snp_makeConstraints { (make) -> Void in

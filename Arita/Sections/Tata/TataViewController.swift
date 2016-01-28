@@ -157,18 +157,7 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let cellId = "TataCell"
             let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! TataCell
             
-//            var cell = tableView.cellForRowAtIndexPath(indexPath) as? TataCell
-//            if cell == nil {
-//                cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId) as? TataCell
-//            }
-            
             cell.tataTitle.text = self.newsArray[indexPath.row]["title"].string
-            
-            let transition = CATransition()
-            transition.duration = 2
-            transition.type = kCATransitionMoveIn
-            transition.subtype = kCATransitionFromLeft
-            cell.timestampIcon.layer.addAnimation(transition, forKey: nil)
             
             let dateOfArticle = self.newsArray[indexPath.row]["publish_time"].string
             let dateFormatter = NSDateFormatter()
@@ -230,6 +219,28 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 .responseJSON { aRequest, aResponse, aJson in
                     self.getMoreNews(aJson.value)
             }
+        } else {
+            //1. Setup the CATransform3D structure
+            var rotation = CATransform3D()
+            rotation = CATransform3DMakeRotation(CGFloat((90.0 * M_PI) / 180.0), 0.0, 0.7, 0.4)
+            rotation.m34 = 1.0 / -600
+            
+            //2. Define the initial state (Before the animation)
+            cell.layer.shadowColor = UIColor.blackColor().CGColor
+            cell.layer.shadowOffset = CGSizeMake(10, 10)
+            cell.alpha = 0
+            
+            cell.layer.transform = rotation;
+            cell.layer.anchorPoint = CGPointMake(0, 0.5);
+            
+            
+            //3. Define the final state (After the animation) and commit the animation
+            UIView.beginAnimations("rotation", context: nil)
+            UIView.setAnimationDuration(0.8)
+            cell.layer.transform = CATransform3DIdentity
+            cell.alpha = 1
+            cell.layer.shadowOffset = CGSizeMake(0, 0)
+            UIView.commitAnimations()
         }
     }
     

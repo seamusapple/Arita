@@ -20,6 +20,7 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     var backBtn = UIButton()
     var searchBtn = UIButton()
     
+    var tagView = UIView()
     var segmentedControl = HMSegmentedControl()
     var scrollView = UIScrollView()
     
@@ -30,13 +31,35 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     var newRc = UIRefreshControl()
     var recommendRc = UIRefreshControl()
     
-    private let goodsArray: [String] = ["g1","g2","g3","g4","g5","g6","g7","g8","g9","g10","g11","g12"]
-    private let goodsCategoryArray: [String] = ["趣玩","数码","文具","日用","母婴","箱包","电器","厨房","家居","女装","男装","配饰"]
-    private let channelId: [String] = ["20","21","22","23","24","25","26","27","28","29","30","31"]
+    private let goodsArray: [String] = [
+        "g1", "g2", "g3",
+        "g4", "g5", "g6",
+        "g7", "g8", "g9",
+        "g10", "g11", "g12"
+    ]
+    private let goodsCategoryArray: [String] = [
+        "趣玩", "电子", "配饰",
+        "美食", "厨房", "母婴",
+        "日用", "家居", "文具",
+        "女装", "男装", "箱包"
+    ]
+    private let channelId: [String] = [
+        "20", "21", "31",
+        "32", "27", "24",
+        "23", "28", "22",
+        "29", "30", "25"
+    ]
     private let categoryArray: [String: String] = [
-        "20": "趣玩", "21": "数码", "22": "文具", "23": "日用",
-        "24": "母婴", "25": "箱包", "26": "电器", "27": "厨房",
-        "28": "家居", "29": "女装", "30": "男装", "31": "配饰"
+        "20": "趣玩", "21": "电子", "22": "文具",
+        "23": "日用", "24": "母婴", "25": "箱包",
+        "27": "厨房", "28": "家居", "29": "女装",
+        "30": "男装", "31": "配饰", "32": "美食"
+    ]
+    private let categoryColorArray: [String: UIColor] = [
+        "20": COLOR_QW, "21": COLOR_DZ, "22": COLOR_WJ,
+        "23": COLOR_RC, "24": COLOR_MY, "25": COLOR_XB,
+        "27": COLOR_CF, "28": COLOR_JJ, "29": COLOR_WZ,
+        "30": COLOR_MZ, "31": COLOR_PS, "32": COLOR_MS
     ]
     
     private var goodArray: [JSON] = []
@@ -77,7 +100,8 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         self.titleView.addSubview(self.backBtn)
         self.titleView.addSubview(self.searchBtn)
         
-        self.view.addSubview(self.segmentedControl)
+        self.view.addSubview(self.tagView)
+        self.tagView.addSubview(self.segmentedControl)
         self.view.addSubview(self.scrollView)
         
         let newGoodsLayout = UICollectionViewFlowLayout()
@@ -124,15 +148,21 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
             make.size.equalTo(CGSizeMake(20, 20))
         }
         
+        self.tagView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.titleView.snp_bottom)
+            make.left.right.equalTo(self.view)
+            make.height.equalTo(50)
+        }
+        
         self.segmentedControl.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.titleView.snp_bottom).offset(10)
-            make.left.equalTo(self.view).offset(10)
-            make.right.equalTo(self.view).offset(-10)
+            make.top.equalTo(self.tagView).offset(10)
+            make.left.equalTo(self.tagView).offset(10)
+            make.right.equalTo(self.tagView).offset(-10)
             make.height.equalTo(30)
         }
         
         self.scrollView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.segmentedControl.snp_bottom)
+            make.top.equalTo(self.tagView.snp_bottom)
             make.left.right.bottom.equalTo(self.view)
         }
         
@@ -169,6 +199,7 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         self.backBtn.setBackgroundImage(UIImage(named: "upBackBtn"), forState: UIControlState.Normal)
         self.searchBtn.setBackgroundImage(UIImage(named: "search_icon"), forState: UIControlState.Normal)
         
+        self.tagView.backgroundColor = UIColor.whiteColor()
         // Tying up the segmented control to a scroll view
         self.segmentedControl.sectionTitles = ["最新", "分类", "推荐"]
         self.segmentedControl.selectedSegmentIndex = self.segmentId
@@ -186,37 +217,37 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         self.segmentedControl.layer.borderWidth = 1
         self.segmentedControl.layer.borderColor = COLOR_GOODS.CGColor
         
-        let height = SCREEN_HEIGHT - 75
+        let height = SCREEN_HEIGHT - 95
         
-        self.segmentedControl.indexChangeBlock = { [weak self] (index: NSInteger) -> Void in
-            self!.reSetDatasourceAndDelegate(index)
+        self.segmentedControl.indexChangeBlock = { [unowned self] (index: NSInteger) -> Void in
+            self.reSetDatasourceAndDelegate(index)
             
             let x = SCREEN_WIDTH * CGFloat(index)
-            self!.scrollView.scrollRectToVisible(CGRectMake(x, 0, SCREEN_WIDTH, height), animated: false)
+            self.scrollView.scrollRectToVisible(CGRectMake(x, 0, SCREEN_WIDTH, height), animated: false)
             
-            self!.segmentId = index
-            if index == 0 && self!.goodArray.count == 0 {
+            self.segmentId = index
+            if index == 0 && self.goodArray.count == 0 {
                 Alamofire.request(.GET, "http://112.74.192.226/ios/get_all_goods")
                     .responseJSON { _, _, aJson in
-                        self!.getGoods(aJson.value)
+                        self.getGoods(aJson.value)
                 }
-            } else if index == 2 && self!.recommendArray.count == 0 {
+            } else if index == 2 && self.recommendArray.count == 0 {
                 Alamofire.request(.GET, "http://112.74.192.226/ios/get_recommend_goods")
                     .responseJSON { _, _, aJson in
-                        self!.getRecommendGoods(aJson.value)
+                        self.getRecommendGoods(aJson.value)
                 }
             }
         }
         
         self.scrollView.pagingEnabled = true
-        self.scrollView.showsHorizontalScrollIndicator = false
+        self.scrollView.showsVerticalScrollIndicator = false
         self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 3, height)
         
         self.newGoodsCollection.backgroundColor = UIColor.clearColor()
         self.newGoodsCollection.showsVerticalScrollIndicator = false
         self.newGoodsCollection.tag = 1
         
-        self.categoryCollection.backgroundColor = UIColor.clearColor()
+        self.categoryCollection.backgroundColor = UIColor.whiteColor()
         self.categoryCollection.showsVerticalScrollIndicator = false
         self.categoryCollection.tag = 2
         
@@ -313,6 +344,7 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellId, forIndexPath: indexPath) as! GoodsCell
             cell.goodTitle.text = self.goodArray[indexPath.section * 2 + indexPath.row]["title"].string
             cell.goodCategory.text = self.categoryArray[self.goodArray[indexPath.section * 2 + indexPath.row]["channel_ID"].stringValue]!
+            cell.goodCategory.textColor = self.categoryColorArray[self.goodArray[indexPath.section * 2 + indexPath.row]["channel_ID"].stringValue]!
             cell.goodPrice.text = "¥ " + self.goodArray[indexPath.section * 2 + indexPath.row]["price"].string!
             let imageUrl = self.goodArray[indexPath.section * 2 + indexPath.row]["thumb_path"].string
             cell.goodImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
@@ -352,9 +384,9 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     // MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if collectionView.tag == 1 {
-            return CGSizeMake((SCREEN_WIDTH - 30) / 2, (SCREEN_WIDTH - 30) / 2 + 70)
+            return CGSizeMake((SCREEN_WIDTH - 30) / 2, (SCREEN_WIDTH - 30) / 2 + 55)
         } else {
-            return CGSizeMake((SCREEN_WIDTH - 20) / 3, (SCREEN_WIDTH - 20) / 3)
+            return CGSizeMake((SCREEN_WIDTH - 60) / 3, (SCREEN_WIDTH - 60) / 3)
         }
     }
     
@@ -362,7 +394,7 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         if collectionView.tag == 1 {
             return UIEdgeInsetsMake(10, 0, 0, 0)
         } else {
-            return UIEdgeInsetsMake(0, 0, 0, 0)
+            return UIEdgeInsetsMake(20, 20, 0, 20)
         }
     }
     
@@ -379,15 +411,16 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         cell.goodImage.kf_setImageWithURL(NSURL(string: imageUrl)!, placeholderImage: nil)
         cell.goodTitle.text = self.recommendArray[indexPath.row]["title"].stringValue
         cell.goodPrice.text = "¥ " + self.recommendArray[indexPath.row]["price"].stringValue
-        cell.likeNum.text = self.recommendArray[indexPath.row]["favorite_num"].stringValue
+        cell.dateLabel.text = self.recommendArray[indexPath.row]["publish_time"].stringValue
+//        cell.likeNum.text = self.recommendArray[indexPath.row]["favorite_num"].stringValue
         
-        let infoString = self.recommendArray[indexPath.row]["description"].stringValue
-        let attributedString = NSMutableAttributedString(string: infoString)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 5
-        attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-        cell.goodInfo.attributedText = attributedString
-        cell.goodInfo.sizeToFit()
+//        let infoString = self.recommendArray[indexPath.row]["description"].stringValue
+//        let attributedString = NSMutableAttributedString(string: infoString)
+//        let paragraphStyle = NSMutableParagraphStyle()
+//        paragraphStyle.lineSpacing = 5
+//        attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+//        cell.goodInfo.attributedText = attributedString
+//        cell.goodInfo.sizeToFit()
         
         return cell
     }

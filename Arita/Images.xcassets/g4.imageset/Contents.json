@@ -6,13 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "g4.png"
+      "filename" : "美食.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "g4@2x.png"
+      "scale" : "3x"
     }
   ],
   "info" : {

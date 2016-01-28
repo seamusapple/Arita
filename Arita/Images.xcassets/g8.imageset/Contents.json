@@ -6,13 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "g8.png"
+      "filename" : "家居.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "g8@2x.png"
+      "scale" : "3x"
     }
   ],
   "info" : {

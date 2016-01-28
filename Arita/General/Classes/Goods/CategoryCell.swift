@@ -34,7 +34,7 @@ class CategoryCell: UICollectionViewCell
     
     func layoutCellSubviews() {
         self.categoryIcon.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(60, 60))
+            make.size.equalTo(CGSizeMake(50, 45))
             make.centerX.equalTo(self.contentView.snp_centerX)
             make.top.equalTo(self.contentView).offset(10)
         }
@@ -47,8 +47,6 @@ class CategoryCell: UICollectionViewCell
     }
     
     func configCellSubviews() {
-        self.contentView.backgroundColor = COLOR_BACKGROUND
-        
         self.categoryTitle.font = UIFont.systemFontOfSize(14)
         self.categoryTitle.textColor = COLOR_GOODS_CATEGORY_TEXT
         self.categoryTitle.textAlignment = NSTextAlignment.Center

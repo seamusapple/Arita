@@ -14,7 +14,7 @@ class ContentWebViewController: UIViewController, UIWebViewDelegate
 {
     @IBOutlet weak var contenWebView: UIWebView!
     @IBOutlet weak var articleTitleLabel: UILabel!
-    @IBOutlet weak var likeBtn: UIButton!
+//    @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var titleImage: UIImageView!
     @IBOutlet weak var downBarImage: UIImageView!
     
@@ -57,24 +57,24 @@ class ContentWebViewController: UIViewController, UIWebViewDelegate
         self.contenWebView.loadRequest(request)
         self.contenWebView.delegate = self
         
-        let userId = NSUserDefaults.standardUserDefaults().stringForKey("userid")
-        if userId != nil {
-            let parameters = [
-                "id": userId!,
-                "articleID": articleId
-            ]
-            Alamofire.request(.GET, "http://112.74.192.226/ios/is_like_article", parameters: parameters)
-                .response { request, _, aJson, error in
-                    let result = NSString(data: aJson!, encoding: NSUTF8StringEncoding)
-                    if result == "000000" {
-                        self.likeBtn.setImage(UIImage(named: "downCollected"), forState: UIControlState.Normal)
-                        self.isLike = true
-                    } else {
-                        self.likeBtn.setImage(UIImage(named: "downCollect"), forState: UIControlState.Normal)
-                        self.isLike = false
-                    }
-            }
-        }
+//        let userId = NSUserDefaults.standardUserDefaults().stringForKey("userid")
+//        if userId != nil {
+//            let parameters = [
+//                "id": userId!,
+//                "articleID": articleId
+//            ]
+//            Alamofire.request(.GET, "http://112.74.192.226/ios/is_like_article", parameters: parameters)
+//                .response { request, _, aJson, error in
+//                    let result = NSString(data: aJson!, encoding: NSUTF8StringEncoding)
+//                    if result == "000000" {
+//                        self.likeBtn.setImage(UIImage(named: "downCollected"), forState: UIControlState.Normal)
+//                        self.isLike = true
+//                    } else {
+//                        self.likeBtn.setImage(UIImage(named: "downCollect"), forState: UIControlState.Normal)
+//                        self.isLike = false
+//                    }
+//            }
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -131,42 +131,42 @@ class ContentWebViewController: UIViewController, UIWebViewDelegate
         self.presentViewController(commentViewController, animated: true, completion: nil)
     }
     
-    @IBAction func likeArticle(sender: UIButton) {
-        let userId = NSUserDefaults.standardUserDefaults().stringForKey("userid")
-        if (userId == nil) {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                let thirdPartLoginController = ThirdPartLoginController()
-                thirdPartLoginController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-                thirdPartLoginController.providesPresentationContextTransitionStyle = true
-                thirdPartLoginController.definesPresentationContext = true
-                thirdPartLoginController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-                self.presentViewController(thirdPartLoginController , animated:true, completion: nil)
-            })
-            return
-        }
-        
-        let articleId = self.articleJson["ID"].stringValue
-        let parameters = [
-            "id": userId!,
-            "articleID": articleId
-        ]
-        
-        if !self.isLike {
-            self.likeBtn.setImage(UIImage(named: "downCollected"), forState: UIControlState.Normal)
-            self.isLike = true
-            
-            Alamofire.request(.GET, "http://112.74.192.226/ios/add_like_article", parameters: parameters)
-                .response { request, _, aJson, error in
-                    _ = NSString(data: aJson!, encoding: NSUTF8StringEncoding)
-            }
-        } else {
-            self.likeBtn.setImage(UIImage(named: "downCollect"), forState: UIControlState.Normal)
-            self.isLike = false
-            
-            Alamofire.request(.GET, "http://112.74.192.226/ios/del_like_article", parameters: parameters)
-                .response { request, _, aJson, error in
-                    _ = NSString(data: aJson!, encoding: NSUTF8StringEncoding)
-            }
-        }
-    }
+//    @IBAction func likeArticle(sender: UIButton) {
+//        let userId = NSUserDefaults.standardUserDefaults().stringForKey("userid")
+//        if (userId == nil) {
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                let thirdPartLoginController = ThirdPartLoginController()
+//                thirdPartLoginController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+//                thirdPartLoginController.providesPresentationContextTransitionStyle = true
+//                thirdPartLoginController.definesPresentationContext = true
+//                thirdPartLoginController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+//                self.presentViewController(thirdPartLoginController , animated:true, completion: nil)
+//            })
+//            return
+//        }
+//        
+//        let articleId = self.articleJson["ID"].stringValue
+//        let parameters = [
+//            "id": userId!,
+//            "articleID": articleId
+//        ]
+//        
+//        if !self.isLike {
+//            self.likeBtn.setImage(UIImage(named: "downCollected"), forState: UIControlState.Normal)
+//            self.isLike = true
+//            
+//            Alamofire.request(.GET, "http://112.74.192.226/ios/add_like_article", parameters: parameters)
+//                .response { request, _, aJson, error in
+//                    _ = NSString(data: aJson!, encoding: NSUTF8StringEncoding)
+//            }
+//        } else {
+//            self.likeBtn.setImage(UIImage(named: "downCollect"), forState: UIControlState.Normal)
+//            self.isLike = false
+//            
+//            Alamofire.request(.GET, "http://112.74.192.226/ios/del_like_article", parameters: parameters)
+//                .response { request, _, aJson, error in
+//                    _ = NSString(data: aJson!, encoding: NSUTF8StringEncoding)
+//            }
+//        }
+//    }
 }

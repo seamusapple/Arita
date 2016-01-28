@@ -46,7 +46,7 @@ class GoodsCell: UICollectionViewCell
         self.goodTitle.snp_makeConstraints { (make) -> Void in
             make.left.right.equalTo(self.goodImage)
             make.top.equalTo(self.goodImage.snp_bottom).offset(10)
-            make.height.equalTo(30)
+            make.height.equalTo(15)
         }
         
         self.goodCategory.snp_makeConstraints { (make) -> Void in
@@ -69,7 +69,6 @@ class GoodsCell: UICollectionViewCell
         
         self.goodTitle.font = UIFont.systemFontOfSize(11)
         self.goodTitle.textColor = COLOR_GOODS_TITLE
-        self.goodTitle.numberOfLines = 2
         
         self.goodCategory.font = UIFont.systemFontOfSize(10)
         self.goodCategory.textColor = UIColor.blackColor()

@@ -197,7 +197,7 @@ class HomeViewController: UIViewController
         }
         
         self.cyView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.tataView.snp_bottom).offset(10)
+            make.top.equalTo(self.tataView.snp_bottom).offset(5)
             make.left.equalTo(self.contentView).offset(10)
             make.right.equalTo(self.contentView).offset(-10)
             make.height.equalTo(self.height)
@@ -239,7 +239,7 @@ class HomeViewController: UIViewController
         }
         
         self.sjView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.cyView.snp_bottom).offset(10)
+            make.top.equalTo(self.cyView.snp_bottom).offset(5)
             make.left.equalTo(self.contentView).offset(10)
             make.right.equalTo(self.contentView).offset(-10)
             make.height.equalTo(self.height)
@@ -273,7 +273,7 @@ class HomeViewController: UIViewController
         }
         
         self.shView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.sjView.snp_bottom).offset(10)
+            make.top.equalTo(self.sjView.snp_bottom).offset(5)
             make.left.equalTo(self.contentView).offset(10)
             make.right.equalTo(self.contentView).offset(-10)
             make.height.equalTo(self.height)
@@ -307,7 +307,7 @@ class HomeViewController: UIViewController
         }
         
         self.lpView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.shView.snp_bottom).offset(10)
+            make.top.equalTo(self.shView.snp_bottom).offset(5)
             make.left.equalTo(self.contentView).offset(10)
             make.right.equalTo(self.contentView).offset(-10)
             make.height.equalTo(self.height)
