@@ -478,10 +478,10 @@ class HomeViewController: UIViewController
                 cyArray.append(imageUrl)
                 
             case "3":
-                sjArray.append(imageUrl)
+                shArray.append(imageUrl)
                 
             case "4":
-                shArray.append(imageUrl)
+                sjArray.append(imageUrl)
                 
             case "5":
                 lpArray.append(imageUrl)

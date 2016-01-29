@@ -512,21 +512,22 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     }
     
     func getGoods(data: AnyObject?) {
-        let jsonString = JSON(data!)
-        var tmpDic = [Int: JSON]()
-        for (_, subJson): (String, JSON) in jsonString {
-            let id = subJson["ID"].intValue
-            tmpDic[id] = subJson
-        }
-        var tmpKeys = [Int]()
-        for key in tmpDic.keys {
-            tmpKeys.append(key)
-        }
-        tmpKeys.sortInPlace({$0 > $1})
+//        let jsonString = JSON(data!)
+//        var tmpDic = [Int: JSON]()
+//        for (_, subJson): (String, JSON) in jsonString {
+//            let id = subJson["ID"].intValue
+//            tmpDic[id] = subJson
+//        }
+//        var tmpKeys = [Int]()
+//        for key in tmpDic.keys {
+//            tmpKeys.append(key)
+//        }
+//        tmpKeys.sortInPlace({$0 > $1})
         self.goodArray.removeAll()
-        for id in tmpKeys {
-            self.goodArray.append(tmpDic[id]!)
-        }
+//        for id in tmpKeys {
+//            self.goodArray.append(tmpDic[id]!)
+//        }
+        self.goodArray = JSON(data!).arrayValue
 
         self.newGoodsCollection.reloadData()
     }

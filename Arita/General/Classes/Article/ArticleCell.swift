@@ -64,6 +64,7 @@ class ArticleCell: UITableViewCell
     }
     
     func configCellSubviews() {
+        self.backgroundColor = COLOR_BACKGROUND
         self.contentView.backgroundColor = COLOR_BACKGROUND
         
         self.cellView.backgroundColor = UIColor.whiteColor()

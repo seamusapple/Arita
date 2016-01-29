@@ -50,6 +50,8 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     
     private var tableArray: [UITableView] = []
     
+    private var cellIndex = 0
+    
     // MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -234,7 +236,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
         let height = SCREEN_HEIGHT - 95
         
         self.segmentedControl.indexChangeBlock = { [unowned self] (index: NSInteger) -> Void in
-            self.reSetTableDatasourceAndDelegate(index)
+//            self.reSetTableDatasourceAndDelegate(index)
             
             let x = SCREEN_WIDTH * CGFloat(index)
             self.scrollView.scrollRectToVisible(CGRectMake(x, 0, SCREEN_WIDTH, height), animated: false)
@@ -243,6 +245,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
             self.titleLabel.text = self.segmentTitle[self.segueId]![index]
             
             let channelIdSelected = self.channelId[self.segueId]![index]
+//            self.articleArray.removeAll()
             Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
                 .responseJSON { _, _, aJson in
                     self.getArticle(aJson.value, index: index)
@@ -305,7 +308,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     
     // MARK: - load data from server
     func loadDataFromServer() {
-        self.reSetTableDatasourceAndDelegate(0)
+//        self.reSetTableDatasourceAndDelegate(0)
         let channelIdSelected = self.channelId[self.segueId]![0]
         Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
             .responseJSON { _, _, aJson in
@@ -322,8 +325,9 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
             self.titleLabel.text = self.segmentTitle[self.segueId]![Int(page)]
             self.segmentedControl.setSelectedSegmentIndex(UInt(page), animated: true)
             
-            self.reSetTableDatasourceAndDelegate(Int(page))
+//            self.reSetTableDatasourceAndDelegate(Int(page))
             let channelIdSelected = self.channelId[self.segueId]![Int(page)]
+//            self.articleArray.removeAll()
             Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
                 .responseJSON { _, _, aJson in
                     self.getArticle(aJson.value, index: Int(page))
@@ -333,6 +337,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(self.articleArray.count)
         if self.articleArray.count < self.articleNum {
             return self.articleArray.count + 1
         } else {
@@ -397,21 +402,13 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
                     self.getMoreArticles(aJson.value, index: self.segmentId)
             }
         } else {
-            let rotationAngleDegrees = 0.0
-            let rotationAngleRadians = CGFloat(rotationAngleDegrees * (M_PI / 180))
-            let offsetPositioning = CGPointMake(-200, -20)
-            var transform = CATransform3DIdentity
-            transform = CATransform3DRotate(transform, rotationAngleRadians, 0.0, 0.0, 1.0);
-            transform = CATransform3DTranslate(transform, offsetPositioning.x, offsetPositioning.y, 0.0);
-            
-            let card = cell.contentView
-            card.layer.transform = transform
-            card.layer.opacity = 0.8
-            
-            UIView.animateWithDuration(1.0, animations: {
-                card.layer.transform = CATransform3DIdentity
-                card.layer.opacity = 1
-            })
+            if indexPath.row >= cellIndex {
+                cellIndex = indexPath.row
+                cell.contentView.frame.origin.y = 100
+                UIView.animateWithDuration(0.8, animations: {
+                    cell.contentView.frame.origin.y = 0
+                })
+            }
         }
     }
     
@@ -452,6 +449,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     func refreshTableView() {
         if (self.rc.refreshing) {
             let channelIdSelected = self.channelId[self.segueId]![self.segmentId]
+//            self.articleArray.removeAll()
             Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
                 .responseJSON { _, _, aJson in
                     self.getArticle(aJson.value, index: self.segmentId)
@@ -502,7 +500,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
         for id in tmpKeys {
             self.articleArray.append(tmpDic[id]!)
         }
-        
+        self.reSetTableDatasourceAndDelegate(index)
         self.tableArray[index].reloadData()
     }
     
