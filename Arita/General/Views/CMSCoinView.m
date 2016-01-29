@@ -63,7 +63,6 @@
                     completion:^(BOOL finished) {
                         if (finished) {
                             displayingPrimary = !displayingPrimary;
-                            [self flip];
                         }
                     }
      ];

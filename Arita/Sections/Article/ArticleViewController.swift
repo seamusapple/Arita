@@ -337,7 +337,6 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(self.articleArray.count)
         if self.articleArray.count < self.articleNum {
             return self.articleArray.count + 1
         } else {

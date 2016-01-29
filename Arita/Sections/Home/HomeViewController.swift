@@ -30,30 +30,40 @@ class HomeViewController: UIViewController
     var cyView = UIView()
     var cyCMSView1 = CMSCoinView()
 //    var cyImage1 = UIImageView()
-//    var cyView1 = UIView()
-    var cyImage2 = UIImageView()
-    var cyImage3 = UIImageView()
+    var cyCMSView2 = CMSCoinView()
+//    var cyImage2 = UIImageView()
+    var cyCMSView3 = CMSCoinView()
+//    var cyImage3 = UIImageView()
     var cyLabel = UIImageView()
     var cyBtn = UIButton()
     
     var sjView = UIView()
-    var sjImage1 = UIImageView()
-    var sjImage2 = UIImageView()
-    var sjImage3 = UIImageView()
+    var sjCMSView1 = CMSCoinView()
+//    var sjImage1 = UIImageView()
+    var sjCMSView2 = CMSCoinView()
+//    var sjImage2 = UIImageView()
+    var sjCMSView3 = CMSCoinView()
+//    var sjImage3 = UIImageView()
     var sjLabel = UIImageView()
     var sjBtn = UIButton()
     
     var shView = UIView()
-    var shImage1 = UIImageView()
-    var shImage2 = UIImageView()
-    var shImage3 = UIImageView()
+    var shCMSView1 = CMSCoinView()
+//    var shImage1 = UIImageView()
+    var shCMSView2 = CMSCoinView()
+//    var shImage2 = UIImageView()
+    var shCMSView3 = CMSCoinView()
+//    var shImage3 = UIImageView()
     var shLabel = UIImageView()
     var shBtn = UIButton()
     
     var lpView = UIView()
-    var lpImage1 = UIImageView()
-    var lpImage2 = UIImageView()
-    var lpImage3 = UIImageView()
+    var lpCMSView1 = CMSCoinView()
+//    var lpImage1 = UIImageView()
+    var lpCMSView2 = CMSCoinView()
+//    var lpImage2 = UIImageView()
+    var lpCMSView3 = CMSCoinView()
+//    var lpImage3 = UIImageView()
     var lpLabel = UIImageView()
     var lpBtn1 = UIButton()
     var lpBtn2 = UIButton()
@@ -61,6 +71,10 @@ class HomeViewController: UIViewController
     
     private let width = SCREEN_WIDTH - 20
     private let height = (SCREEN_WIDTH - 20) * 2 / 3
+    
+    private var timer: NSTimer?
+    
+    private var flipArray = [CMSCoinView]()
     
     // MARK: - life cycle
     override func viewDidLoad() {
@@ -72,6 +86,15 @@ class HomeViewController: UIViewController
         self.setPageSubviews()
         self.setPageEvents()
         self.loadDataFromServer()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "flipTimer", userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.timer!.invalidate()
+        self.timer = nil
     }
     
     override func didReceiveMemoryWarning() {
@@ -88,6 +111,22 @@ class HomeViewController: UIViewController
     func initComponents() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideLoginBtn", name: "UserLogin", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginBtn", name: "UserLogout", object: nil)
+        
+        self.flipArray.append(self.cyCMSView1)
+        self.flipArray.append(self.cyCMSView2)
+        self.flipArray.append(self.cyCMSView3)
+        
+        self.flipArray.append(self.sjCMSView1)
+        self.flipArray.append(self.sjCMSView2)
+        self.flipArray.append(self.sjCMSView3)
+        
+        self.flipArray.append(self.shCMSView1)
+        self.flipArray.append(self.shCMSView2)
+        self.flipArray.append(self.shCMSView3)
+        
+        self.flipArray.append(self.lpCMSView1)
+        self.flipArray.append(self.lpCMSView2)
+        self.flipArray.append(self.lpCMSView3)
     }
     
     func addPageSubviews() {
@@ -108,30 +147,40 @@ class HomeViewController: UIViewController
         self.contentView.addSubview(self.cyView)
         self.cyView.addSubview(self.cyCMSView1)
 //        self.cyCMSView1.addSubview(self.cyImage1)
-//        self.cyCMSView1.addSubview(self.cyView1)
-        self.cyView.addSubview(self.cyImage2)
-        self.cyView.addSubview(self.cyImage3)
+        self.cyView.addSubview(self.cyCMSView2)
+//        self.cyView.addSubview(self.cyImage2)
+        self.cyView.addSubview(self.cyCMSView3)
+//        self.cyView.addSubview(self.cyImage3)
         self.cyView.addSubview(self.cyLabel)
         self.cyView.addSubview(self.cyBtn)
         
         self.contentView.addSubview(self.sjView)
-        self.sjView.addSubview(self.sjImage1)
-        self.sjView.addSubview(self.sjImage2)
-        self.sjView.addSubview(self.sjImage3)
+        self.sjView.addSubview(self.sjCMSView1)
+//        self.sjView.addSubview(self.sjImage1)
+        self.sjView.addSubview(self.sjCMSView2)
+//        self.sjView.addSubview(self.sjImage2)
+        self.sjView.addSubview(self.sjCMSView3)
+//        self.sjView.addSubview(self.sjImage3)
         self.sjView.addSubview(self.sjLabel)
         self.sjView.addSubview(self.sjBtn)
         
         self.contentView.addSubview(self.shView)
-        self.shView.addSubview(self.shImage1)
-        self.shView.addSubview(self.shImage2)
-        self.shView.addSubview(self.shImage3)
+        self.shView.addSubview(self.shCMSView1)
+//        self.shView.addSubview(self.shImage1)
+        self.shView.addSubview(self.shCMSView2)
+//        self.shView.addSubview(self.shImage2)
+        self.shView.addSubview(self.shCMSView3)
+//        self.shView.addSubview(self.shImage3)
         self.shView.addSubview(self.shLabel)
         self.shView.addSubview(self.shBtn)
         
         self.contentView.addSubview(self.lpView)
-        self.lpView.addSubview(self.lpImage1)
-        self.lpView.addSubview(self.lpImage2)
-        self.lpView.addSubview(self.lpImage3)
+        self.lpView.addSubview(self.lpCMSView1)
+//        self.lpView.addSubview(self.lpImage1)
+        self.lpView.addSubview(self.lpCMSView2)
+//        self.lpView.addSubview(self.lpImage2)
+        self.lpView.addSubview(self.lpCMSView3)
+//        self.lpView.addSubview(self.lpImage3)
         self.lpView.addSubview(self.lpLabel)
         self.lpView.addSubview(self.lpBtn1)
         self.lpView.addSubview(self.lpBtn2)
@@ -205,28 +254,37 @@ class HomeViewController: UIViewController
         
         self.cyCMSView1.snp_makeConstraints { (make) -> Void in
             make.top.left.equalTo(self.cyView)
-            make.right.equalTo(self.cyImage3.snp_left).offset(-5)
+            make.right.equalTo(self.cyCMSView3.snp_left).offset(-5)
             make.height.equalTo(self.cyCMSView1.snp_width)
         }
         
-//        self.cyView1.snp_makeConstraints { (make) -> Void in
-//            make.edges.equalTo(self.cyCMSView1).inset(0)
-//        }
-//        
 //        self.cyImage1.snp_makeConstraints { (make) -> Void in
-//            make.edges.equalTo(self.cyCMSView1).inset(0)
+//            make.top.left.equalTo(self.cyView)
+//            make.right.equalTo(self.cyImage3.snp_left).offset(-5)
+//            make.height.equalTo(self.cyCMSView1.snp_width)
 //        }
         
-        self.cyImage2.snp_makeConstraints { (make) -> Void in
+        self.cyCMSView2.snp_makeConstraints { (make) -> Void in
             make.left.bottom.equalTo(self.cyView)
             make.top.equalTo(self.cyCMSView1.snp_bottom).offset(5)
             make.right.equalTo(self.cyCMSView1)
         }
         
-        self.cyImage3.snp_makeConstraints { (make) -> Void in
+//        self.cyImage2.snp_makeConstraints { (make) -> Void in
+//            make.left.bottom.equalTo(self.cyView)
+//            make.top.equalTo(self.cyCMSView1.snp_bottom).offset(5)
+//            make.right.equalTo(self.cyCMSView1)
+//        }
+
+        self.cyCMSView3.snp_makeConstraints { (make) -> Void in
             make.top.right.equalTo(self.cyView)
             make.size.equalTo(CGSizeMake(self.height, self.height))
         }
+        
+//        self.cyImage3.snp_makeConstraints { (make) -> Void in
+//            make.top.right.equalTo(self.cyView)
+//            make.size.equalTo(CGSizeMake(self.height, self.height))
+//        }
         
         self.cyLabel.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(self.cyView)
@@ -245,22 +303,39 @@ class HomeViewController: UIViewController
             make.height.equalTo(self.height)
         }
         
-        self.sjImage1.snp_makeConstraints { (make) -> Void in
+        self.sjCMSView1.snp_makeConstraints { (make) -> Void in
             make.top.left.equalTo(self.sjView)
             make.size.equalTo(CGSizeMake(self.height, self.height))
         }
         
-        self.sjImage2.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(self.sjImage1.snp_right).offset(5)
+//        self.sjImage1.snp_makeConstraints { (make) -> Void in
+//            make.top.left.equalTo(self.sjView)
+//            make.size.equalTo(CGSizeMake(self.height, self.height))
+//        }
+        
+        self.sjCMSView2.snp_makeConstraints { (make) -> Void in
+            make.left.equalTo(self.sjCMSView1.snp_right).offset(5)
             make.top.right.equalTo(self.sjView)
-            make.height.equalTo(self.sjImage2.snp_width)
+            make.height.equalTo(self.sjCMSView2.snp_width)
         }
         
-        self.sjImage3.snp_makeConstraints { (make) -> Void in
+//        self.sjImage2.snp_makeConstraints { (make) -> Void in
+//            make.left.equalTo(self.sjImage1.snp_right).offset(5)
+//            make.top.right.equalTo(self.sjView)
+//            make.height.equalTo(self.sjImage2.snp_width)
+//        }
+        
+        self.sjCMSView3.snp_makeConstraints { (make) -> Void in
             make.right.bottom.equalTo(self.sjView)
-            make.top.equalTo(self.sjImage2.snp_bottom).offset(5)
-            make.left.equalTo(self.sjImage2)
+            make.top.equalTo(self.sjCMSView2.snp_bottom).offset(5)
+            make.left.equalTo(self.sjCMSView2)
         }
+        
+//        self.sjImage3.snp_makeConstraints { (make) -> Void in
+//            make.right.bottom.equalTo(self.sjView)
+//            make.top.equalTo(self.sjImage2.snp_bottom).offset(5)
+//            make.left.equalTo(self.sjImage2)
+//        }
         
         self.sjLabel.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(self.sjView)
@@ -279,22 +354,39 @@ class HomeViewController: UIViewController
             make.height.equalTo(self.height)
         }
         
-        self.shImage1.snp_makeConstraints { (make) -> Void in
+        self.shCMSView1.snp_makeConstraints { (make) -> Void in
             make.top.left.equalTo(self.shView)
-            make.right.equalTo(self.shImage3.snp_left).offset(-5)
-            make.height.equalTo(self.shImage1.snp_width)
+            make.right.equalTo(self.shCMSView3.snp_left).offset(-5)
+            make.height.equalTo(self.shCMSView1.snp_width)
         }
         
-        self.shImage2.snp_makeConstraints { (make) -> Void in
+//        self.shImage1.snp_makeConstraints { (make) -> Void in
+//            make.top.left.equalTo(self.shView)
+//            make.right.equalTo(self.shImage3.snp_left).offset(-5)
+//            make.height.equalTo(self.shImage1.snp_width)
+//        }
+        
+        self.shCMSView2.snp_makeConstraints { (make) -> Void in
             make.left.bottom.equalTo(self.shView)
-            make.top.equalTo(self.shImage1.snp_bottom).offset(5)
-            make.right.equalTo(self.shImage1)
+            make.top.equalTo(self.shCMSView1.snp_bottom).offset(5)
+            make.right.equalTo(self.shCMSView1)
         }
         
-        self.shImage3.snp_makeConstraints { (make) -> Void in
+//        self.shImage2.snp_makeConstraints { (make) -> Void in
+//            make.left.bottom.equalTo(self.shView)
+//            make.top.equalTo(self.shImage1.snp_bottom).offset(5)
+//            make.right.equalTo(self.shImage1)
+//        }
+        
+        self.shCMSView3.snp_makeConstraints { (make) -> Void in
             make.top.right.equalTo(self.shView)
             make.size.equalTo(CGSizeMake(self.height, self.height))
         }
+        
+//        self.shImage3.snp_makeConstraints { (make) -> Void in
+//            make.top.right.equalTo(self.shView)
+//            make.size.equalTo(CGSizeMake(self.height, self.height))
+//        }
         
         self.shLabel.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(self.shView)
@@ -314,22 +406,39 @@ class HomeViewController: UIViewController
             make.bottom.equalTo(self.contentView).offset(-10)
         }
         
-        self.lpImage1.snp_makeConstraints { (make) -> Void in
+        self.lpCMSView1.snp_makeConstraints { (make) -> Void in
             make.top.left.equalTo(self.lpView)
             make.size.equalTo(CGSizeMake(self.height, self.height))
         }
         
-        self.lpImage2.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(self.lpImage1.snp_right).offset(5)
+//        self.lpImage1.snp_makeConstraints { (make) -> Void in
+//            make.top.left.equalTo(self.lpView)
+//            make.size.equalTo(CGSizeMake(self.height, self.height))
+//        }
+
+        self.lpCMSView2.snp_makeConstraints { (make) -> Void in
+            make.left.equalTo(self.lpCMSView1.snp_right).offset(5)
             make.top.right.equalTo(self.lpView)
-            make.height.equalTo(self.lpImage2.snp_width)
+            make.height.equalTo(self.lpCMSView2.snp_width)
         }
         
-        self.lpImage3.snp_makeConstraints { (make) -> Void in
+//        self.lpImage2.snp_makeConstraints { (make) -> Void in
+//            make.left.equalTo(self.lpImage1.snp_right).offset(5)
+//            make.top.right.equalTo(self.lpView)
+//            make.height.equalTo(self.lpImage2.snp_width)
+//        }
+
+        self.lpCMSView3.snp_makeConstraints { (make) -> Void in
             make.right.bottom.equalTo(self.lpView)
-            make.top.equalTo(self.lpImage2.snp_bottom).offset(5)
-            make.left.equalTo(self.lpImage2)
+            make.top.equalTo(self.lpCMSView2.snp_bottom).offset(5)
+            make.left.equalTo(self.lpCMSView2)
         }
+        
+//        self.lpImage3.snp_makeConstraints { (make) -> Void in
+//            make.right.bottom.equalTo(self.lpView)
+//            make.top.equalTo(self.lpImage2.snp_bottom).offset(5)
+//            make.left.equalTo(self.lpImage2)
+//        }
         
         self.lpLabel.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(self.lpView)
@@ -338,15 +447,15 @@ class HomeViewController: UIViewController
         }
         
         self.lpBtn1.snp_makeConstraints { (make) -> Void in
-            make.top.left.bottom.right.equalTo(self.lpImage1)
+            make.top.left.bottom.right.equalTo(self.lpCMSView1)
         }
         
         self.lpBtn2.snp_makeConstraints { (make) -> Void in
-            make.top.left.bottom.right.equalTo(self.lpImage2)
+            make.top.left.bottom.right.equalTo(self.lpCMSView2)
         }
         
         self.lpBtn3.snp_makeConstraints { (make) -> Void in
-            make.top.left.bottom.right.equalTo(self.lpImage3)
+            make.top.left.bottom.right.equalTo(self.lpCMSView3)
         }
     }
     
@@ -463,28 +572,40 @@ class HomeViewController: UIViewController
     
     func getHomeInfo(data: AnyObject?) {
         let jsonString = JSON(data!)
+        
         var cyArray = [String]()
         var sjArray = [String]()
         var shArray = [String]()
         var lpArray = [String]()
+        
+        var cyTitleArray = [String]()
+        var sjTitleArray = [String]()
+        var shTitleArray = [String]()
+        var lpTitleArray = [String]()
+        
         for (_, subJson): (String, JSON) in jsonString {
             let categoryId = subJson["category_ID"].stringValue
             let imageUrl = subJson["thumb_path"].stringValue
+            let title = subJson["title"].stringValue
             switch categoryId {
             case "1":
                 self.tataImage.kf_setImageWithURL(NSURL(string: imageUrl)!, placeholderImage: nil)
                 
             case "2":
                 cyArray.append(imageUrl)
+                cyTitleArray.append(title)
                 
             case "3":
                 shArray.append(imageUrl)
+                shTitleArray.append(title)
                 
             case "4":
                 sjArray.append(imageUrl)
+                sjTitleArray.append(title)
                 
             case "5":
                 lpArray.append(imageUrl)
+                lpTitleArray.append(title)
                 
             default:
                 break
@@ -498,28 +619,180 @@ class HomeViewController: UIViewController
                 let cyImage1 = UIImageView()
                 cyImage1.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
                 self.cyCMSView1.primaryView = cyImage1
-                let cyTitleView1 = UIView()
+                let cyTitleView1 = UILabel()
+                cyTitleView1.text = cyTitleArray[i]
+                cyTitleView1.textAlignment = NSTextAlignment.Center
+                cyTitleView1.numberOfLines = 3
+                cyTitleView1.font = UIFont.systemFontOfSize(10)
+                cyTitleView1.textColor = UIColor.whiteColor()
                 cyTitleView1.backgroundColor = COLOR_TATA
                 self.cyCMSView1.secondaryView = cyTitleView1
                 self.cyCMSView1.spinTime = 1.0
-                self.sjImage1.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
-                self.shImage1.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
-                self.lpImage1.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+                
+//                self.sjImage1.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
+                let sjImage1 = UIImageView()
+                sjImage1.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
+                self.sjCMSView1.primaryView = sjImage1
+                let sjTitleView1 = UILabel()
+                sjTitleView1.text = sjTitleArray[i]
+                sjTitleView1.textAlignment = NSTextAlignment.Center
+                sjTitleView1.numberOfLines = 3
+                sjTitleView1.font = UIFont.systemFontOfSize(10)
+                sjTitleView1.textColor = UIColor.whiteColor()
+                sjTitleView1.backgroundColor = COLOR_TATA
+                self.sjCMSView1.secondaryView = sjTitleView1
+                self.sjCMSView1.spinTime = 1.0
+                
+//                self.shImage1.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
+                let shImage1 = UIImageView()
+                shImage1.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
+                self.shCMSView1.primaryView = shImage1
+                let shTitleView1 = UILabel()
+                shTitleView1.text = shTitleArray[i]
+                shTitleView1.textAlignment = NSTextAlignment.Center
+                shTitleView1.numberOfLines = 3
+                shTitleView1.font = UIFont.systemFontOfSize(10)
+                shTitleView1.textColor = UIColor.whiteColor()
+                shTitleView1.backgroundColor = COLOR_TATA
+                self.shCMSView1.secondaryView = shTitleView1
+                self.shCMSView1.spinTime = 1.0
+                
+//                self.lpImage1.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+                let lpImage1 = UIImageView()
+                lpImage1.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+                self.lpCMSView1.primaryView = lpImage1
+                let lpTitleView1 = UILabel()
+                lpTitleView1.text = lpTitleArray[i]
+                lpTitleView1.textAlignment = NSTextAlignment.Center
+                lpTitleView1.numberOfLines = 3
+                lpTitleView1.font = UIFont.systemFontOfSize(10)
+                lpTitleView1.textColor = UIColor.whiteColor()
+                lpTitleView1.backgroundColor = COLOR_TATA
+                self.lpCMSView1.secondaryView = lpTitleView1
+                self.lpCMSView1.spinTime = 1.0
+                
             case 1:
-                self.cyImage2.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
-                self.sjImage2.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
-                self.shImage2.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
-                self.lpImage2.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+//                self.cyImage2.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
+                let cyImage2 = UIImageView()
+                cyImage2.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
+                self.cyCMSView2.primaryView = cyImage2
+                let cyTitleView2 = UILabel()
+                cyTitleView2.text = cyTitleArray[i]
+                cyTitleView2.textAlignment = NSTextAlignment.Center
+                cyTitleView2.numberOfLines = 3
+                cyTitleView2.font = UIFont.systemFontOfSize(10)
+                cyTitleView2.textColor = UIColor.whiteColor()
+                cyTitleView2.backgroundColor = COLOR_TATA
+                self.cyCMSView2.secondaryView = cyTitleView2
+                self.cyCMSView2.spinTime = 1.0
+                
+//                self.sjImage2.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
+                let sjImage2 = UIImageView()
+                sjImage2.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
+                self.sjCMSView2.primaryView = sjImage2
+                let sjTitleView2 = UILabel()
+                sjTitleView2.text = sjTitleArray[i]
+                sjTitleView2.textAlignment = NSTextAlignment.Center
+                sjTitleView2.numberOfLines = 3
+                sjTitleView2.font = UIFont.systemFontOfSize(10)
+                sjTitleView2.textColor = UIColor.whiteColor()
+                sjTitleView2.backgroundColor = COLOR_TATA
+                self.sjCMSView2.secondaryView = sjTitleView2
+                self.sjCMSView2.spinTime = 1.0
+                
+//                self.shImage2.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
+                let shImage2 = UIImageView()
+                shImage2.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
+                self.shCMSView2.primaryView = shImage2
+                let shTitleView2 = UILabel()
+                shTitleView2.text = shTitleArray[i]
+                shTitleView2.textAlignment = NSTextAlignment.Center
+                shTitleView2.numberOfLines = 3
+                shTitleView2.font = UIFont.systemFontOfSize(10)
+                shTitleView2.textColor = UIColor.whiteColor()
+                shTitleView2.backgroundColor = COLOR_TATA
+                self.shCMSView2.secondaryView = shTitleView2
+                self.shCMSView2.spinTime = 1.0
+                
+//                self.lpImage2.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+                let lpImage2 = UIImageView()
+                lpImage2.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+                self.lpCMSView2.primaryView = lpImage2
+                let lpTitleView2 = UILabel()
+                lpTitleView2.text = lpTitleArray[i]
+                lpTitleView2.textAlignment = NSTextAlignment.Center
+                lpTitleView2.numberOfLines = 3
+                lpTitleView2.font = UIFont.systemFontOfSize(10)
+                lpTitleView2.textColor = UIColor.whiteColor()
+                lpTitleView2.backgroundColor = COLOR_TATA
+                self.lpCMSView2.secondaryView = lpTitleView2
+                self.lpCMSView2.spinTime = 1.0
+                
             case 2:
-                self.cyImage3.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
-                self.sjImage3.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
-                self.shImage3.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
-                self.lpImage3.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+//                self.cyImage3.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
+                let cyImage3 = UIImageView()
+                cyImage3.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
+                self.cyCMSView3.primaryView = cyImage3
+                let cyTitleView3 = UILabel()
+                cyTitleView3.text = cyTitleArray[i]
+                cyTitleView3.textAlignment = NSTextAlignment.Center
+                cyTitleView3.numberOfLines = 3
+                cyTitleView3.font = UIFont.systemFontOfSize(10)
+                cyTitleView3.textColor = UIColor.whiteColor()
+                cyTitleView3.backgroundColor = COLOR_TATA
+                self.cyCMSView3.secondaryView = cyTitleView3
+                self.cyCMSView3.spinTime = 1.0
+                
+//                self.sjImage3.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
+                let sjImage3 = UIImageView()
+                sjImage3.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
+                self.sjCMSView3.primaryView = sjImage3
+                let sjTitleView3 = UILabel()
+                sjTitleView3.text = sjTitleArray[i]
+                sjTitleView3.textAlignment = NSTextAlignment.Center
+                sjTitleView3.numberOfLines = 3
+                sjTitleView3.font = UIFont.systemFontOfSize(10)
+                sjTitleView3.textColor = UIColor.whiteColor()
+                sjTitleView3.backgroundColor = COLOR_TATA
+                self.sjCMSView3.secondaryView = sjTitleView3
+                self.sjCMSView3.spinTime = 1.0
+                
+//                self.shImage3.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
+                let shImage3 = UIImageView()
+                shImage3.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
+                self.shCMSView3.primaryView = shImage3
+                let shTitleView3 = UILabel()
+                shTitleView3.text = shTitleArray[i]
+                shTitleView3.textAlignment = NSTextAlignment.Center
+                shTitleView3.numberOfLines = 3
+                shTitleView3.font = UIFont.systemFontOfSize(10)
+                shTitleView3.textColor = UIColor.whiteColor()
+                shTitleView3.backgroundColor = COLOR_TATA
+                self.shCMSView3.secondaryView = shTitleView3
+                self.shCMSView3.spinTime = 1.0
+                
+//                self.lpImage3.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+                let lpImage3 = UIImageView()
+                lpImage3.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
+                self.lpCMSView3.primaryView = lpImage3
+                let lpTitleView3 = UILabel()
+                lpTitleView3.text = lpTitleArray[i]
+                lpTitleView3.textAlignment = NSTextAlignment.Center
+                lpTitleView3.numberOfLines = 3
+                lpTitleView3.font = UIFont.systemFontOfSize(10)
+                lpTitleView3.textColor = UIColor.whiteColor()
+                lpTitleView3.backgroundColor = COLOR_TATA
+                self.lpCMSView3.secondaryView = lpTitleView3
+                self.lpCMSView3.spinTime = 1.0
+                
             default:
                 break
             }
         }
-        
-        self.cyCMSView1.flip()
+    }
+    
+    func flipTimer() {
+        let randomNum = Int(arc4random() % 12)
+        self.flipArray[randomNum].flip()
     }
 }
