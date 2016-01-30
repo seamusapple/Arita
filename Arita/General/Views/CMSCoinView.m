@@ -18,6 +18,14 @@
 
 @synthesize primaryView=_primaryView, secondaryView=_secondaryView, spinTime;
 
+- (id) init {
+    self = [super init];
+    if (self) {
+        displayingPrimary = YES;
+    }
+    return self;
+}
+
 - (id) initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if(self){
