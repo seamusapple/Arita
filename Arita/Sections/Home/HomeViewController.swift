@@ -74,7 +74,7 @@ class HomeViewController: UIViewController
     
     private var timer: NSTimer?
     
-    private var flipArray = [CMSCoinView]()
+    private var flipDic = [Int: [CMSCoinView]]()
     
     // MARK: - life cycle
     override func viewDidLoad() {
@@ -112,21 +112,17 @@ class HomeViewController: UIViewController
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideLoginBtn", name: "UserLogin", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginBtn", name: "UserLogout", object: nil)
         
-        self.flipArray.append(self.cyCMSView1)
-        self.flipArray.append(self.cyCMSView2)
-        self.flipArray.append(self.cyCMSView3)
+        let cyFlipArray = [cyCMSView1, cyCMSView2, cyCMSView3]
+        flipDic[0] = cyFlipArray
         
-        self.flipArray.append(self.sjCMSView1)
-        self.flipArray.append(self.sjCMSView2)
-        self.flipArray.append(self.sjCMSView3)
+        let sjFlipArray = [sjCMSView1, sjCMSView2, sjCMSView3]
+        flipDic[1] = sjFlipArray
         
-        self.flipArray.append(self.shCMSView1)
-        self.flipArray.append(self.shCMSView2)
-        self.flipArray.append(self.shCMSView3)
+        let shFlipArray = [shCMSView1, shCMSView2, shCMSView3]
+        flipDic[2] = shFlipArray
         
-        self.flipArray.append(self.lpCMSView1)
-        self.flipArray.append(self.lpCMSView2)
-        self.flipArray.append(self.lpCMSView3)
+        let lpFlipArray = [lpCMSView1, lpCMSView2, lpCMSView3]
+        flipDic[3] = lpFlipArray
     }
     
     func addPageSubviews() {
@@ -617,6 +613,8 @@ class HomeViewController: UIViewController
             case 0:
 //                self.cyImage1.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
                 let cyImage1 = UIImageView()
+                cyImage1.contentMode = UIViewContentMode.ScaleAspectFill
+                cyImage1.clipsToBounds = true
                 cyImage1.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
                 self.cyCMSView1.primaryView = cyImage1
                 let cyTitleView1 = UILabel()
@@ -631,6 +629,8 @@ class HomeViewController: UIViewController
                 
 //                self.sjImage1.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
                 let sjImage1 = UIImageView()
+                sjImage1.contentMode = UIViewContentMode.ScaleAspectFill
+                sjImage1.clipsToBounds = true
                 sjImage1.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
                 self.sjCMSView1.primaryView = sjImage1
                 let sjTitleView1 = UILabel()
@@ -645,6 +645,8 @@ class HomeViewController: UIViewController
                 
 //                self.shImage1.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
                 let shImage1 = UIImageView()
+                shImage1.contentMode = UIViewContentMode.ScaleAspectFill
+                shImage1.clipsToBounds = true
                 shImage1.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
                 self.shCMSView1.primaryView = shImage1
                 let shTitleView1 = UILabel()
@@ -674,6 +676,8 @@ class HomeViewController: UIViewController
             case 1:
 //                self.cyImage2.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
                 let cyImage2 = UIImageView()
+                cyImage2.contentMode = UIViewContentMode.ScaleAspectFill
+                cyImage2.clipsToBounds = true
                 cyImage2.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
                 self.cyCMSView2.primaryView = cyImage2
                 let cyTitleView2 = UILabel()
@@ -688,6 +692,8 @@ class HomeViewController: UIViewController
                 
 //                self.sjImage2.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
                 let sjImage2 = UIImageView()
+                sjImage2.contentMode = UIViewContentMode.ScaleAspectFill
+                sjImage2.clipsToBounds = true
                 sjImage2.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
                 self.sjCMSView2.primaryView = sjImage2
                 let sjTitleView2 = UILabel()
@@ -702,6 +708,8 @@ class HomeViewController: UIViewController
                 
 //                self.shImage2.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
                 let shImage2 = UIImageView()
+                shImage2.contentMode = UIViewContentMode.ScaleAspectFill
+                shImage2.clipsToBounds = true
                 shImage2.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
                 self.shCMSView2.primaryView = shImage2
                 let shTitleView2 = UILabel()
@@ -731,6 +739,8 @@ class HomeViewController: UIViewController
             case 2:
 //                self.cyImage3.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
                 let cyImage3 = UIImageView()
+                cyImage3.contentMode = UIViewContentMode.ScaleAspectFill
+                cyImage3.clipsToBounds = true
                 cyImage3.kf_setImageWithURL(NSURL(string: cyArray[i])!, placeholderImage: nil)
                 self.cyCMSView3.primaryView = cyImage3
                 let cyTitleView3 = UILabel()
@@ -745,6 +755,8 @@ class HomeViewController: UIViewController
                 
 //                self.sjImage3.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
                 let sjImage3 = UIImageView()
+                sjImage3.contentMode = UIViewContentMode.ScaleAspectFill
+                sjImage3.clipsToBounds = true
                 sjImage3.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
                 self.sjCMSView3.primaryView = sjImage3
                 let sjTitleView3 = UILabel()
@@ -759,6 +771,8 @@ class HomeViewController: UIViewController
                 
 //                self.shImage3.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
                 let shImage3 = UIImageView()
+                shImage3.contentMode = UIViewContentMode.ScaleAspectFill
+                shImage3.clipsToBounds = true
                 shImage3.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
                 self.shCMSView3.primaryView = shImage3
                 let shTitleView3 = UILabel()
@@ -792,7 +806,11 @@ class HomeViewController: UIViewController
     }
     
     func flipTimer() {
-        let randomNum = Int(arc4random() % 12)
-        self.flipArray[randomNum].flip()
+        let module1 = Int(arc4random() % 4)
+        let module2 = Int(arc4random() % 4)
+        let random1 = Int(arc4random() % 3)
+        let random2 = Int(arc4random() % 3)
+        flipDic[module1]![random1].flip()
+        flipDic[module2]![random2].flip()
     }
 }
