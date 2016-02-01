@@ -363,8 +363,12 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
             default:
                 break
             }
+            
             let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! ArticleCell
+            
             cell.articleTitle.text = self.articleArray[indexPath.row]["title"].string
+            cell.articleTitle.textColor = self.menuColor
+            
             let imageUrl = self.articleArray[indexPath.row]["thumb_path"].string
             cell.articleImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
             

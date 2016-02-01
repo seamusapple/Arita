@@ -14,8 +14,8 @@ class TataCell: UITableViewCell
     
     var tataImage = UIImageView()
     
-    var timestampIcon = UIImageView()
-    var timestamp = UILabel()
+//    var timestampIcon = UIImageView()
+//    var timestamp = UILabel()
     
     var tataTitle = UILabel()
     
@@ -41,8 +41,8 @@ class TataCell: UITableViewCell
         
         self.cellView.addSubview(self.tataImage)
         
-        self.cellView.addSubview(self.timestampIcon)
-        self.timestampIcon.addSubview(self.timestamp)
+//        self.cellView.addSubview(self.timestampIcon)
+//        self.timestampIcon.addSubview(self.timestamp)
         
         self.cellView.addSubview(self.tataTitle)
         
@@ -62,15 +62,15 @@ class TataCell: UITableViewCell
             make.height.equalTo(width * 2 / 3)
         }
         
-        self.timestampIcon.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(68, 25))
-            make.left.equalTo(self.cellView)
-            make.top.equalTo(self.cellView).offset(20)
-        }
-        
-        self.timestamp.snp_makeConstraints { (make) -> Void in
-            make.edges.equalTo(self.timestampIcon).inset(0)
-        }
+//        self.timestampIcon.snp_makeConstraints { (make) -> Void in
+//            make.size.equalTo(CGSizeMake(68, 25))
+//            make.left.equalTo(self.cellView)
+//            make.top.equalTo(self.cellView).offset(20)
+//        }
+//        
+//        self.timestamp.snp_makeConstraints { (make) -> Void in
+//            make.edges.equalTo(self.timestampIcon).inset(0)
+//        }
         
         self.tataTitle.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(self.tataImage.snp_bottom).offset(10)
@@ -91,13 +91,14 @@ class TataCell: UITableViewCell
         
         self.cellView.backgroundColor = UIColor.whiteColor()
         
-        self.timestampIcon.image = UIImage(named: "tata_time_icon")
+//        self.timestampIcon.image = UIImage(named: "tata_time_icon")
         
-        self.timestamp.textColor = UIColor.whiteColor()
-        self.timestamp.font = UIFont.boldSystemFontOfSize(13)
-        self.timestamp.textAlignment = NSTextAlignment.Center
+//        self.timestamp.textColor = UIColor.whiteColor()
+//        self.timestamp.font = UIFont.boldSystemFontOfSize(13)
+//        self.timestamp.textAlignment = NSTextAlignment.Center
         
         self.tataTitle.font = UIFont.systemFontOfSize(14)
+        self.tataTitle.textColor = COLOR_TATA
         
         self.tataInfo.numberOfLines = 3
         self.tataInfo.textColor = COLOR_INFO

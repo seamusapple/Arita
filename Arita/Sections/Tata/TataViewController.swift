@@ -159,16 +159,18 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let cellId = "TataCell"
             let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! TataCell
             
-            cell.tataTitle.text = self.newsArray[indexPath.row]["title"].string
-            
             let dateOfArticle = self.newsArray[indexPath.row]["publish_time"].string
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let date = dateFormatter.dateFromString(dateOfArticle!)
             let dateFormaterForMY = NSDateFormatter()
-            dateFormaterForMY.dateFormat = "dd MMM."
+            dateFormaterForMY.dateFormat = "MMdd"
             dateFormaterForMY.locale = NSLocale(localeIdentifier: "en_US")
-            cell.timestamp.text = dateFormaterForMY.stringFromDate(date!)
+            let dateString = dateFormaterForMY.stringFromDate(date!)
+//            cell.timestamp.text = dateFormaterForMY.stringFromDate(date!)
+            
+            cell.tataTitle.text = dateString + " : " + self.newsArray[indexPath.row]["title"].string!
+            
             let imageUrl = self.newsArray[indexPath.row]["thumb_path"].string
             cell.tataImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
             
