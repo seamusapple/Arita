@@ -345,7 +345,7 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
             cell.goodTitle.text = self.goodArray[indexPath.section * 2 + indexPath.row]["title"].string
             cell.goodCategory.text = self.categoryArray[self.goodArray[indexPath.section * 2 + indexPath.row]["channel_ID"].stringValue]!
             cell.goodCategory.textColor = self.categoryColorArray[self.goodArray[indexPath.section * 2 + indexPath.row]["channel_ID"].stringValue]!
-            cell.goodPrice.text = "¥ " + self.goodArray[indexPath.section * 2 + indexPath.row]["price"].string!
+            cell.goodPrice.text = "¥ " + self.goodArray[indexPath.section * 2 + indexPath.row]["price"].stringValue
             let imageUrl = self.goodArray[indexPath.section * 2 + indexPath.row]["thumb_path"].string
             cell.goodImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
             

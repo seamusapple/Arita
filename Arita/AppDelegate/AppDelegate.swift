@@ -45,17 +45,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate
                     
                 case SSDKPlatformType.TypeSinaWeibo:
                     //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                    appInfo.SSDKSetupSinaWeiboByAppKey("568898243",
-                        appSecret : "38a4f8204cc784f81f9f0daaf31e02e3",
-                        redirectUri : "http://www.sharesdk.cn",
+                    appInfo.SSDKSetupSinaWeiboByAppKey("1963420613",
+                        appSecret : "93753d74575ba7eaa06e1a12463976d2",
+                        redirectUri : "https://api.weibo.com/oauth2/default.html",
                         authType : SSDKAuthTypeBoth)
                     
                 case SSDKPlatformType.TypeQQ:
-                    appInfo.SSDKSetupQQByAppId("100371282", appKey: "aed9b0303e3ed1e27bae87c33761161d", authType: SSDKAuthTypeBoth)
+                    appInfo.SSDKSetupQQByAppId("1104788697", appKey: "kM7rtF7Y1wB8m36e", authType: SSDKAuthTypeBoth)
                     
                 case SSDKPlatformType.TypeWechat:
                     //设置微信应用信息
-                    appInfo.SSDKSetupWeChatByAppId("wx4868b35061f87885",appSecret:"64020361b8ec4c99936c0e3999a9f249");
+                    appInfo.SSDKSetupWeChatByAppId("wx4a3852a5ca53e339",appSecret:"49ff531b4dba964d4251dcfc93d2e2a7");
                     
                 default:
                     break
