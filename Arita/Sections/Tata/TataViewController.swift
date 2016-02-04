@@ -178,6 +178,7 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let attributedString = NSMutableAttributedString(string: infoString)
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = 5
+            paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail
             attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
             cell.tataInfo.attributedText = attributedString
             cell.tataInfo.sizeToFit()

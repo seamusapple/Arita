@@ -80,7 +80,7 @@ class SearchResultController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func setPageSubviews() {
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = COLOR_BACKGROUND
         
         self.titleViewBg.image = UIImage(named: "lpTitle")
         self.titleLabel.text = "搜索\"良品\""
@@ -125,6 +125,15 @@ class SearchResultController: UIViewController, UITableViewDataSource, UITableVi
         let cellId = "SearchGoodCell"
         let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! SearchGoodCell
         
+        let infoString = self.goodArray[indexPath.row]["description"].stringValue
+        let attributedString = NSMutableAttributedString(string: infoString)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail
+        attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+        cell.goodInfo.attributedText = attributedString
+        cell.goodInfo.sizeToFit()
+        
         let imageUrl = self.goodArray[indexPath.row]["thumb_path"].stringValue
         cell.goodImage.kf_setImageWithURL(NSURL(string: imageUrl)!, placeholderImage: nil)
         cell.goodTitle.text = self.goodArray[indexPath.row]["title"].stringValue
@@ -135,7 +144,7 @@ class SearchResultController: UIViewController, UITableViewDataSource, UITableVi
     
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 110
+        return 130
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

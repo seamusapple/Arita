@@ -376,6 +376,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
             let attributedString = NSMutableAttributedString(string: infoString)
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = 5
+            paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail
             attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
             cell.articleInfo.attributedText = attributedString
             cell.articleInfo.sizeToFit()
