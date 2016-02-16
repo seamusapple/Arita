@@ -37,7 +37,9 @@ class HomeViewController: UIViewController
     var cyCMSView3 = CMSCoinView()
 //    var cyImage3 = UIImageView()
     var cyLabel = UIImageView()
-    var cyBtn = UIButton()
+    var cyBtn1 = UIButton()
+    var cyBtn2 = UIButton()
+    var cyBtn3 = UIButton()
     
     var sjView = UIView()
     var sjCMSView1 = CMSCoinView()
@@ -47,7 +49,9 @@ class HomeViewController: UIViewController
     var sjCMSView3 = CMSCoinView()
 //    var sjImage3 = UIImageView()
     var sjLabel = UIImageView()
-    var sjBtn = UIButton()
+    var sjBtn1 = UIButton()
+    var sjBtn2 = UIButton()
+    var sjBtn3 = UIButton()
     
     var shView = UIView()
     var shCMSView1 = CMSCoinView()
@@ -57,7 +61,9 @@ class HomeViewController: UIViewController
     var shCMSView3 = CMSCoinView()
 //    var shImage3 = UIImageView()
     var shLabel = UIImageView()
-    var shBtn = UIButton()
+    var shBtn1 = UIButton()
+    var shBtn2 = UIButton()
+    var shBtn3 = UIButton()
     
     var lpView = UIView()
     var lpCMSView1 = CMSCoinView()
@@ -150,7 +156,9 @@ class HomeViewController: UIViewController
         self.cyView.addSubview(self.cyCMSView3)
 //        self.cyView.addSubview(self.cyImage3)
         self.cyView.addSubview(self.cyLabel)
-        self.cyView.addSubview(self.cyBtn)
+        self.cyView.addSubview(self.cyBtn1)
+        self.cyView.addSubview(self.cyBtn2)
+        self.cyView.addSubview(self.cyBtn3)
         
         self.contentView.addSubview(self.sjView)
         self.sjView.addSubview(self.sjCMSView1)
@@ -160,7 +168,9 @@ class HomeViewController: UIViewController
         self.sjView.addSubview(self.sjCMSView3)
 //        self.sjView.addSubview(self.sjImage3)
         self.sjView.addSubview(self.sjLabel)
-        self.sjView.addSubview(self.sjBtn)
+        self.sjView.addSubview(self.sjBtn1)
+        self.sjView.addSubview(self.sjBtn2)
+        self.sjView.addSubview(self.sjBtn3)
         
         self.contentView.addSubview(self.shView)
         self.shView.addSubview(self.shCMSView1)
@@ -170,7 +180,9 @@ class HomeViewController: UIViewController
         self.shView.addSubview(self.shCMSView3)
 //        self.shView.addSubview(self.shImage3)
         self.shView.addSubview(self.shLabel)
-        self.shView.addSubview(self.shBtn)
+        self.shView.addSubview(self.shBtn1)
+        self.shView.addSubview(self.shBtn2)
+        self.shView.addSubview(self.shBtn3)
         
         self.contentView.addSubview(self.lpView)
         self.lpView.addSubview(self.lpCMSView1)
@@ -290,8 +302,16 @@ class HomeViewController: UIViewController
             make.size.equalTo(CGSizeMake(35, 22))
         }
         
-        self.cyBtn.snp_makeConstraints { (make) -> Void in
-            make.top.left.bottom.right.equalTo(self.cyView)
+        self.cyBtn1.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.cyCMSView1)
+        }
+        
+        self.cyBtn2.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.cyCMSView2)
+        }
+        
+        self.cyBtn3.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.cyCMSView3)
         }
         
         self.sjView.snp_makeConstraints { (make) -> Void in
@@ -341,8 +361,16 @@ class HomeViewController: UIViewController
             make.size.equalTo(CGSizeMake(35, 22))
         }
         
-        self.sjBtn.snp_makeConstraints { (make) -> Void in
-            make.top.left.bottom.right.equalTo(self.sjView)
+        self.sjBtn1.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.sjCMSView1)
+        }
+        
+        self.sjBtn2.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.sjCMSView2)
+        }
+        
+        self.sjBtn3.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.sjCMSView3)
         }
         
         self.shView.snp_makeConstraints { (make) -> Void in
@@ -392,8 +420,16 @@ class HomeViewController: UIViewController
             make.size.equalTo(CGSizeMake(35, 22))
         }
         
-        self.shBtn.snp_makeConstraints { (make) -> Void in
-            make.top.left.bottom.right.equalTo(self.shView)
+        self.shBtn1.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.shCMSView1)
+        }
+        
+        self.shBtn2.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.shCMSView2)
+        }
+        
+        self.shBtn3.snp_makeConstraints { (make) -> Void in
+            make.top.left.bottom.right.equalTo(self.shCMSView3)
         }
         
         self.lpView.snp_makeConstraints { (make) -> Void in
@@ -492,9 +528,15 @@ class HomeViewController: UIViewController
     func setPageEvents() {
         self.loginBtn.addTarget(self, action: Selector("userLogin"), forControlEvents: UIControlEvents.TouchUpInside)
         self.tataBtn.addTarget(self, action: Selector("goTata"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.cyBtn.addTarget(self, action: Selector("goCy"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.sjBtn.addTarget(self, action: Selector("goSj"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.shBtn.addTarget(self, action: Selector("goSh"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.cyBtn1.addTarget(self, action: Selector("goCy:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.cyBtn2.addTarget(self, action: Selector("goCy:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.cyBtn3.addTarget(self, action: Selector("goCy:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.sjBtn1.addTarget(self, action: Selector("goSj:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.sjBtn2.addTarget(self, action: Selector("goSj:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.sjBtn3.addTarget(self, action: Selector("goSj:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.shBtn1.addTarget(self, action: Selector("goSh:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.shBtn2.addTarget(self, action: Selector("goSh:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.shBtn3.addTarget(self, action: Selector("goSh:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.lpBtn1.addTarget(self, action: Selector("goLp:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.lpBtn2.addTarget(self, action: Selector("goLp:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.lpBtn3.addTarget(self, action: Selector("goLp:"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -533,21 +575,24 @@ class HomeViewController: UIViewController
         self.view.window!.rootViewController!.presentViewController(tata, animated: true, completion: nil)
     }
     
-    func goCy() {
+    func goCy(sender: UIButton) {
         let cy = ArticleViewController()
         cy.segueId = "cySegue"
+        cy.segmentId = (sender.tag - 1) % 6
         self.view.window!.rootViewController!.presentViewController(cy, animated: true, completion: nil)
     }
     
-    func goSj() {
+    func goSj(sender: UIButton) {
         let sj = ArticleViewController()
         sj.segueId = "sjSegue"
+        sj.segmentId = (sender.tag - 1) % 6
         self.view.window!.rootViewController!.presentViewController(sj, animated: true, completion: nil)
     }
     
-    func goSh() {
+    func goSh(sender: UIButton) {
         let sh = ArticleViewController()
         sh.segueId = "shSegue"
+        sh.segmentId = (sender.tag - 1) % 6
         self.view.window!.rootViewController!.presentViewController(sh, animated: true, completion: nil)
     }
     
@@ -581,10 +626,17 @@ class HomeViewController: UIViewController
         var shTitleArray = [String]()
         var lpTitleArray = [String]()
         
+        var cyIdArray = [Int]()
+        var sjIdArray = [Int]()
+        var shIdArray = [Int]()
+        
         for (_, subJson): (String, JSON) in jsonString {
             let categoryId = subJson["category_ID"].stringValue
+            
             let imageUrl = subJson["thumb_path"].stringValue
             let title = subJson["title"].stringValue
+            let channelId = subJson["channel_ID"].intValue
+            
             switch categoryId {
             case "1":
                 self.tataImage.kf_setImageWithURL(NSURL(string: imageUrl)!, placeholderImage: nil)
@@ -592,14 +644,17 @@ class HomeViewController: UIViewController
             case "2":
                 cyArray.append(imageUrl)
                 cyTitleArray.append(title)
+                cyIdArray.append(channelId)
                 
             case "3":
                 shArray.append(imageUrl)
                 shTitleArray.append(title)
+                shIdArray.append(channelId)
                 
             case "4":
                 sjArray.append(imageUrl)
                 sjTitleArray.append(title)
+                sjIdArray.append(channelId)
                 
             case "5":
                 lpArray.append(imageUrl)
@@ -629,6 +684,8 @@ class HomeViewController: UIViewController
                 self.cyCMSView1.secondaryView = cyTitleView1
                 self.cyCMSView1.spinTime = 1.0
                 
+                cyBtn1.tag = cyIdArray[i]
+                
 //                self.sjImage1.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
                 let sjImage1 = UIImageView()
                 sjImage1.contentMode = UIViewContentMode.ScaleAspectFill
@@ -645,6 +702,8 @@ class HomeViewController: UIViewController
                 self.sjCMSView1.secondaryView = sjTitleView1
                 self.sjCMSView1.spinTime = 1.0
                 
+                sjBtn1.tag = sjIdArray[i]
+                
 //                self.shImage1.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
                 let shImage1 = UIImageView()
                 shImage1.contentMode = UIViewContentMode.ScaleAspectFill
@@ -660,6 +719,8 @@ class HomeViewController: UIViewController
                 shTitleView1.backgroundColor = COLOR_TATA
                 self.shCMSView1.secondaryView = shTitleView1
                 self.shCMSView1.spinTime = 1.0
+                
+                shBtn1.tag = shIdArray[i]
                 
 //                self.lpImage1.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
                 let lpImage1 = UIImageView()
@@ -692,6 +753,8 @@ class HomeViewController: UIViewController
                 self.cyCMSView2.secondaryView = cyTitleView2
                 self.cyCMSView2.spinTime = 1.0
                 
+                cyBtn2.tag = cyIdArray[i]
+                
 //                self.sjImage2.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
                 let sjImage2 = UIImageView()
                 sjImage2.contentMode = UIViewContentMode.ScaleAspectFill
@@ -708,6 +771,8 @@ class HomeViewController: UIViewController
                 self.sjCMSView2.secondaryView = sjTitleView2
                 self.sjCMSView2.spinTime = 1.0
                 
+                sjBtn2.tag = sjIdArray[i]
+                
 //                self.shImage2.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
                 let shImage2 = UIImageView()
                 shImage2.contentMode = UIViewContentMode.ScaleAspectFill
@@ -723,6 +788,8 @@ class HomeViewController: UIViewController
                 shTitleView2.backgroundColor = COLOR_TATA
                 self.shCMSView2.secondaryView = shTitleView2
                 self.shCMSView2.spinTime = 1.0
+                
+                shBtn2.tag = shIdArray[i]
                 
 //                self.lpImage2.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
                 let lpImage2 = UIImageView()
@@ -755,6 +822,8 @@ class HomeViewController: UIViewController
                 self.cyCMSView3.secondaryView = cyTitleView3
                 self.cyCMSView3.spinTime = 1.0
                 
+                cyBtn3.tag = cyIdArray[i]
+                
 //                self.sjImage3.kf_setImageWithURL(NSURL(string: sjArray[i])!, placeholderImage: nil)
                 let sjImage3 = UIImageView()
                 sjImage3.contentMode = UIViewContentMode.ScaleAspectFill
@@ -771,6 +840,8 @@ class HomeViewController: UIViewController
                 self.sjCMSView3.secondaryView = sjTitleView3
                 self.sjCMSView3.spinTime = 1.0
                 
+                sjBtn3.tag = sjIdArray[i]
+                
 //                self.shImage3.kf_setImageWithURL(NSURL(string: shArray[i])!, placeholderImage: nil)
                 let shImage3 = UIImageView()
                 shImage3.contentMode = UIViewContentMode.ScaleAspectFill
@@ -786,6 +857,8 @@ class HomeViewController: UIViewController
                 shTitleView3.backgroundColor = COLOR_TATA
                 self.shCMSView3.secondaryView = shTitleView3
                 self.shCMSView3.spinTime = 1.0
+                
+                shBtn3.tag = shIdArray[i]
                 
 //                self.lpImage3.kf_setImageWithURL(NSURL(string: lpArray[i])!, placeholderImage: nil)
                 let lpImage3 = UIImageView()

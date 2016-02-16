@@ -42,7 +42,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
         "sjSegue": ["13", "14", "15", "16", "17", "18"],
         "shSegue": ["7", "8", "9", "10", "11", "12"]]
     
-    private var segmentId = 0
+    var segmentId: Int!
     
     private var articleArray: [JSON] = []
 
@@ -196,23 +196,21 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
         // set title field
         switch self.segueId {
         case "cySegue":
-            self.titleLabel.text = "创意"
             self.titleViewBg.image = UIImage(named: "cyTitle")!
             self.menuColor = COLOR_CY
             
         case "sjSegue":
-            self.titleLabel.text = "设计"
             self.titleViewBg.image = UIImage(named: "sjTitle")!
             self.menuColor = COLOR_SJ
             
         case "shSegue":
-            self.titleLabel.text = "生活"
             self.titleViewBg.image = UIImage(named: "shTitle")!
             self.menuColor = COLOR_SH
             
         default:
             break
         }
+        self.titleLabel.text = self.segmentTitle[self.segueId]![segmentId]
         self.titleLabel.font = FONT_TITLE
         self.titleLabel.textColor = UIColor.whiteColor()
         self.titleLabel.textAlignment = NSTextAlignment.Center
@@ -224,7 +222,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
         
         // Tying up the segmented control to a scroll view
         self.segmentedControl.sectionTitles = self.segmentTitle[self.segueId]
-        self.segmentedControl.selectedSegmentIndex = 0
+        self.segmentedControl.selectedSegmentIndex = segmentId
         self.segmentedControl.backgroundColor = UIColor.whiteColor()
         self.segmentedControl.titleTextAttributes = [NSForegroundColorAttributeName: COLOR_ARTICLE_MENU_TEXT_UNSELECTED_COLOR, NSFontAttributeName: FONT_ARTICLE_MENU_TEXT]
         self.segmentedControl.selectedTitleTextAttributes = [NSForegroundColorAttributeName: self.menuColor, NSFontAttributeName: FONT_ARTICLE_MENU_TEXT]
@@ -255,6 +253,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
         self.scrollView.pagingEnabled = true
         self.scrollView.showsHorizontalScrollIndicator = false
         self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 6, height)
+        self.scrollView.setContentOffset(CGPoint(x: SCREEN_WIDTH * CGFloat(segmentId), y: 0), animated: false)
         
         self.table1.backgroundColor = UIColor.clearColor()
         self.table1.separatorStyle = UITableViewCellSeparatorStyle.None
@@ -309,10 +308,10 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     // MARK: - load data from server
     func loadDataFromServer() {
 //        self.reSetTableDatasourceAndDelegate(0)
-        let channelIdSelected = self.channelId[self.segueId]![0]
+        let channelIdSelected = self.channelId[self.segueId]![segmentId]
         Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
             .responseJSON { _, _, aJson in
-                self.getArticle(aJson.value, index: 0)
+                self.getArticle(aJson.value, index: self.segmentId)
         }
     }
     
