@@ -11,6 +11,8 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 
+private let TITLE_FONT_SIZE = CGFloat(12.0)
+
 class HomeViewController: UIViewController
 {
     var titleView = UIView()
@@ -621,7 +623,7 @@ class HomeViewController: UIViewController
                 cyTitleView1.text = cyTitleArray[i]
                 cyTitleView1.textAlignment = NSTextAlignment.Center
                 cyTitleView1.numberOfLines = 3
-                cyTitleView1.font = UIFont.systemFontOfSize(10)
+                cyTitleView1.font = UIFont.systemFontOfSize(TITLE_FONT_SIZE)
                 cyTitleView1.textColor = UIColor.whiteColor()
                 cyTitleView1.backgroundColor = COLOR_TATA
                 self.cyCMSView1.secondaryView = cyTitleView1
@@ -637,7 +639,7 @@ class HomeViewController: UIViewController
                 sjTitleView1.text = sjTitleArray[i]
                 sjTitleView1.textAlignment = NSTextAlignment.Center
                 sjTitleView1.numberOfLines = 3
-                sjTitleView1.font = UIFont.systemFontOfSize(10)
+                sjTitleView1.font = UIFont.systemFontOfSize(TITLE_FONT_SIZE)
                 sjTitleView1.textColor = UIColor.whiteColor()
                 sjTitleView1.backgroundColor = COLOR_TATA
                 self.sjCMSView1.secondaryView = sjTitleView1
@@ -653,7 +655,7 @@ class HomeViewController: UIViewController
                 shTitleView1.text = shTitleArray[i]
                 shTitleView1.textAlignment = NSTextAlignment.Center
                 shTitleView1.numberOfLines = 3
-                shTitleView1.font = UIFont.systemFontOfSize(10)
+                shTitleView1.font = UIFont.systemFontOfSize(TITLE_FONT_SIZE)
                 shTitleView1.textColor = UIColor.whiteColor()
                 shTitleView1.backgroundColor = COLOR_TATA
                 self.shCMSView1.secondaryView = shTitleView1
@@ -667,7 +669,7 @@ class HomeViewController: UIViewController
                 lpTitleView1.text = lpTitleArray[i]
                 lpTitleView1.textAlignment = NSTextAlignment.Center
                 lpTitleView1.numberOfLines = 3
-                lpTitleView1.font = UIFont.systemFontOfSize(10)
+                lpTitleView1.font = UIFont.systemFontOfSize(TITLE_FONT_SIZE)
                 lpTitleView1.textColor = UIColor.whiteColor()
                 lpTitleView1.backgroundColor = COLOR_TATA
                 self.lpCMSView1.secondaryView = lpTitleView1
@@ -684,7 +686,7 @@ class HomeViewController: UIViewController
                 cyTitleView2.text = cyTitleArray[i]
                 cyTitleView2.textAlignment = NSTextAlignment.Center
                 cyTitleView2.numberOfLines = 3
-                cyTitleView2.font = UIFont.systemFontOfSize(10)
+                cyTitleView2.font = UIFont.systemFontOfSize(TITLE_FONT_SIZE)
                 cyTitleView2.textColor = UIColor.whiteColor()
                 cyTitleView2.backgroundColor = COLOR_TATA
                 self.cyCMSView2.secondaryView = cyTitleView2
@@ -700,7 +702,7 @@ class HomeViewController: UIViewController
                 sjTitleView2.text = sjTitleArray[i]
                 sjTitleView2.textAlignment = NSTextAlignment.Center
                 sjTitleView2.numberOfLines = 3
-                sjTitleView2.font = UIFont.systemFontOfSize(10)
+                sjTitleView2.font = UIFont.systemFontOfSize(TITLE_FONT_SIZE)
                 sjTitleView2.textColor = UIColor.whiteColor()
                 sjTitleView2.backgroundColor = COLOR_TATA
                 self.sjCMSView2.secondaryView = sjTitleView2
@@ -716,7 +718,7 @@ class HomeViewController: UIViewController
                 shTitleView2.text = shTitleArray[i]
                 shTitleView2.textAlignment = NSTextAlignment.Center
                 shTitleView2.numberOfLines = 3
-                shTitleView2.font = UIFont.systemFontOfSize(10)
+                shTitleView2.font = UIFont.systemFontOfSize(TITLE_FONT_SIZE)
                 shTitleView2.textColor = UIColor.whiteColor()
                 shTitleView2.backgroundColor = COLOR_TATA
                 self.shCMSView2.secondaryView = shTitleView2
@@ -730,7 +732,7 @@ class HomeViewController: UIViewController
                 lpTitleView2.text = lpTitleArray[i]
                 lpTitleView2.textAlignment = NSTextAlignment.Center
                 lpTitleView2.numberOfLines = 3
-                lpTitleView2.font = UIFont.systemFontOfSize(10)
+                lpTitleView2.font = UIFont.systemFontOfSize(TITLE_FONT_SIZE)
                 lpTitleView2.textColor = UIColor.whiteColor()
                 lpTitleView2.backgroundColor = COLOR_TATA
                 self.lpCMSView2.secondaryView = lpTitleView2
@@ -747,7 +749,7 @@ class HomeViewController: UIViewController
                 cyTitleView3.text = cyTitleArray[i]
                 cyTitleView3.textAlignment = NSTextAlignment.Center
                 cyTitleView3.numberOfLines = 3
-                cyTitleView3.font = UIFont.systemFontOfSize(10)
+                cyTitleView3.font = UIFont.systemFontOfSize(TITLE_FONT_SIZE)
                 cyTitleView3.textColor = UIColor.whiteColor()
                 cyTitleView3.backgroundColor = COLOR_TATA
                 self.cyCMSView3.secondaryView = cyTitleView3
@@ -763,7 +765,7 @@ class HomeViewController: UIViewController
                 sjTitleView3.text = sjTitleArray[i]
                 sjTitleView3.textAlignment = NSTextAlignment.Center
                 sjTitleView3.numberOfLines = 3
-                sjTitleView3.font = UIFont.systemFontOfSize(10)
+                sjTitleView3.font = UIFont.systemFontOfSize(TITLE_FONT_SIZE)
                 sjTitleView3.textColor = UIColor.whiteColor()
                 sjTitleView3.backgroundColor = COLOR_TATA
                 self.sjCMSView3.secondaryView = sjTitleView3
@@ -779,7 +781,7 @@ class HomeViewController: UIViewController
                 shTitleView3.text = shTitleArray[i]
                 shTitleView3.textAlignment = NSTextAlignment.Center
                 shTitleView3.numberOfLines = 3
-                shTitleView3.font = UIFont.systemFontOfSize(10)
+                shTitleView3.font = UIFont.systemFontOfSize(TITLE_FONT_SIZE)
                 shTitleView3.textColor = UIColor.whiteColor()
                 shTitleView3.backgroundColor = COLOR_TATA
                 self.shCMSView3.secondaryView = shTitleView3
@@ -793,7 +795,7 @@ class HomeViewController: UIViewController
                 lpTitleView3.text = lpTitleArray[i]
                 lpTitleView3.textAlignment = NSTextAlignment.Center
                 lpTitleView3.numberOfLines = 3
-                lpTitleView3.font = UIFont.systemFontOfSize(10)
+                lpTitleView3.font = UIFont.systemFontOfSize(TITLE_FONT_SIZE)
                 lpTitleView3.textColor = UIColor.whiteColor()
                 lpTitleView3.backgroundColor = COLOR_TATA
                 self.lpCMSView3.secondaryView = lpTitleView3
