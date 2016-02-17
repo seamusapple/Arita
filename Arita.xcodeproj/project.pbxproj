@@ -74,7 +74,7 @@
 		81FF18FB1B7F02F900F793CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FF18FA1B7F02F900F793CA /* ViewController.swift */; };
 		81FF18FD1B7F040D00F793CA /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FF18FC1B7F040D00F793CA /* Common.swift */; };
 		81FF19031B7F079700F793CA /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FF19021B7F079700F793CA /* LeftViewController.swift */; };
-		D9A943C29CE49FA235BBE66D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA232FB9534B1F4A8BF46D5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D9A943C29CE49FA235BBE66D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA232FB9534B1F4A8BF46D5 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +129,7 @@
 		81839EBA1C4352210067D47C /* SubGoodsCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubGoodsCollectionCell.swift; sourceTree = "<group>"; };
 		81839EBC1C4356370067D47C /* SubGoodsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubGoodsController.swift; sourceTree = "<group>"; };
 		81910CB11C40ADF2003265CA /* GoodsHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsHomeController.swift; sourceTree = "<group>"; };
+		819BD2781C74011100905556 /* Arita.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Arita.entitlements; sourceTree = "<group>"; };
 		81A5852D1BCBFA1F004FE56E /* LoadMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreCell.swift; sourceTree = "<group>"; };
 		81A6A5281B837461007E8A37 /* VersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersonViewController.swift; sourceTree = "<group>"; };
 		81A6A52A1B837B6C007E8A37 /* ContentWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentWebViewController.swift; sourceTree = "<group>"; };
@@ -335,6 +336,7 @@
 		817DDB6E1B5D2D6F0033C9F9 /* Arita */ = {
 			isa = PBXGroup;
 			children = (
+				819BD2781C74011100905556 /* Arita.entitlements */,
 				81C343D11C282D3200E2CB83 /* Sections */,
 				813231481C28545300AC7628 /* General */,
 				814BF2E91C284CEE0074A0E1 /* Helpers */,
@@ -609,6 +611,11 @@
 					817DDB6B1B5D2D6F0033C9F9 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = MUGPCKW3CX;
+						SystemCapabilities = {
+							com.apple.OMC = {
+								enabled = 0;
+							};
+						};
 					};
 					817DDB801B5D2D6F0033C9F9 = {
 						CreatedOnToolsVersion = 6.4;
@@ -884,6 +891,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xiao Nan Wang (MUGPCKW3CX)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xiao Nan Wang (MUGPCKW3CX)";
 				ENABLE_BITCODE = NO;
@@ -902,7 +910,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.DcBunny;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9930ca76-7dc9-4473-b729-f250d11aeed5";
+				PROVISIONING_PROFILE = "8d266bf2-c0b2-4a4b-84ff-23a60ffeb736";
 				SWIFT_OBJC_BRIDGING_HEADER = "./Arita/Vendors/ShareSDK-Bridging-Header.h";
 			};
 			name = Debug;
@@ -913,6 +921,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xiao Nan Wang (MUGPCKW3CX)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xiao Nan Wang (MUGPCKW3CX)";
 				ENABLE_BITCODE = NO;
@@ -931,7 +940,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.DcBunny;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9930ca76-7dc9-4473-b729-f250d11aeed5";
+				PROVISIONING_PROFILE = "8d266bf2-c0b2-4a4b-84ff-23a60ffeb736";
 				SWIFT_OBJC_BRIDGING_HEADER = "./Arita/Vendors/ShareSDK-Bridging-Header.h";
 			};
 			name = Release;
