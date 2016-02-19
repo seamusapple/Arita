@@ -139,7 +139,7 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: - load data from server
     func loadDataFromServer() {
-        Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=19&id=0&articlesNum=10")
+        Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=19&timestamp=0&articlesNum=\(LOAD_ARTICLE_NUM)")
             .responseJSON { aRequest, aResponse, aJson in
                 self.getNews(aJson.value)
         }
@@ -216,11 +216,10 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.row == self.newsArray.count)
-        {
-            let id = self.newsArray[self.newsArray.count - 1]["ID"]
-            
-            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=19&id=\(id)&articlesNum=10")
+        if (indexPath.row == self.newsArray.count) {
+            let timestamp = self.newsArray[self.newsArray.count - 1]["publish_time"].stringValue
+            let encodeString = timestamp.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=19&timestamp=\(encodeString)&articlesNum=\(LOAD_ARTICLE_NUM)")
                 .responseJSON { aRequest, aResponse, aJson in
                     self.getMoreNews(aJson.value)
             }
@@ -261,7 +260,7 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func refreshTableView() {
         if (self.rc.refreshing) {
-            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=19&id=0&articlesNum=10")
+            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=19&timestamp=0&articlesNum=\(LOAD_ARTICLE_NUM)")
                 .responseJSON { aRequest, aResponse, aJson in
                     self.getNews(aJson.value)
             }
@@ -283,20 +282,23 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func getNews(data: AnyObject?) {
         let jsonString = JSON(data!)
         self.articleNum = jsonString["articlesNum"].intValue
-        var tmpDic = [Int: JSON]()
-        for (_, subJson): (String, JSON) in jsonString["articleArrNew"] {
-            let id = subJson["ID"].intValue
-            tmpDic[id] = subJson
-        }
-        var tmpKeys = [Int]()
-        for key in tmpDic.keys {
-            tmpKeys.append(key)
-        }
-        tmpKeys.sortInPlace({$0 > $1})
+        
+//        var tmpDic = [Int: JSON]()
+//        for (_, subJson): (String, JSON) in jsonString["articleArrNew"] {
+//            let id = subJson["ID"].intValue
+//            tmpDic[id] = subJson
+//        }
+//        var tmpKeys = [Int]()
+//        for key in tmpDic.keys {
+//            tmpKeys.append(key)
+//        }
+//        tmpKeys.sortInPlace({$0 > $1})
         self.newsArray.removeAll()
-        for id in tmpKeys {
-            self.newsArray.append(tmpDic[id]!)
-        }
+//        for id in tmpKeys {
+//            self.newsArray.append(tmpDic[id]!)
+//        }
+        
+        self.newsArray = jsonString["articleArrNew"].arrayValue
         
         self.tataTable.reloadData()
     }
@@ -304,20 +306,23 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func getMoreNews(data: AnyObject?) {
         let jsonString = JSON(data!)
         self.articleNum = jsonString["articlesNum"].intValue
-        var tmpDic = [Int: JSON]()
-        for (_, subJson): (String, JSON) in jsonString["articleArrNew"] {
-            let id = subJson["ID"].intValue
-            tmpDic[id] = subJson
-        }
-        var tmpKeys = [Int]()
-        for key in tmpDic.keys {
-            tmpKeys.append(key)
-        }
-        tmpKeys.sortInPlace({$0 > $1})
         
-        for id in tmpKeys {
-            self.newsArray.append(tmpDic[id]!)
-        }
+//        var tmpDic = [Int: JSON]()
+//        for (_, subJson): (String, JSON) in jsonString["articleArrNew"] {
+//            let id = subJson["ID"].intValue
+//            tmpDic[id] = subJson
+//        }
+//        var tmpKeys = [Int]()
+//        for key in tmpDic.keys {
+//            tmpKeys.append(key)
+//        }
+//        tmpKeys.sortInPlace({$0 > $1})
+//        
+//        for id in tmpKeys {
+//            self.newsArray.append(tmpDic[id]!)
+//        }
+        
+        newsArray += jsonString["articleArrNew"].arrayValue
         
         self.tataTable.reloadData()
     }

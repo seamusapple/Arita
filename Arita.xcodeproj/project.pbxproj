@@ -129,7 +129,6 @@
 		81839EBA1C4352210067D47C /* SubGoodsCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubGoodsCollectionCell.swift; sourceTree = "<group>"; };
 		81839EBC1C4356370067D47C /* SubGoodsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubGoodsController.swift; sourceTree = "<group>"; };
 		81910CB11C40ADF2003265CA /* GoodsHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsHomeController.swift; sourceTree = "<group>"; };
-		819BD2781C74011100905556 /* Arita.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Arita.entitlements; sourceTree = "<group>"; };
 		81A5852D1BCBFA1F004FE56E /* LoadMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreCell.swift; sourceTree = "<group>"; };
 		81A6A5281B837461007E8A37 /* VersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersonViewController.swift; sourceTree = "<group>"; };
 		81A6A52A1B837B6C007E8A37 /* ContentWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentWebViewController.swift; sourceTree = "<group>"; };
@@ -336,7 +335,6 @@
 		817DDB6E1B5D2D6F0033C9F9 /* Arita */ = {
 			isa = PBXGroup;
 			children = (
-				819BD2781C74011100905556 /* Arita.entitlements */,
 				81C343D11C282D3200E2CB83 /* Sections */,
 				813231481C28545300AC7628 /* General */,
 				814BF2E91C284CEE0074A0E1 /* Helpers */,

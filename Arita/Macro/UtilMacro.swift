@@ -81,3 +81,6 @@ let CELL_HEIGHT = 120 + (SCREEN_WIDTH - 20) * 2 / 3
 
 /* 良品推荐列表单元格高度 */
 let GOOD_CELL_HEIGHT = 85 + (SCREEN_WIDTH - 20)
+
+/* 文章列表中每次加载的文章数量 */
+let LOAD_ARTICLE_NUM = 10

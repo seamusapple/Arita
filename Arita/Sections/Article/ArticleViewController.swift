@@ -244,7 +244,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
             
             let channelIdSelected = self.channelId[self.segueId]![index]
 //            self.articleArray.removeAll()
-            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
+            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&timestamp=0&articlesNum=\(LOAD_ARTICLE_NUM)")
                 .responseJSON { _, _, aJson in
                     self.getArticle(aJson.value, index: index)
             }
@@ -309,7 +309,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     func loadDataFromServer() {
 //        self.reSetTableDatasourceAndDelegate(0)
         let channelIdSelected = self.channelId[self.segueId]![segmentId]
-        Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
+        Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&timestamp=0&articlesNum=\(LOAD_ARTICLE_NUM)")
             .responseJSON { _, _, aJson in
                 self.getArticle(aJson.value, index: self.segmentId)
         }
@@ -327,7 +327,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
 //            self.reSetTableDatasourceAndDelegate(Int(page))
             let channelIdSelected = self.channelId[self.segueId]![Int(page)]
 //            self.articleArray.removeAll()
-            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
+            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&timestamp=0&articlesNum=\(LOAD_ARTICLE_NUM)")
                 .responseJSON { _, _, aJson in
                     self.getArticle(aJson.value, index: Int(page))
             }
@@ -399,8 +399,9 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if (indexPath.row == self.articleArray.count) {
             let channelIdSelected = self.channelId[self.segueId]![self.segmentId]
-            let id = self.articleArray[self.articleArray.count - 1]["ID"]
-            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=\(id)&articlesNum=10")
+            let timestamp = self.articleArray[self.articleArray.count - 1]["publish_time"].stringValue
+            let encodeString = timestamp.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&timestamp=\(encodeString)&articlesNum=\(LOAD_ARTICLE_NUM)")
                 .responseJSON { aRequest, aResponse, aJson in
                     self.getMoreArticles(aJson.value, index: self.segmentId)
             }
@@ -453,7 +454,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
         if (self.rc.refreshing) {
             let channelIdSelected = self.channelId[self.segueId]![self.segmentId]
 //            self.articleArray.removeAll()
-            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&id=0&articlesNum=10")
+            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=\(channelIdSelected)&timestamp=0&articlesNum=\(LOAD_ARTICLE_NUM)")
                 .responseJSON { _, _, aJson in
                     self.getArticle(aJson.value, index: self.segmentId)
             }
@@ -489,20 +490,24 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     func getArticle(data: AnyObject?, index: Int) {
         let jsonString = JSON(data!)
         self.articleNum = jsonString["articlesNum"].intValue
-        var tmpDic = [Int: JSON]()
-        for (_, subJson): (String, JSON) in jsonString["articleArrNew"] {
-            let id = subJson["ID"].intValue
-            tmpDic[id] = subJson
-        }
-        var tmpKeys = [Int]()
-        for key in tmpDic.keys {
-            tmpKeys.append(key)
-        }
-        tmpKeys.sortInPlace({$0 > $1})
+        
+//        var tmpDic = [Int: JSON]()
+//        for (_, subJson): (String, JSON) in jsonString["articleArrNew"] {
+//            let id = subJson["ID"].intValue
+//            tmpDic[id] = subJson
+//        }
+//        var tmpKeys = [Int]()
+//        for key in tmpDic.keys {
+//            tmpKeys.append(key)
+//        }
+//        tmpKeys.sortInPlace({$0 > $1})
         self.articleArray.removeAll()
-        for id in tmpKeys {
-            self.articleArray.append(tmpDic[id]!)
-        }
+//        for id in tmpKeys {
+//            self.articleArray.append(tmpDic[id]!)
+//        }
+        
+        self.articleArray = jsonString["articleArrNew"].arrayValue
+        
         self.reSetTableDatasourceAndDelegate(index)
         self.tableArray[index].reloadData()
     }
@@ -510,20 +515,25 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     func getMoreArticles(data: AnyObject?, index: Int) {
         let jsonString = JSON(data!)
         self.articleNum = jsonString["articlesNum"].intValue
-        var tmpDic = [Int: JSON]()
-        for (_, subJson): (String, JSON) in jsonString["articleArrNew"] {
-            let id = subJson["ID"].intValue
-            tmpDic[id] = subJson
-        }
-        var tmpKeys = [Int]()
-        for key in tmpDic.keys {
-            tmpKeys.append(key)
-        }
-        tmpKeys.sortInPlace({$0 > $1})
         
-        for id in tmpKeys {
-            self.articleArray.append(tmpDic[id]!)
-        }
+//        var tmpDic = [Int: JSON]()
+//        for (_, subJson): (String, JSON) in jsonString["articleArrNew"] {
+//            let id = subJson["ID"].intValue
+//            tmpDic[id] = subJson
+//        }
+//        var tmpKeys = [Int]()
+//        for key in tmpDic.keys {
+//            tmpKeys.append(key)
+//        }
+//        tmpKeys.sortInPlace({$0 > $1})
+//        
+//        for id in tmpKeys {
+//            self.articleArray.append(tmpDic[id]!)
+//        }
+        
+        self.articleArray += jsonString["articleArrNew"].arrayValue
+        
+//        print(articleArray)
         
         self.tableArray[index].reloadData()
     }
