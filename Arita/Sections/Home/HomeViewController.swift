@@ -97,7 +97,7 @@ class HomeViewController: UIViewController
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "flipTimer", userInfo: nil, repeats: true)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: #selector(HomeViewController.flipTimer), userInfo: nil, repeats: true)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -117,8 +117,8 @@ class HomeViewController: UIViewController
     
     // MARK: - init methods
     func initComponents() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideLoginBtn", name: "UserLogin", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginBtn", name: "UserLogout", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.hideLoginBtn), name: "UserLogin", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showLoginBtn), name: "UserLogout", object: nil)
         
         let cyFlipArray = [cyCMSView1, cyCMSView2, cyCMSView3]
         flipDic[0] = cyFlipArray
@@ -526,20 +526,20 @@ class HomeViewController: UIViewController
     
     // MARK: - set events
     func setPageEvents() {
-        self.loginBtn.addTarget(self, action: Selector("userLogin"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.tataBtn.addTarget(self, action: Selector("goTata"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.cyBtn1.addTarget(self, action: Selector("goCy:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.cyBtn2.addTarget(self, action: Selector("goCy:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.cyBtn3.addTarget(self, action: Selector("goCy:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.sjBtn1.addTarget(self, action: Selector("goSj:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.sjBtn2.addTarget(self, action: Selector("goSj:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.sjBtn3.addTarget(self, action: Selector("goSj:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.shBtn1.addTarget(self, action: Selector("goSh:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.shBtn2.addTarget(self, action: Selector("goSh:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.shBtn3.addTarget(self, action: Selector("goSh:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.lpBtn1.addTarget(self, action: Selector("goLp:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.lpBtn2.addTarget(self, action: Selector("goLp:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.lpBtn3.addTarget(self, action: Selector("goLp:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.loginBtn.addTarget(self, action: #selector(HomeViewController.userLogin), forControlEvents: UIControlEvents.TouchUpInside)
+        self.tataBtn.addTarget(self, action: #selector(HomeViewController.goTata), forControlEvents: UIControlEvents.TouchUpInside)
+        self.cyBtn1.addTarget(self, action: #selector(HomeViewController.goCy(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.cyBtn2.addTarget(self, action: #selector(HomeViewController.goCy(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.cyBtn3.addTarget(self, action: #selector(HomeViewController.goCy(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.sjBtn1.addTarget(self, action: #selector(HomeViewController.goSj(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.sjBtn2.addTarget(self, action: #selector(HomeViewController.goSj(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.sjBtn3.addTarget(self, action: #selector(HomeViewController.goSj(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.shBtn1.addTarget(self, action: #selector(HomeViewController.goSh(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.shBtn2.addTarget(self, action: #selector(HomeViewController.goSh(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.shBtn3.addTarget(self, action: #selector(HomeViewController.goSh(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.lpBtn1.addTarget(self, action: #selector(HomeViewController.goLp(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.lpBtn2.addTarget(self, action: #selector(HomeViewController.goLp(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.lpBtn3.addTarget(self, action: #selector(HomeViewController.goLp(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     // MARK: - load data from server

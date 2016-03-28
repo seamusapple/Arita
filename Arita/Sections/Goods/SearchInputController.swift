@@ -138,7 +138,7 @@ class SearchInputController: UIViewController, UITextFieldDelegate
     
     //MARK: page subviews setting
     func setPageSubviewsEvent() {
-        self.tapGesture.addTarget(self, action: Selector("goBackToAlarmList"))
+        self.tapGesture.addTarget(self, action: #selector(SearchInputController.goBackToAlarmList))
     }
     
     //MARK: - event response

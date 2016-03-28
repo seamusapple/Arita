@@ -65,8 +65,8 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     }
     
     override func viewWillAppear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideLoginBtn", name: "UserLogin", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginBtn", name: "UserLogout", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ArticleViewController.hideLoginBtn), name: "UserLogin", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ArticleViewController.showLoginBtn), name: "UserLogout", object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -285,7 +285,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
         self.table6.showsVerticalScrollIndicator = false
         self.table6.tag = 6
         
-        self.rc.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
+        self.rc.addTarget(self, action: #selector(ArticleViewController.refreshTableView), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     // MARK: - set datasource, delegate and events
@@ -294,8 +294,8 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     }
     
     func setPageEvents() {
-        self.backBtn.addTarget(self, action: Selector("backToUpLevel"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.loginBtn.addTarget(self, action: Selector("userLogin"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.backBtn.addTarget(self, action: #selector(ArticleViewController.backToUpLevel), forControlEvents: UIControlEvents.TouchUpInside)
+        self.loginBtn.addTarget(self, action: #selector(ArticleViewController.userLogin), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.table1.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell1")
         self.table2.registerClass(ArticleCell.self, forCellReuseIdentifier: "ArticleCell2")
@@ -475,7 +475,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     
     func reSetTableDatasourceAndDelegate(index: Int) {
         self.rc.removeFromSuperview()
-        for var i = 0; i < self.tableArray.count; ++i {
+        for i in 0 ..< self.tableArray.count {
             if i == index {
                 self.tableArray[i].dataSource = self
                 self.tableArray[i].delegate = self

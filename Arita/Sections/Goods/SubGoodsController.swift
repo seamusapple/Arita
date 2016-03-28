@@ -39,7 +39,7 @@ class SubGoodsController: UIViewController, UICollectionViewDataSource, UICollec
         self.subGoodsCollection.delegate = self
         
         self.subGoodsCollection.addSubview(self.rc)
-        self.rc.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
+        self.rc.addTarget(self, action: #selector(SubGoodsController.refreshTableView), forControlEvents: UIControlEvents.ValueChanged)
         
         Alamofire.request(.GET, "http://112.74.192.226/ios/get_goods_num?channel_ID=\(self.channelId)&id=0&goodsNum=100")
             .responseJSON { _, _, aJson in

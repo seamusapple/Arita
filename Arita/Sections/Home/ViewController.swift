@@ -60,7 +60,7 @@ class ViewController: UIViewController
         mainView.addSubview(self.homeViewController.view)
         self.view.addSubview(mainView)
         
-        self.homeViewController.menuBtn.addTarget(self, action: "showLeft", forControlEvents: UIControlEvents.TouchUpInside)
+        self.homeViewController.menuBtn.addTarget(self, action: #selector(ViewController.showLeft), forControlEvents: UIControlEvents.TouchUpInside)
         
         // 绑定 UIPanGestureRecognizer
 //        let panGesture = self.homeViewController.panGesture
@@ -68,7 +68,7 @@ class ViewController: UIViewController
 //        mainView.addGestureRecognizer(panGesture)
         
         // 生成单击收起菜单手势
-        self.tapGesture = UITapGestureRecognizer(target: self, action: "showHome")
+        self.tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.showHome))
         
         let launched = NSUserDefaults.standardUserDefaults().boolForKey("Launched") as Bool!
         if (launched == false) {

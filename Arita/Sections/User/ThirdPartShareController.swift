@@ -223,13 +223,13 @@ class ThirdPartShareController: UIViewController
     
     //MARK: page subviews setting
     func setPageSubviewsEvent() {
-        self.tapGesture.addTarget(self, action: Selector("goBackToAlarmList"))
-        self.wxFriendBtn.addTarget(self, action: Selector("share:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.wxQuanBtn.addTarget(self, action: Selector("share:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.wbBtn.addTarget(self, action: Selector("share:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.qqFriendBtn.addTarget(self, action: Selector("share:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.qqZoneBtn.addTarget(self, action: Selector("share:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.copyBtn.addTarget(self, action: Selector("share:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.tapGesture.addTarget(self, action: #selector(ThirdPartShareController.goBackToAlarmList))
+        self.wxFriendBtn.addTarget(self, action: #selector(ThirdPartShareController.share(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.wxQuanBtn.addTarget(self, action: #selector(ThirdPartShareController.share(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.wbBtn.addTarget(self, action: #selector(ThirdPartShareController.share(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.qqFriendBtn.addTarget(self, action: #selector(ThirdPartShareController.share(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.qqZoneBtn.addTarget(self, action: #selector(ThirdPartShareController.share(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.copyBtn.addTarget(self, action: #selector(ThirdPartShareController.share(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     //MARK: - event response

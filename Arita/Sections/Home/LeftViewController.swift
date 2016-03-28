@@ -58,32 +58,32 @@ class LeftViewController: UIViewController, UIAlertViewDelegate
         
         reloadView()
         
-        self.infoBtn.addTarget(self, action: "onTouch:", forControlEvents: UIControlEvents.TouchDown)
-        self.infoBtn.addTarget(self, action: "offTouch:", forControlEvents: UIControlEvents.TouchUpOutside)
-        self.infoBtn.addTarget(self, action: "offTouch:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.infoBtn.addTarget(self, action: #selector(LeftViewController.onTouch(_:)), forControlEvents: UIControlEvents.TouchDown)
+        self.infoBtn.addTarget(self, action: #selector(LeftViewController.offTouch(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
+        self.infoBtn.addTarget(self, action: #selector(LeftViewController.offTouch(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.likeBtn.addTarget(self, action: "onTouch:", forControlEvents: UIControlEvents.TouchDown)
-        self.likeBtn.addTarget(self, action: "offTouch:", forControlEvents: UIControlEvents.TouchUpOutside)
-        self.likeBtn.addTarget(self, action: "offTouch:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.likeBtn.addTarget(self, action: #selector(LeftViewController.onTouch(_:)), forControlEvents: UIControlEvents.TouchDown)
+        self.likeBtn.addTarget(self, action: #selector(LeftViewController.offTouch(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
+        self.likeBtn.addTarget(self, action: #selector(LeftViewController.offTouch(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.aboutBtn.addTarget(self, action: "onTouch:", forControlEvents: UIControlEvents.TouchDown)
-        self.aboutBtn.addTarget(self, action: "offTouch:", forControlEvents: UIControlEvents.TouchUpOutside)
-        self.aboutBtn.addTarget(self, action: "offTouch:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.aboutBtn.addTarget(self, action: #selector(LeftViewController.onTouch(_:)), forControlEvents: UIControlEvents.TouchDown)
+        self.aboutBtn.addTarget(self, action: #selector(LeftViewController.offTouch(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
+        self.aboutBtn.addTarget(self, action: #selector(LeftViewController.offTouch(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.contactBtn.addTarget(self, action: "onTouch:", forControlEvents: UIControlEvents.TouchDown)
-        self.contactBtn.addTarget(self, action: "offTouch:", forControlEvents: UIControlEvents.TouchUpOutside)
-        self.contactBtn.addTarget(self, action: "offTouch:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.contactBtn.addTarget(self, action: #selector(LeftViewController.onTouch(_:)), forControlEvents: UIControlEvents.TouchDown)
+        self.contactBtn.addTarget(self, action: #selector(LeftViewController.offTouch(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
+        self.contactBtn.addTarget(self, action: #selector(LeftViewController.offTouch(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.versonBtn.addTarget(self, action: "onTouch:", forControlEvents: UIControlEvents.TouchDown)
-        self.versonBtn.addTarget(self, action: "offTouch:", forControlEvents: UIControlEvents.TouchUpOutside)
-        self.versonBtn.addTarget(self, action: "offTouch:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.versonBtn.addTarget(self, action: #selector(LeftViewController.onTouch(_:)), forControlEvents: UIControlEvents.TouchDown)
+        self.versonBtn.addTarget(self, action: #selector(LeftViewController.offTouch(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
+        self.versonBtn.addTarget(self, action: #selector(LeftViewController.offTouch(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.quitBtn.addTarget(self, action: "onTouch:", forControlEvents: UIControlEvents.TouchDown)
-        self.quitBtn.addTarget(self, action: "offTouch:", forControlEvents: UIControlEvents.TouchUpOutside)
-        self.quitBtn.addTarget(self, action: "offTouch:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.quitBtn.addTarget(self, action: #selector(LeftViewController.onTouch(_:)), forControlEvents: UIControlEvents.TouchDown)
+        self.quitBtn.addTarget(self, action: #selector(LeftViewController.offTouch(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
+        self.quitBtn.addTarget(self, action: #selector(LeftViewController.offTouch(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadView", name: "UserLogin", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadNickName", name: "ReloadNickName", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LeftViewController.reloadView), name: "UserLogin", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LeftViewController.reloadNickName), name: "ReloadNickName", object: nil)
     }
     
     func reloadNickName() {

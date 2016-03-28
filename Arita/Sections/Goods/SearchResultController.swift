@@ -101,7 +101,7 @@ class SearchResultController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func setPageEvents() {
-        self.backBtn.addTarget(self, action: Selector("backToUpLevel"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.backBtn.addTarget(self, action: #selector(SearchResultController.backToUpLevel), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.resultTable.registerClass(SearchGoodCell.self, forCellReuseIdentifier: "SearchGoodCell")
     }

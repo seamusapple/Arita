@@ -218,10 +218,10 @@ class UserInfoController: UIViewController, UIAlertViewDelegate, UIPickerViewDat
         self.addrPicker.delegate = self
         self.addrPicker.dataSource = self
         
-        self.tapGesture.addTarget(self, action: Selector("cancel"))
+        self.tapGesture.addTarget(self, action: #selector(UserInfoController.cancel))
         
-        self.cancelBtn.addTarget(self, action: "cancel", forControlEvents: UIControlEvents.TouchUpInside)
-        self.finishBtn.addTarget(self, action: "finish", forControlEvents: UIControlEvents.TouchUpInside)
+        self.cancelBtn.addTarget(self, action: #selector(UserInfoController.cancel), forControlEvents: UIControlEvents.TouchUpInside)
+        self.finishBtn.addTarget(self, action: #selector(UserInfoController.finish), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     //MARK: - UIPickerViewDataSource

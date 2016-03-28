@@ -264,15 +264,15 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     }
     
     func setPageEvents() {
-        self.backBtn.addTarget(self, action: Selector("backToUpLevel"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.searchBtn.addTarget(self, action: Selector("searchGoods"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.backBtn.addTarget(self, action: #selector(GoodsHomeController.backToUpLevel), forControlEvents: UIControlEvents.TouchUpInside)
+        self.searchBtn.addTarget(self, action: #selector(GoodsHomeController.searchGoods), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.newGoodsCollection.registerClass(GoodsCell.self, forCellWithReuseIdentifier: "GoodsCell")
         self.categoryCollection.registerClass(CategoryCell.self, forCellWithReuseIdentifier: "CategoryCell")
         self.recommendTable.registerClass(RecommendGoodCell.self, forCellReuseIdentifier: "RecommendGoodCell")
         
-        self.newRc.addTarget(self, action: "refreshCollectionView", forControlEvents: UIControlEvents.ValueChanged)
-        self.recommendRc.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
+        self.newRc.addTarget(self, action: #selector(GoodsHomeController.refreshCollectionView), forControlEvents: UIControlEvents.ValueChanged)
+        self.recommendRc.addTarget(self, action: #selector(GoodsHomeController.refreshTableView), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     // MARK: - load data from server

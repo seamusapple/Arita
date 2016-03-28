@@ -122,10 +122,10 @@ class ThirdPartLoginController: UIViewController
     
     //MARK: page subviews setting
     func setPageSubviewsEvent() {
-        self.tapGesture.addTarget(self, action: Selector("goBackToAlarmList"))
-        self.wbBtn.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.qqBtn.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.wxBtn.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.tapGesture.addTarget(self, action: #selector(ThirdPartLoginController.goBackToAlarmList))
+        self.wbBtn.addTarget(self, action: #selector(ThirdPartLoginController.login(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.qqBtn.addTarget(self, action: #selector(ThirdPartLoginController.login(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.wxBtn.addTarget(self, action: #selector(ThirdPartLoginController.login(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     //MARK: - event response

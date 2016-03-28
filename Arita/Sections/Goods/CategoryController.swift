@@ -111,7 +111,7 @@ class CategoryController: UIViewController, WKScriptMessageHandler
     
     // MARK: - set datasource, delegate and events
     func setPageEvents() {
-        self.backBtn.addTarget(self, action: Selector("backToUpLevel"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.backBtn.addTarget(self, action: #selector(CategoryController.backToUpLevel), forControlEvents: UIControlEvents.TouchUpInside)
 //        self.loginBtn.addTarget(self, action: Selector("userLogin"), forControlEvents: UIControlEvents.TouchUpInside)
     }
     

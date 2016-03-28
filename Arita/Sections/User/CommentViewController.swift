@@ -164,12 +164,12 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func setSubviewEvents() {
-        self.backBtn.addTarget(self, action: "backToArticle", forControlEvents: UIControlEvents.TouchUpInside)
+        self.backBtn.addTarget(self, action: #selector(CommentViewController.backToArticle), forControlEvents: UIControlEvents.TouchUpInside)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:Selector("keyboardWillChange:"), name: UIKeyboardWillChangeFrameNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(CommentViewController.keyboardWillChange(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
         
-        self.tapGesture.addTarget(self, action: Selector("hideKeyboard"))
-        self.commentBtn.addTarget(self, action: Selector("sendComment"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.tapGesture.addTarget(self, action: #selector(CommentViewController.hideKeyboard))
+        self.commentBtn.addTarget(self, action: #selector(CommentViewController.sendComment), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.commentTableView.dataSource = self
         self.commentTableView.delegate = self

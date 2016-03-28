@@ -39,8 +39,8 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewWillAppear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideLoginBtn", name: "UserLogin", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginBtn", name: "UserLogout", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TataViewController.hideLoginBtn), name: "UserLogin", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TataViewController.showLoginBtn), name: "UserLogout", object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -121,7 +121,7 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tataTable.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tataTable.showsVerticalScrollIndicator = false
         self.tataTable.addSubview(self.rc)
-        self.rc.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
+        self.rc.addTarget(self, action: #selector(TataViewController.refreshTableView), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     // MARK: - set datasource, delegate and events
@@ -131,8 +131,8 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func setPageEvents() {
-        self.backBtn.addTarget(self, action: Selector("backToUpLevel"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.loginBtn.addTarget(self, action: Selector("userLogin"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.backBtn.addTarget(self, action: #selector(TataViewController.backToUpLevel), forControlEvents: UIControlEvents.TouchUpInside)
+        self.loginBtn.addTarget(self, action: #selector(TataViewController.userLogin), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.tataTable.registerClass(TataCell.self, forCellReuseIdentifier: "TataCell")
     }
