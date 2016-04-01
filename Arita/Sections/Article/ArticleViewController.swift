@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate
 {
-    var segueId: String!
+    var segueId: String
     
     var titleView = UIView()
     var titleViewBg = UIImageView()
@@ -42,7 +42,7 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
         "sjSegue": ["13", "14", "15", "16", "17", "18"],
         "shSegue": ["7", "8", "9", "10", "11", "12"]]
     
-    var segmentId: Int!
+    var segmentId: Int
     
     private var articleArray: [JSON] = []
 
@@ -85,6 +85,17 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     }
     
     // MARK: - init methods
+    init(segueId: String, segmentId: Int) {
+        self.segueId = segueId
+        self.segmentId = segmentId
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func addPageSubviews() {
         self.view.addSubview(self.titleView)
         self.titleView.addSubview(self.titleViewBg)

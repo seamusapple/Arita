@@ -11,8 +11,6 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 
-private let TITLE_FONT_SIZE = CGFloat(12.0)
-
 class HomeViewController: UIViewController
 {
     var titleView = UIView()
@@ -576,31 +574,30 @@ class HomeViewController: UIViewController
     }
     
     func goCy(sender: UIButton) {
-        let cy = ArticleViewController()
-        cy.segueId = "cySegue"
-        cy.segmentId = (sender.tag - 1) % 6
-        self.view.window!.rootViewController!.presentViewController(cy, animated: true, completion: nil)
+//        let cy = ArticleViewController()
+//        cy.segueId = "cySegue"
+//        cy.segmentId = (sender.tag - 1) % 6
+//        self.view.window!.rootViewController!.presentViewController(cy, animated: true, completion: nil)
     }
     
     func goSj(sender: UIButton) {
-        let sj = ArticleViewController()
-        sj.segueId = "sjSegue"
-        sj.segmentId = (sender.tag - 1) % 6
-        self.view.window!.rootViewController!.presentViewController(sj, animated: true, completion: nil)
+//        let sj = ArticleViewController()
+//        sj.segueId = "sjSegue"
+//        sj.segmentId = (sender.tag - 1) % 6
+//        self.view.window!.rootViewController!.presentViewController(sj, animated: true, completion: nil)
     }
     
     func goSh(sender: UIButton) {
-        let sh = ArticleViewController()
-        sh.segueId = "shSegue"
-        sh.segmentId = (sender.tag - 1) % 6
-        self.view.window!.rootViewController!.presentViewController(sh, animated: true, completion: nil)
+//        let sh = ArticleViewController()
+//        sh.segueId = "shSegue"
+//        sh.segmentId = (sender.tag - 1) % 6
+//        self.view.window!.rootViewController!.presentViewController(sh, animated: true, completion: nil)
     }
     
     func goLp(sender: UIButton) {
-//        let lpController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ThingsController") as! ThingsController
-        let goods = GoodsHomeController()
-        goods.segmentId = sender.tag
-        self.view.window!.rootViewController!.presentViewController(goods, animated: true, completion: nil)
+//        let goods = GoodsHomeController()
+//        goods.segmentId = sender.tag
+//        self.view.window!.rootViewController!.presentViewController(goods, animated: true, completion: nil)
     }
     
     //MARK: - private methods

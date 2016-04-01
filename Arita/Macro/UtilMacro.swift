@@ -76,6 +76,9 @@ let FONT_TITLE = UIFont.systemFontOfSize(16)
 /* 文章列表页面菜单栏文字字号 */
 let FONT_ARTICLE_MENU_TEXT = UIFont.systemFontOfSize(14)
 
+/* 首页文章标题字号 */
+let TITLE_FONT_SIZE = CGFloat(12.0)
+
 /* 塔塔报列表／文章列表单元格高度 */
 let CELL_HEIGHT = 120 + (SCREEN_WIDTH - 20) * 2 / 3
 

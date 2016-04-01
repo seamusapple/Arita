@@ -12,7 +12,7 @@ import Alamofire
 
 class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate
 {
-    var segmentId: Int!
+    var segmentId: Int
     
     var titleView = UIView()
     var titleViewBg = UIImageView()
@@ -93,6 +93,16 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     }
     
     // MARK: - init methods
+    init(segmentId: Int) {
+        self.segmentId = segmentId
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func addPageSubviews() {
         self.view.addSubview(self.titleView)
         self.titleView.addSubview(self.titleViewBg)

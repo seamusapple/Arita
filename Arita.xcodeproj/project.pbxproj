@@ -16,6 +16,8 @@
 		812228161C4736FF00738D57 /* SearchGoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812228151C4736FF00738D57 /* SearchGoodCell.swift */; };
 		812E43F51B6B550700E3ED64 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812E43F31B6B550700E3ED64 /* SMSegmentView.swift */; };
 		812E43F61B6B550700E3ED64 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812E43F41B6B550700E3ED64 /* SMSegment.swift */; };
+		813957721CAA329B00E4BF72 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813957711CAA329B00E4BF72 /* HomeController.swift */; };
+		813957751CAA702500E4BF72 /* HomeTataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813957741CAA702500E4BF72 /* HomeTataCell.swift */; };
 		8143CC791B9EBF82004FA08B /* UserInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8143CC781B9EBF82004FA08B /* UserInfoController.swift */; };
 		8143CC7B1B9ED2A9004FA08B /* LikeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8143CC7A1B9ED2A9004FA08B /* LikeController.swift */; };
 		814897421B83890A006EDC23 /* GoodsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814897411B83890A006EDC23 /* GoodsWebViewController.swift */; };
@@ -56,6 +58,10 @@
 		81DE22581C3AC87700F9A78B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DE22571C3AC87700F9A78B /* QuartzCore.framework */; };
 		81E789561BB42F2E002D0534 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E789551BB42F2E002D0534 /* CommentViewController.swift */; };
 		81E789581BB42F8F002D0534 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E789571BB42F8F002D0534 /* CommentTableViewCell.swift */; };
+		81F02D041CAE1D190038A4D7 /* HomeCyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F02D031CAE1D190038A4D7 /* HomeCyCell.swift */; };
+		81F02D061CAE5AFF0038A4D7 /* HomeShCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F02D051CAE5AFF0038A4D7 /* HomeShCell.swift */; };
+		81F02D081CAE5CB70038A4D7 /* HomeSjCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F02D071CAE5CB70038A4D7 /* HomeSjCell.swift */; };
+		81F02D0A1CAE61900038A4D7 /* HomeLpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F02D091CAE61900038A4D7 /* HomeLpCell.swift */; };
 		81F066C21B9F2F9C0022D736 /* LikeArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F066C11B9F2F9C0022D736 /* LikeArticleCell.swift */; };
 		81F18F321C245878003C79B9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F18F311C245878003C79B9 /* HomeViewController.swift */; };
 		81F924911C3CF513000A9649 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F924741C3CF513000A9649 /* TencentOpenAPI.framework */; };
@@ -99,6 +105,8 @@
 		812228151C4736FF00738D57 /* SearchGoodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchGoodCell.swift; sourceTree = "<group>"; };
 		812E43F31B6B550700E3ED64 /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
 		812E43F41B6B550700E3ED64 /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
+		813957711CAA329B00E4BF72 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		813957741CAA702500E4BF72 /* HomeTataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTataCell.swift; sourceTree = "<group>"; };
 		8143CC781B9EBF82004FA08B /* UserInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoController.swift; sourceTree = "<group>"; };
 		8143CC7A1B9ED2A9004FA08B /* LikeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeController.swift; sourceTree = "<group>"; };
 		814897411B83890A006EDC23 /* GoodsWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsWebViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +154,10 @@
 		81DE22571C3AC87700F9A78B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		81E789551BB42F2E002D0534 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		81E789571BB42F8F002D0534 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		81F02D031CAE1D190038A4D7 /* HomeCyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCyCell.swift; sourceTree = "<group>"; };
+		81F02D051CAE5AFF0038A4D7 /* HomeShCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeShCell.swift; sourceTree = "<group>"; };
+		81F02D071CAE5CB70038A4D7 /* HomeSjCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSjCell.swift; sourceTree = "<group>"; };
+		81F02D091CAE61900038A4D7 /* HomeLpCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeLpCell.swift; sourceTree = "<group>"; };
 		81F066C11B9F2F9C0022D736 /* LikeArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeArticleCell.swift; sourceTree = "<group>"; };
 		81F18F311C245878003C79B9 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		81F924741C3CF513000A9649 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
@@ -251,6 +263,7 @@
 		8132314B1C28556100AC7628 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				813957731CAA6FEE00E4BF72 /* Home */,
 				81213C671C3769F1008D50F0 /* Tata */,
 				8150A4EE1C3D5C1800666A8E /* Ariticle */,
 				81910CAF1C40AD49003265CA /* Goods */,
@@ -259,11 +272,24 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		813957731CAA6FEE00E4BF72 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				813957741CAA702500E4BF72 /* HomeTataCell.swift */,
+				81F02D031CAE1D190038A4D7 /* HomeCyCell.swift */,
+				81F02D071CAE5CB70038A4D7 /* HomeSjCell.swift */,
+				81F02D051CAE5AFF0038A4D7 /* HomeShCell.swift */,
+				81F02D091CAE61900038A4D7 /* HomeLpCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		814BF2E81C284BF70074A0E1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				81FF18FA1B7F02F900F793CA /* ViewController.swift */,
 				81F18F311C245878003C79B9 /* HomeViewController.swift */,
+				813957711CAA329B00E4BF72 /* HomeController.swift */,
 				81FF19021B7F079700F793CA /* LeftViewController.swift */,
 			);
 			path = Home;
@@ -719,16 +745,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81F02D041CAE1D190038A4D7 /* HomeCyCell.swift in Sources */,
 				81FF18FD1B7F040D00F793CA /* Common.swift in Sources */,
 				8150A4ED1C3D551E00666A8E /* UtilMacro.swift in Sources */,
+				813957721CAA329B00E4BF72 /* HomeController.swift in Sources */,
 				810AA3581BA1D21100E06EAA /* ThirdPartLoginController.swift in Sources */,
+				81F02D081CAE5CB70038A4D7 /* HomeSjCell.swift in Sources */,
 				81839EB91C434E640067D47C /* CategoryController.swift in Sources */,
+				81F02D061CAE5AFF0038A4D7 /* HomeShCell.swift in Sources */,
 				81F066C21B9F2F9C0022D736 /* LikeArticleCell.swift in Sources */,
+				81F02D0A1CAE61900038A4D7 /* HomeLpCell.swift in Sources */,
 				81FF18FB1B7F02F900F793CA /* ViewController.swift in Sources */,
 				810BBA901C42541E00F806C2 /* GoodsCell.swift in Sources */,
 				81DCFED31B824896003CF443 /* AboutUsController.swift in Sources */,
 				81E789561BB42F2E002D0534 /* CommentViewController.swift in Sources */,
 				81213C691C376A2C008D50F0 /* TataCell.swift in Sources */,
+				813957751CAA702500E4BF72 /* HomeTataCell.swift in Sources */,
 				81E789581BB42F8F002D0534 /* CommentTableViewCell.swift in Sources */,
 				8143CC791B9EBF82004FA08B /* UserInfoController.swift in Sources */,
 				81910CB21C40ADF2003265CA /* GoodsHomeController.swift in Sources */,

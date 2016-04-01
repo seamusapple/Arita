@@ -12,8 +12,7 @@ class ViewController: UIViewController
 {
     var tapGesture: UITapGestureRecognizer!
     
-//    var homeViewController: HomeController!
-    var homeViewController: HomeViewController!
+    var homeController: HomeController!
     var leftViewController: LeftViewController!
     var mainView: UIView! // 构造主视图。实现 UINavigationController.view 和 HomeViewController.view 一起缩放。
     var distance: CGFloat = 0
@@ -30,12 +29,6 @@ class ViewController: UIViewController
     //MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 给主视图设置背景
-//        let imageView = UIImageView(image: UIImage(named: "back"))
-//        imageView.frame = UIScreen.mainScreen().bounds
-//        self.view.addSubview(imageView)
-
         //  通过 StoryBoard 取出 LeftViewController
         self.leftViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LeftViewController") as! LeftViewController
         if Common.screenWidth > 320 {
@@ -56,16 +49,11 @@ class ViewController: UIViewController
         
         // 通过 StoryBoard 取出 HomeViewController 的 view，放在背景视图上面
         mainView = UIView(frame: self.view.frame)
-        self.homeViewController = HomeViewController()
-        mainView.addSubview(self.homeViewController.view)
+        homeController = HomeController()
+        mainView.addSubview(homeController.view)
         self.view.addSubview(mainView)
         
-        self.homeViewController.menuBtn.addTarget(self, action: #selector(ViewController.showLeft), forControlEvents: UIControlEvents.TouchUpInside)
-        
-        // 绑定 UIPanGestureRecognizer
-//        let panGesture = self.homeViewController.panGesture
-//        panGesture.addTarget(self, action: Selector("pan:"))
-//        mainView.addGestureRecognizer(panGesture)
+        homeController.menuBtn.addTarget(self, action: #selector(ViewController.showLeft), forControlEvents: UIControlEvents.TouchUpInside)
         
         // 生成单击收起菜单手势
         self.tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.showHome))
@@ -188,23 +176,11 @@ class ViewController: UIViewController
     //MARK: - private methods
     // 取消home页面的控件点击
     func homeViewLoseFocus() {
-        self.homeViewController.menuBtn.userInteractionEnabled = false
-        self.homeViewController.scrollView.userInteractionEnabled = false
-//        self.homeViewController.tataBtn.enabled = false
-//        self.homeViewController.cyBtn.enabled = false
-//        self.homeViewController.sjBtn.enabled = false
-//        self.homeViewController.shBtn.enabled = false
-//        self.homeViewController.lpBtn.enabled = false
+        homeController.menuBtn.userInteractionEnabled = false
     }
     
     // 恢复home页面的控件点击
     func homeViewRecoverFocus() {
-        self.homeViewController.menuBtn.userInteractionEnabled = true
-        self.homeViewController.scrollView.userInteractionEnabled = true
-//        self.homeViewController.tataBtn.enabled = true
-//        self.homeViewController.cyBtn.enabled = true
-//        self.homeViewController.sjBtn.enabled = true
-//        self.homeViewController.shBtn.enabled = true
-//        self.homeViewController.lpBtn.enabled = true
+        homeController.menuBtn.userInteractionEnabled = true
     }
 }
