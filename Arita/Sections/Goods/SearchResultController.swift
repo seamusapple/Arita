@@ -148,9 +148,9 @@ class SearchResultController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let goodViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GoodContentView") as! GoodsWebViewController
-        goodViewController.goodJson = self.goodArray[indexPath.row]
-        self.presentViewController(goodViewController, animated: true, completion: {})
+        let json = self.goodArray[indexPath.row]
+        let goodController = GoodController(goodJson: json)
+        self.presentViewController(goodController, animated: true, completion: {})
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

@@ -10,24 +10,32 @@ import UIKit
 
 class RecommendGoodCell: UITableViewCell
 {
-    var cellView = UIView()
-    var goodImage = UIImageView()
-    var goodTitle = UILabel()
-//    var goodInfo = UILabel()
-//    var separateLine = UIView()
-    var goodPrice = UILabel()
-//    private var likeIcon = UIImageView()
-//    var likeNum = UILabel()
-    var dateLabel = UILabel()
+    private let cellView = UIView()
+    
+    let dayLabel = UILabel()
+    let dayOfWeekLabel = UILabel()
+    let yearAndMonthLabel = UILabel()
+    
+    private let separator = UIView()
+    
+    let titleLabel = UILabel()
+    
+    let goodImage1 = UIImageView()
+    let goodImage2 = UIImageView()
+    let goodImage3 = UIImageView()
+    let goodImage4 = UIImageView()
+    let goodImage5 = UIImageView()
+    
+    private let baseSize = (SCREEN_WIDTH - 30) / 4
     
     //MARK: - life methods
     override init(style: UITableViewCellStyle, reuseIdentifier: String!)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addCellSubviews()
-        self.layoutCellSubviews()
-        self.configCellSubviews()
+        addCellSubviews()
+        layoutCellSubviews()
+        configCellSubviews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,96 +44,113 @@ class RecommendGoodCell: UITableViewCell
     
     //MARK: - setup page subviews
     func addCellSubviews() {
-        self.contentView.addSubview(self.cellView)
-        self.cellView.addSubview(self.goodImage)
-        self.cellView.addSubview(self.goodTitle)
-//        self.cellView.addSubview(self.goodInfo)
-//        self.cellView.addSubview(self.separateLine)
-        self.cellView.addSubview(self.goodPrice)
-//        self.cellView.addSubview(self.likeIcon)
-//        self.cellView.addSubview(self.likeNum)
-        self.cellView.addSubview(self.dateLabel)
+        contentView.addSubview(cellView)
+        
+        cellView.addSubview(dayLabel)
+        cellView.addSubview(dayOfWeekLabel)
+        cellView.addSubview(yearAndMonthLabel)
+        
+        cellView.addSubview(separator)
+        
+        cellView.addSubview(titleLabel)
+        
+        cellView.addSubview(goodImage1)
+        cellView.addSubview(goodImage2)
+        cellView.addSubview(goodImage3)
+        cellView.addSubview(goodImage4)
+        cellView.addSubview(goodImage5)
     }
     
     func layoutCellSubviews() {
-        self.cellView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView).offset(10)
-            make.left.bottom.right.equalTo(self.contentView)
+        cellView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(contentView).offset(10)
+            make.left.bottom.right.equalTo(contentView)
         }
         
-        self.goodImage.snp_makeConstraints { (make) -> Void in
-            make.top.left.equalTo(self.cellView).offset(10)
-            make.right.equalTo(self.cellView).offset(-10)
-            make.height.equalTo(self.goodImage.snp_width)
+        dayLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(cellView).offset(15)
+            make.left.equalTo(cellView).offset(10)
+            make.size.equalTo(CGSize(width: 30, height: 30))
         }
         
-        self.goodTitle.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.goodImage.snp_bottom).offset(10)
-            make.left.right.equalTo(self.goodImage)
-            make.height.equalTo(20)
+        dayOfWeekLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(dayLabel)
+            make.left.equalTo(dayLabel.snp_right)
+            make.bottom.equalTo(dayLabel.snp_centerY)
+            make.width.equalTo(50)
         }
         
-//        self.goodInfo.snp_makeConstraints { (make) -> Void in
-//            make.top.equalTo(self.goodTitle.snp_bottom).offset(10)
-//            make.left.right.equalTo(self.goodTitle)
-//            make.height.equalTo(50)
-//        }
-        
-//        self.separateLine.snp_makeConstraints { (make) -> Void in
-//            make.top.equalTo(self.goodInfo.snp_bottom).offset(10)
-//            make.left.right.equalTo(self.goodInfo)
-//            make.height.equalTo(1)
-//        }
-        
-        self.goodPrice.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.goodTitle.snp_bottom).offset(10)
-            make.left.equalTo(self.goodTitle)
-            make.height.equalTo(15)
+        yearAndMonthLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(dayLabel.snp_centerY)
+            make.left.equalTo(dayLabel.snp_right)
+            make.bottom.equalTo(dayLabel.snp_bottom)
+            make.right.equalTo(dayOfWeekLabel)
         }
         
-//        self.likeNum.snp_makeConstraints { (make) -> Void in
-//            make.top.equalTo(self.separateLine.snp_bottom).offset(5)
-//            make.right.equalTo(self.separateLine)
-//            make.height.equalTo(15)
-//        }
-//        
-//        self.likeIcon.snp_makeConstraints { (make) -> Void in
-//            make.size.equalTo(CGSizeMake(10, 10))
-//            make.centerY.equalTo(self.likeNum.snp_centerY)
-//            make.right.equalTo(self.likeNum.snp_left).offset(-5)
-//        }
+        separator.snp_makeConstraints { (make) -> Void in
+            make.top.bottom.equalTo(dayLabel)
+            make.left.equalTo(dayOfWeekLabel.snp_right).offset(5)
+            make.width.equalTo(1)
+        }
         
-        self.dateLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.goodPrice)
-            make.right.equalTo(self.goodTitle)
-            make.height.equalTo(15)
+        titleLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(dayLabel)
+            make.left.equalTo(separator.snp_right).offset(5)
+            make.bottom.equalTo(dayLabel)
+            make.right.equalTo(cellView).offset(-10)
+        }
+        
+        goodImage1.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(dayLabel.snp_bottom).offset(15)
+            make.left.equalTo(cellView).offset(10)
+            make.size.equalTo(CGSize(width: baseSize * 2, height: baseSize * 2))
+        }
+        
+        goodImage2.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(goodImage1)
+            make.left.equalTo(goodImage1.snp_right).offset(5)
+            make.size.equalTo(CGSize(width: baseSize, height: baseSize - 2.5))
+        }
+        
+        goodImage3.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(goodImage1)
+            make.left.equalTo(goodImage2.snp_right).offset(5)
+            make.size.equalTo(CGSize(width: baseSize, height: baseSize - 2.5))
+        }
+        
+        goodImage4.snp_makeConstraints { (make) -> Void in
+            make.left.equalTo(goodImage1.snp_right).offset(5)
+            make.bottom.equalTo(goodImage1)
+            make.size.equalTo(CGSize(width: baseSize, height: baseSize - 2.5))
+        }
+        
+        goodImage5.snp_makeConstraints { (make) -> Void in
+            make.left.equalTo(goodImage4.snp_right).offset(5)
+            make.bottom.equalTo(goodImage1)
+            make.size.equalTo(CGSize(width: baseSize, height: baseSize - 2.5))
         }
     }
     
     func configCellSubviews() {
-        self.contentView.backgroundColor = COLOR_BACKGROUND
+        contentView.backgroundColor = COLOR_BACKGROUND
+        cellView.backgroundColor = UIColor.whiteColor()
         
-        self.cellView.backgroundColor = UIColor.whiteColor()
+        dayLabel.font = UIFont.systemFontOfSize(28)
+        dayLabel.textColor = COLOR_GOODS
+        dayLabel.textAlignment = NSTextAlignment.Center
         
-        self.goodTitle.font = UIFont.systemFontOfSize(14)
+        dayOfWeekLabel.font = UIFont.systemFontOfSize(14)
+        dayOfWeekLabel.textColor = titleColor
+        dayOfWeekLabel.textAlignment = NSTextAlignment.Center
         
-//        self.goodInfo.numberOfLines = 3
-//        self.goodInfo.textColor = COLOR_INFO
-//        self.goodInfo.font = UIFont.systemFontOfSize(11)
-//        
-//        self.separateLine.backgroundColor = COLOR_GOODS_SEPARATE
+        yearAndMonthLabel.font = UIFont.systemFontOfSize(11)
+        yearAndMonthLabel.textColor = titleColor
+        yearAndMonthLabel.textAlignment = NSTextAlignment.Center
         
-        self.goodPrice.textColor = COLOR_GOODS_MENU_TEXT_UNSELECTED_COLOR
-        self.goodPrice.font = UIFont.boldSystemFontOfSize(13)
+        separator.backgroundColor = titleColor
         
-//        self.likeIcon.image = UIImage(named: "good_like_icon")
-//        
-//        self.likeNum.textColor = COLOR_INFO
-//        self.likeNum.textAlignment = NSTextAlignment.Right
-//        self.likeNum.font = UIFont.systemFontOfSize(13)
-        
-        self.dateLabel.textColor = COLOR_INFO
-        self.dateLabel.textAlignment = NSTextAlignment.Right
-        self.dateLabel.font = UIFont.systemFontOfSize(13)
+        titleLabel.font = UIFont.systemFontOfSize(12)
+        titleLabel.textColor = titleColor
+        titleLabel.numberOfLines = 2
     }
 }

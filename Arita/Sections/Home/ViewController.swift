@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController
-{
+class ViewController: UIViewController {
+    
     var tapGesture: UITapGestureRecognizer!
     
     var homeController: HomeController!
@@ -177,10 +177,12 @@ class ViewController: UIViewController
     // 取消home页面的控件点击
     func homeViewLoseFocus() {
         homeController.menuBtn.userInteractionEnabled = false
+        homeController.homeTable.userInteractionEnabled = false
     }
     
     // 恢复home页面的控件点击
     func homeViewRecoverFocus() {
         homeController.menuBtn.userInteractionEnabled = true
+        homeController.homeTable.userInteractionEnabled = true
     }
 }

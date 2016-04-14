@@ -375,9 +375,9 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     // MARK: - UICollectionViewDelegate
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if collectionView.tag == 1 {
-            let goodViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GoodContentView") as! GoodsWebViewController
-            goodViewController.goodJson = self.goodArray[indexPath.section * 2 + indexPath.row]
-            self.presentViewController(goodViewController, animated: true, completion: {})
+            let json = self.goodArray[indexPath.section * 2 + indexPath.row]
+            let goodController = GoodController(goodJson: json)
+            self.presentViewController(goodController, animated: true, completion: {})
         } else {
             let selectedGoods = self.goodsCategoryArray[indexPath.section * 3 + indexPath.row]
             let selectedChannel = self.channelId[indexPath.section * 3 + indexPath.row]
@@ -417,20 +417,23 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
         let cellId = "RecommendGoodCell"
         let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! RecommendGoodCell
         
-        let imageUrl = self.recommendArray[indexPath.row]["thumb_path"].stringValue
-        cell.goodImage.kf_setImageWithURL(NSURL(string: imageUrl)!, placeholderImage: nil)
-        cell.goodTitle.text = self.recommendArray[indexPath.row]["title"].stringValue
-        cell.goodPrice.text = "¥ " + self.recommendArray[indexPath.row]["price"].stringValue
-        cell.dateLabel.text = self.recommendArray[indexPath.row]["publish_time"].stringValue
+//        let imageUrl = self.recommendArray[indexPath.row]["thumb_path"].stringValue
+//        cell.goodImage.kf_setImageWithURL(NSURL(string: imageUrl)!, placeholderImage: nil)
+//        cell.goodTitle.text = self.recommendArray[indexPath.row]["title"].stringValue
+//        cell.goodPrice.text = "¥ " + self.recommendArray[indexPath.row]["price"].stringValue
+//        cell.dateLabel.text = self.recommendArray[indexPath.row]["publish_time"].stringValue
 //        cell.likeNum.text = self.recommendArray[indexPath.row]["favorite_num"].stringValue
+        cell.dayLabel.text = "19"
+        cell.dayOfWeekLabel.text = "星期五"
+        cell.yearAndMonthLabel.text = "2016.02"
         
-//        let infoString = self.recommendArray[indexPath.row]["description"].stringValue
-//        let attributedString = NSMutableAttributedString(string: infoString)
-//        let paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.lineSpacing = 5
-//        attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-//        cell.goodInfo.attributedText = attributedString
-//        cell.goodInfo.sizeToFit()
+        cell.titleLabel.text = self.recommendArray[indexPath.row]["title"].string!
+        
+        cell.goodImage1.backgroundColor = UIColor.blackColor()
+        cell.goodImage2.backgroundColor = UIColor.redColor()
+        cell.goodImage3.backgroundColor = UIColor.redColor()
+        cell.goodImage4.backgroundColor = UIColor.greenColor()
+        cell.goodImage5.backgroundColor = UIColor.greenColor()
         
         return cell
     }
@@ -441,9 +444,9 @@ class GoodsHomeController: UIViewController, UIScrollViewDelegate, UICollectionV
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let goodViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GoodContentView") as! GoodsWebViewController
-        goodViewController.goodJson = self.recommendArray[indexPath.row]
-        self.presentViewController(goodViewController, animated: true, completion: {})
+        let json = self.recommendArray[indexPath.row]
+        let dailyGoodsController = DailyGoodsController(goodJson: json)
+        self.presentViewController(dailyGoodsController, animated: true, completion: {})
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

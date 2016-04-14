@@ -428,11 +428,8 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let destinationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ContentView") as! ContentWebViewController
-        destinationController.articleJson = self.articleArray[indexPath.row]
-        destinationController.segueId = self.segueId
-        destinationController.viewTitle = self.titleLabel.text!
-        self.presentViewController(destinationController, animated: true, completion: {})
+        let articleContentController = ContentController(contentTitle: titleLabel.text!, from: segueId, with: articleArray[indexPath.row])
+        self.presentViewController(articleContentController, animated: true, completion: {})
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
@@ -543,8 +540,6 @@ class ArticleViewController: UIViewController, UIScrollViewDelegate, UITableView
 //        }
         
         self.articleArray += jsonString["articleArrNew"].arrayValue
-        
-//        print(articleArray)
         
         self.tableArray[index].reloadData()
     }

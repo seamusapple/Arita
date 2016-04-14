@@ -6,6 +6,8 @@
 //  Copyright © 2015年 DcBunny. All rights reserved.
 //
 
+// TODO: 将被废弃
+
 import UIKit
 import Alamofire
 import SwiftyJSON
@@ -569,7 +571,7 @@ class HomeViewController: UIViewController
     }
     
     func goTata() {
-        let tata = TataViewController()
+        let tata = TataController()
         self.view.window!.rootViewController!.presentViewController(tata, animated: true, completion: nil)
     }
     

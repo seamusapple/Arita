@@ -8,8 +8,8 @@
 
 import UIKit
 
-class HomeController: UIViewController, UITableViewDataSource, UITableViewDelegate
-{
+class HomeController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
     // 顶部状态栏
     let titleView = UIView()
     let titleViewBg = UIImageView()
@@ -455,7 +455,7 @@ class HomeController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: - event response
     func goTata() {
-        let tata = TataViewController()
+        let tata = TataController()
         self.view.window!.rootViewController!.presentViewController(tata, animated: true, completion: nil)
     }
     

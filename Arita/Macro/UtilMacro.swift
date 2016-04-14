@@ -50,6 +50,9 @@ let COLOR_GOODS_SEPARATE = UIColor(red: 230 / 255.0, green: 230 / 255.0, blue: 2
 /* 塔塔报、文章、良品推荐列表中内容的字体颜色 */
 let COLOR_INFO = UIColor(red: 119 / 255.0, green: 119 / 255.0, blue: 119 / 255.0, alpha: 1.0)
 
+/* 塔塔报、文章列表中标题的字体颜色 #333333 */
+let titleColor = UIColor(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 1.0)
+
 /* 良品子标签字体颜色 */
 let COLOR_QW = UIColor(red: 233 / 255.0, green: 97 / 255.0, blue: 147 / 255.0, alpha: 1.0)
 let COLOR_DZ = UIColor(red: 28 / 255.0, green: 185 / 255.0, blue: 224 / 255.0, alpha: 1.0)
@@ -79,11 +82,22 @@ let FONT_ARTICLE_MENU_TEXT = UIFont.systemFontOfSize(14)
 /* 首页文章标题字号 */
 let TITLE_FONT_SIZE = CGFloat(12.0)
 
+/**
+ *
+ * 其他常量
+ *
+ */
+
+let SCREEN_WIDTH = UIScreen.mainScreen().bounds.size.width
+let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.size.height
+
+let homeContentWidth = SCREEN_WIDTH - 20
+
 /* 塔塔报列表／文章列表单元格高度 */
 let CELL_HEIGHT = 120 + (SCREEN_WIDTH - 20) * 2 / 3
 
 /* 良品推荐列表单元格高度 */
-let GOOD_CELL_HEIGHT = 85 + (SCREEN_WIDTH - 20)
+let GOOD_CELL_HEIGHT = 80 + (SCREEN_WIDTH - 20) / 2
 
 /* 文章列表中每次加载的文章数量 */
 let LOAD_ARTICLE_NUM = 10

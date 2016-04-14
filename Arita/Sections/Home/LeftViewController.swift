@@ -9,8 +9,8 @@
 import UIKit
 import Kingfisher
 
-class LeftViewController: UIViewController, UIAlertViewDelegate
-{
+class LeftViewController: UIViewController, UIAlertViewDelegate {
+    
     @IBOutlet weak var userLogo: UIImageView!
     @IBOutlet weak var userState: UILabel!
     @IBOutlet weak var userName: UILabel!

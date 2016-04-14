@@ -11,6 +11,12 @@
 		810AA35A1BA1DDD000E06EAA /* ThirdPartShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810AA3591BA1DDD000E06EAA /* ThirdPartShareController.swift */; };
 		810BBA8E1C42039000F806C2 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810BBA8D1C42039000F806C2 /* CategoryCell.swift */; };
 		810BBA901C42541E00F806C2 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810BBA8F1C42541E00F806C2 /* GoodsCell.swift */; };
+		811586D81CBDF7DE00CC7EB9 /* DailyGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811586D71CBDF7DE00CC7EB9 /* DailyGoodsCell.swift */; };
+		811586DA1CBDF9D200CC7EB9 /* DailyGoodsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811586D91CBDF9D200CC7EB9 /* DailyGoodsController.swift */; };
+		8118C9821CBB457E001D5239 /* DailyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118C9811CBB457E001D5239 /* DailyController.swift */; };
+		8118C9841CBB48CD001D5239 /* DailyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118C9831CBB48CD001D5239 /* DailyCell.swift */; };
+		8118C9861CBB7B82001D5239 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118C9851CBB7B82001D5239 /* Util.swift */; };
+		8118C9881CBB9DE1001D5239 /* GoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118C9871CBB9DE1001D5239 /* GoodController.swift */; };
 		811ED7EC1BB192C2007BA907 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 811ED7EB1BB192C2007BA907 /* area.plist */; };
 		81213C691C376A2C008D50F0 /* TataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81213C681C376A2C008D50F0 /* TataCell.swift */; };
 		812228161C4736FF00738D57 /* SearchGoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812228151C4736FF00738D57 /* SearchGoodCell.swift */; };
@@ -27,7 +33,8 @@
 		81639CD61BD5E29E00B31AD6 /* TouGaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81639CD51BD5E29E00B31AD6 /* TouGaoViewController.swift */; };
 		81639CD81BD5E48000B31AD6 /* TuCaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81639CD71BD5E48000B31AD6 /* TuCaoViewController.swift */; };
 		81639CDA1BD5EDA400B31AD6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81639CD91BD5EDA400B31AD6 /* MessageUI.framework */; };
-		8173B7141C36360700017B95 /* TataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173B7131C36360700017B95 /* TataViewController.swift */; };
+		816C44D21CB0DEA800FD2E6F /* ContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C44D11CB0DEA800FD2E6F /* ContentController.swift */; };
+		8173B7141C36360700017B95 /* TataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173B7131C36360700017B95 /* TataController.swift */; };
 		817C845E1C44893B00788B5E /* RecommendGoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817C845D1C44893B00788B5E /* RecommendGoodCell.swift */; };
 		817C84841C45F86E00788B5E /* CMSCoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 817C84831C45F86E00788B5E /* CMSCoinView.m */; };
 		817C84861C46363800788B5E /* SearchInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817C84851C46363800788B5E /* SearchInputController.swift */; };
@@ -41,7 +48,6 @@
 		817DDBAC1B5D4A9D0033C9F9 /* RMParallaxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817DDBAA1B5D4A9D0033C9F9 /* RMParallaxItem.swift */; };
 		81839EB91C434E640067D47C /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81839EB81C434E640067D47C /* CategoryController.swift */; };
 		81839EBB1C4352210067D47C /* SubGoodsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81839EBA1C4352210067D47C /* SubGoodsCollectionCell.swift */; };
-		81839EBD1C4356370067D47C /* SubGoodsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81839EBC1C4356370067D47C /* SubGoodsController.swift */; };
 		81910CB21C40ADF2003265CA /* GoodsHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81910CB11C40ADF2003265CA /* GoodsHomeController.swift */; };
 		81A5852E1BCBFA1F004FE56E /* LoadMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A5852D1BCBFA1F004FE56E /* LoadMoreCell.swift */; };
 		81A6A5291B837461007E8A37 /* VersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A6A5281B837461007E8A37 /* VersonViewController.swift */; };
@@ -100,6 +106,12 @@
 		810AA3591BA1DDD000E06EAA /* ThirdPartShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPartShareController.swift; sourceTree = "<group>"; };
 		810BBA8D1C42039000F806C2 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		810BBA8F1C42541E00F806C2 /* GoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
+		811586D71CBDF7DE00CC7EB9 /* DailyGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyGoodsCell.swift; sourceTree = "<group>"; };
+		811586D91CBDF9D200CC7EB9 /* DailyGoodsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyGoodsController.swift; sourceTree = "<group>"; };
+		8118C9811CBB457E001D5239 /* DailyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyController.swift; sourceTree = "<group>"; };
+		8118C9831CBB48CD001D5239 /* DailyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCell.swift; sourceTree = "<group>"; };
+		8118C9851CBB7B82001D5239 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		8118C9871CBB9DE1001D5239 /* GoodController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodController.swift; sourceTree = "<group>"; };
 		811ED7EB1BB192C2007BA907 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		81213C681C376A2C008D50F0 /* TataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TataCell.swift; sourceTree = "<group>"; };
 		812228151C4736FF00738D57 /* SearchGoodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchGoodCell.swift; sourceTree = "<group>"; };
@@ -116,7 +128,8 @@
 		81639CD51BD5E29E00B31AD6 /* TouGaoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouGaoViewController.swift; sourceTree = "<group>"; };
 		81639CD71BD5E48000B31AD6 /* TuCaoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuCaoViewController.swift; sourceTree = "<group>"; };
 		81639CD91BD5EDA400B31AD6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		8173B7131C36360700017B95 /* TataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TataViewController.swift; sourceTree = "<group>"; };
+		816C44D11CB0DEA800FD2E6F /* ContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentController.swift; sourceTree = "<group>"; };
+		8173B7131C36360700017B95 /* TataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TataController.swift; sourceTree = "<group>"; };
 		817C845D1C44893B00788B5E /* RecommendGoodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendGoodCell.swift; sourceTree = "<group>"; };
 		817C84821C45F86E00788B5E /* CMSCoinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMSCoinView.h; sourceTree = "<group>"; };
 		817C84831C45F86E00788B5E /* CMSCoinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMSCoinView.m; sourceTree = "<group>"; };
@@ -135,7 +148,6 @@
 		817DDBAA1B5D4A9D0033C9F9 /* RMParallaxItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMParallaxItem.swift; sourceTree = "<group>"; };
 		81839EB81C434E640067D47C /* CategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		81839EBA1C4352210067D47C /* SubGoodsCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubGoodsCollectionCell.swift; sourceTree = "<group>"; };
-		81839EBC1C4356370067D47C /* SubGoodsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubGoodsController.swift; sourceTree = "<group>"; };
 		81910CB11C40ADF2003265CA /* GoodsHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsHomeController.swift; sourceTree = "<group>"; };
 		81A5852D1BCBFA1F004FE56E /* LoadMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreCell.swift; sourceTree = "<group>"; };
 		81A6A5281B837461007E8A37 /* VersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersonViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				81213C681C376A2C008D50F0 /* TataCell.swift */,
+				8118C9831CBB48CD001D5239 /* DailyCell.swift */,
 			);
 			path = Tata;
 			sourceTree = "<group>";
@@ -299,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				81FF18FC1B7F040D00F793CA /* Common.swift */,
+				8118C9851CBB7B82001D5239 /* Util.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -333,7 +347,9 @@
 		8173B7121C3635D500017B95 /* Tata */ = {
 			isa = PBXGroup;
 			children = (
-				8173B7131C36360700017B95 /* TataViewController.swift */,
+				8173B7131C36360700017B95 /* TataController.swift */,
+				8118C9811CBB457E001D5239 /* DailyController.swift */,
+				816C44D11CB0DEA800FD2E6F /* ContentController.swift */,
 			);
 			path = Tata;
 			sourceTree = "<group>";
@@ -430,8 +446,9 @@
 			children = (
 				81910CB11C40ADF2003265CA /* GoodsHomeController.swift */,
 				81839EB81C434E640067D47C /* CategoryController.swift */,
-				81839EBC1C4356370067D47C /* SubGoodsController.swift */,
+				811586D91CBDF9D200CC7EB9 /* DailyGoodsController.swift */,
 				814897411B83890A006EDC23 /* GoodsWebViewController.swift */,
+				8118C9871CBB9DE1001D5239 /* GoodController.swift */,
 				817C84851C46363800788B5E /* SearchInputController.swift */,
 				817C84871C4646F200788B5E /* SearchResultController.swift */,
 			);
@@ -444,6 +461,7 @@
 				810BBA8D1C42039000F806C2 /* CategoryCell.swift */,
 				810BBA8F1C42541E00F806C2 /* GoodsCell.swift */,
 				817C845D1C44893B00788B5E /* RecommendGoodCell.swift */,
+				811586D71CBDF7DE00CC7EB9 /* DailyGoodsCell.swift */,
 				812228151C4736FF00738D57 /* SearchGoodCell.swift */,
 				81839EBA1C4352210067D47C /* SubGoodsCollectionCell.swift */,
 			);
@@ -749,6 +767,7 @@
 				81FF18FD1B7F040D00F793CA /* Common.swift in Sources */,
 				8150A4ED1C3D551E00666A8E /* UtilMacro.swift in Sources */,
 				813957721CAA329B00E4BF72 /* HomeController.swift in Sources */,
+				8118C9881CBB9DE1001D5239 /* GoodController.swift in Sources */,
 				810AA3581BA1D21100E06EAA /* ThirdPartLoginController.swift in Sources */,
 				81F02D081CAE5CB70038A4D7 /* HomeSjCell.swift in Sources */,
 				81839EB91C434E640067D47C /* CategoryController.swift in Sources */,
@@ -756,6 +775,7 @@
 				81F066C21B9F2F9C0022D736 /* LikeArticleCell.swift in Sources */,
 				81F02D0A1CAE61900038A4D7 /* HomeLpCell.swift in Sources */,
 				81FF18FB1B7F02F900F793CA /* ViewController.swift in Sources */,
+				8118C9841CBB48CD001D5239 /* DailyCell.swift in Sources */,
 				810BBA901C42541E00F806C2 /* GoodsCell.swift in Sources */,
 				81DCFED31B824896003CF443 /* AboutUsController.swift in Sources */,
 				81E789561BB42F2E002D0534 /* CommentViewController.swift in Sources */,
@@ -770,25 +790,29 @@
 				81639CD81BD5E48000B31AD6 /* TuCaoViewController.swift in Sources */,
 				814897421B83890A006EDC23 /* GoodsWebViewController.swift in Sources */,
 				81DE22531C3AC1E300F9A78B /* ArticleViewController.swift in Sources */,
+				811586D81CBDF7DE00CC7EB9 /* DailyGoodsCell.swift in Sources */,
 				81639CD41BD5D87600B31AD6 /* ContactUsViewController.swift in Sources */,
 				8143CC7B1B9ED2A9004FA08B /* LikeController.swift in Sources */,
 				81639CD61BD5E29E00B31AD6 /* TouGaoViewController.swift in Sources */,
 				810BBA8E1C42039000F806C2 /* CategoryCell.swift in Sources */,
 				812E43F51B6B550700E3ED64 /* SMSegmentView.swift in Sources */,
 				817C84881C4646F200788B5E /* SearchResultController.swift in Sources */,
+				816C44D21CB0DEA800FD2E6F /* ContentController.swift in Sources */,
 				817DDBAB1B5D4A9D0033C9F9 /* RMParallax.swift in Sources */,
 				817C845E1C44893B00788B5E /* RecommendGoodCell.swift in Sources */,
 				81DE22561C3AC5B500F9A78B /* HMSegmentedControl.m in Sources */,
+				8118C9821CBB457E001D5239 /* DailyController.swift in Sources */,
 				817DDBAC1B5D4A9D0033C9F9 /* RMParallaxItem.swift in Sources */,
+				811586DA1CBDF9D200CC7EB9 /* DailyGoodsController.swift in Sources */,
 				81A6A52B1B837B6C007E8A37 /* ContentWebViewController.swift in Sources */,
 				817C84861C46363800788B5E /* SearchInputController.swift in Sources */,
+				8118C9861CBB7B82001D5239 /* Util.swift in Sources */,
 				81A6A5291B837461007E8A37 /* VersonViewController.swift in Sources */,
 				81F18F321C245878003C79B9 /* HomeViewController.swift in Sources */,
 				81FF19031B7F079700F793CA /* LeftViewController.swift in Sources */,
 				8150A4F01C3D5CD300666A8E /* ArticleCell.swift in Sources */,
-				8173B7141C36360700017B95 /* TataViewController.swift in Sources */,
+				8173B7141C36360700017B95 /* TataController.swift in Sources */,
 				812228161C4736FF00738D57 /* SearchGoodCell.swift in Sources */,
-				81839EBD1C4356370067D47C /* SubGoodsController.swift in Sources */,
 				817C84841C45F86E00788B5E /* CMSCoinView.m in Sources */,
 				810AA35A1BA1DDD000E06EAA /* ThirdPartShareController.swift in Sources */,
 				817DDB721B5D2D6F0033C9F9 /* AppDelegate.swift in Sources */,

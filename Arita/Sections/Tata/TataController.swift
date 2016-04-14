@@ -10,10 +10,9 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class TataViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
-{
+class TataController: UIViewController {
+    
     var titleView = UIView()
-    var titleViewBg = UIImageView()
     var titleLabel = UILabel()
     var backBtn = UIButton()
     var loginBtn = UIButton()
@@ -39,8 +38,8 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewWillAppear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TataViewController.hideLoginBtn), name: "UserLogin", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TataViewController.showLoginBtn), name: "UserLogout", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(hideLoginBtn), name: "UserLogin", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showLoginBtn), name: "UserLogout", object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -50,7 +49,7 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        print("TataViewController memory waring.")
+        print("TataController memory waring.")
     }
     
     // 隐藏status bar
@@ -61,7 +60,6 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - init methods
     func addPageSubviews() {
         self.view.addSubview(self.titleView)
-        self.titleView.addSubview(self.titleViewBg)
         self.titleView.addSubview(self.titleLabel)
         self.titleView.addSubview(self.backBtn)
         self.titleView.addSubview(self.loginBtn)
@@ -74,10 +72,6 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.titleView.snp_makeConstraints { (make) -> Void in
             make.top.left.right.equalTo(self.view)
             make.height.equalTo(35)
-        }
-        
-        self.titleViewBg.snp_makeConstraints { (make) -> Void in
-            make.top.left.right.bottom.equalTo(self.titleView)
         }
         
         self.titleLabel.snp_makeConstraints { (make) -> Void in
@@ -106,7 +100,7 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func setPageSubviews() {
         self.view.backgroundColor = UIColor.whiteColor()
         
-        self.titleViewBg.image = UIImage(named: "tataTitle")
+        titleView.backgroundColor = COLOR_TATA
         self.titleLabel.text = "塔塔报"
         self.titleLabel.font = FONT_TITLE
         self.titleLabel.textColor = UIColor.whiteColor()
@@ -117,11 +111,10 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.loginBtn.hidden = true
         }
         
-        self.tataTable.backgroundColor = UIColor.clearColor()
         self.tataTable.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tataTable.showsVerticalScrollIndicator = false
         self.tataTable.addSubview(self.rc)
-        self.rc.addTarget(self, action: #selector(TataViewController.refreshTableView), forControlEvents: UIControlEvents.ValueChanged)
+        self.rc.addTarget(self, action: #selector(refreshTableView), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     // MARK: - set datasource, delegate and events
@@ -131,8 +124,8 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func setPageEvents() {
-        self.backBtn.addTarget(self, action: #selector(TataViewController.backToUpLevel), forControlEvents: UIControlEvents.TouchUpInside)
-        self.loginBtn.addTarget(self, action: #selector(TataViewController.userLogin), forControlEvents: UIControlEvents.TouchUpInside)
+        self.backBtn.addTarget(self, action: #selector(backToUpLevel), forControlEvents: UIControlEvents.TouchUpInside)
+        self.loginBtn.addTarget(self, action: #selector(userLogin), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.tataTable.registerClass(TataCell.self, forCellReuseIdentifier: "TataCell")
     }
@@ -142,95 +135,6 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=19&timestamp=0&articlesNum=\(LOAD_ARTICLE_NUM)")
             .responseJSON { aRequest, aResponse, aJson in
                 self.getNews(aJson.value)
-        }
-    }
-    
-    //MARK: - UITableViewDataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.newsArray.count < self.articleNum {
-            return self.newsArray.count + 1
-        } else {
-            return self.newsArray.count
-        }
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row != self.newsArray.count {
-            let cellId = "TataCell"
-            let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! TataCell
-            
-//            let dateOfArticle = self.newsArray[indexPath.row]["publish_time"].string
-//            let dateFormatter = NSDateFormatter()
-//            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//            let date = dateFormatter.dateFromString(dateOfArticle!)
-//            let dateFormaterForMY = NSDateFormatter()
-//            dateFormaterForMY.dateFormat = "MMdd"
-//            dateFormaterForMY.locale = NSLocale(localeIdentifier: "en_US")
-//            let dateString = dateFormaterForMY.stringFromDate(date!)
-//            cell.timestamp.text = dateFormaterForMY.stringFromDate(date!)
-            
-            cell.tataTitle.text = self.newsArray[indexPath.row]["title"].string!
-            
-            let imageUrl = self.newsArray[indexPath.row]["thumb_path"].string
-            cell.tataImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
-            
-            let infoString = self.newsArray[indexPath.row]["content"].stringValue
-            let attributedString = NSMutableAttributedString(string: infoString)
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineSpacing = 5
-            paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail
-            attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-            cell.tataInfo.attributedText = attributedString
-            cell.tataInfo.sizeToFit()
-            
-            return cell
-        } else {
-            let cell = LoadMoreCell()
-            return cell
-        }
-    }
-    
-    // MARK: - UITableViewDelegate
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row != self.newsArray.count {
-            return CELL_HEIGHT
-        } else {
-            return 44
-        }
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let destinationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ContentView") as! ContentWebViewController
-        destinationController.articleJson = self.newsArray[indexPath.row]
-        destinationController.segueId = "Tata"
-        let time = self.newsArray[indexPath.row]["publish_time"].string
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let date = dateFormatter.dateFromString(time!)
-        let dateFormatterForDay = NSDateFormatter()
-        dateFormatterForDay.dateFormat = "MMdd"
-        destinationController.viewTitle = "塔塔报 | " + dateFormatterForDay.stringFromDate(date!)
-        self.presentViewController(destinationController, animated: true, completion: {})
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-    
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.row == self.newsArray.count) {
-            let timestamp = self.newsArray[self.newsArray.count - 1]["publish_time"].stringValue
-            let encodeString = timestamp.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=19&timestamp=\(encodeString)&articlesNum=\(LOAD_ARTICLE_NUM)")
-                .responseJSON { aRequest, aResponse, aJson in
-                    self.getMoreNews(aJson.value)
-            }
-        } else {
-            if indexPath.row >= cellIndex {
-                cellIndex = indexPath.row
-                cell.contentView.frame.origin.y = 100
-                UIView.animateWithDuration(0.8, animations: {
-                    cell.contentView.frame.origin.y = 0
-                })
-            }
         }
     }
     
@@ -282,22 +186,7 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func getNews(data: AnyObject?) {
         let jsonString = JSON(data!)
         self.articleNum = jsonString["articlesNum"].intValue
-        
-//        var tmpDic = [Int: JSON]()
-//        for (_, subJson): (String, JSON) in jsonString["articleArrNew"] {
-//            let id = subJson["ID"].intValue
-//            tmpDic[id] = subJson
-//        }
-//        var tmpKeys = [Int]()
-//        for key in tmpDic.keys {
-//            tmpKeys.append(key)
-//        }
-//        tmpKeys.sortInPlace({$0 > $1})
         self.newsArray.removeAll()
-//        for id in tmpKeys {
-//            self.newsArray.append(tmpDic[id]!)
-//        }
-        
         self.newsArray = jsonString["articleArrNew"].arrayValue
         
         self.tataTable.reloadData()
@@ -306,24 +195,109 @@ class TataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func getMoreNews(data: AnyObject?) {
         let jsonString = JSON(data!)
         self.articleNum = jsonString["articlesNum"].intValue
-        
-//        var tmpDic = [Int: JSON]()
-//        for (_, subJson): (String, JSON) in jsonString["articleArrNew"] {
-//            let id = subJson["ID"].intValue
-//            tmpDic[id] = subJson
-//        }
-//        var tmpKeys = [Int]()
-//        for key in tmpDic.keys {
-//            tmpKeys.append(key)
-//        }
-//        tmpKeys.sortInPlace({$0 > $1})
-//        
-//        for id in tmpKeys {
-//            self.newsArray.append(tmpDic[id]!)
-//        }
-        
         newsArray += jsonString["articleArrNew"].arrayValue
         
         self.tataTable.reloadData()
+    }
+}
+
+//MARK: - UITableViewDataSource
+extension TataController: UITableViewDataSource {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.newsArray.count < self.articleNum {
+            return self.newsArray.count + 1
+        } else {
+            return self.newsArray.count
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.row != self.newsArray.count {
+            let cellId = "TataCell"
+            let cell = tableView .dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! TataCell
+            
+            //            let dateOfArticle = self.newsArray[indexPath.row]["publish_time"].string
+            //            let dateFormatter = NSDateFormatter()
+            //            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            //            let date = dateFormatter.dateFromString(dateOfArticle!)
+            //            let dateFormaterForMY = NSDateFormatter()
+            //            dateFormaterForMY.dateFormat = "MMdd"
+            //            dateFormaterForMY.locale = NSLocale(localeIdentifier: "en_US")
+            //            let dateString = dateFormaterForMY.stringFromDate(date!)
+            //            cell.timestamp.text = dateFormaterForMY.stringFromDate(date!)
+            
+            let date = Utils.formatDate(withString: newsArray[indexPath.row]["publish_time"].stringValue)
+            print(date)
+            
+            cell.dayLabel.text = "19"
+            cell.dayOfWeekLabel.text = "星期五"
+            cell.yearAndMonthLabel.text = "2016.02"
+            
+            cell.titleLabel.text = self.newsArray[indexPath.row]["title"].string!
+            
+            let imageUrl = self.newsArray[indexPath.row]["thumb_path"].string
+            cell.tataImage.kf_setImageWithURL(NSURL(string: imageUrl!)!, placeholderImage: nil)
+            
+            let infoString = self.newsArray[indexPath.row]["content"].stringValue
+            let attributedString = NSMutableAttributedString(string: infoString)
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 5
+            paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail
+            attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+            cell.infoLabel.attributedText = attributedString
+            cell.infoLabel.sizeToFit()
+            
+            return cell
+        } else {
+            let cell = LoadMoreCell()
+            return cell
+        }
+    }
+}
+
+//MARK: - UITableViewDelegate
+extension TataController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row != self.newsArray.count {
+            return 155 + (SCREEN_WIDTH - 20) * 2 / 3
+        } else {
+            return 44
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        let time = newsArray[indexPath.row]["publish_time"].string
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        let date = dateFormatter.dateFromString(time!)
+//        let dateFormatterForDay = NSDateFormatter()
+//        dateFormatterForDay.dateFormat = "MMdd"
+//        let contentTitle = "塔塔报 | " + dateFormatterForDay.stringFromDate(date!)
+        
+        let dailyController = DailyController()
+        presentViewController(dailyController, animated: true, completion: {})
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (indexPath.row == self.newsArray.count) {
+            let timestamp = self.newsArray[self.newsArray.count - 1]["publish_time"].stringValue
+            let encodeString = timestamp.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+            Alamofire.request(.GET, "http://112.74.192.226/ios/get_articles_num?channel_ID=19&timestamp=\(encodeString)&articlesNum=\(LOAD_ARTICLE_NUM)")
+                .responseJSON { aRequest, aResponse, aJson in
+                    self.getMoreNews(aJson.value)
+            }
+        } else {
+            if indexPath.row >= cellIndex {
+                cellIndex = indexPath.row
+                cell.contentView.frame.origin.y = 100
+                UIView.animateWithDuration(0.8, animations: {
+                    cell.contentView.frame.origin.y = 0
+                })
+            }
+        }
     }
 }

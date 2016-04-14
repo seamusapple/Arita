@@ -6,6 +6,8 @@
 //  Copyright (c) 2015年 DcBunny. All rights reserved.
 //
 
+// TODO: 将被废弃
+
 import UIKit
 import SwiftyJSON
 import Alamofire

@@ -8,27 +8,28 @@
 
 import UIKit
 
-class TataCell: UITableViewCell
-{
-    var cellView = UIView()
+class TataCell: UITableViewCell {
     
-    var tataImage = UIImageView()
+    private let cellView = UIView()
     
-//    var timestampIcon = UIImageView()
-//    var timestamp = UILabel()
+    let dayLabel = UILabel()
+    let dayOfWeekLabel = UILabel()
+    let yearAndMonthLabel = UILabel()
     
-    var tataTitle = UILabel()
+    private let separator = UIView()
     
-    var tataInfo = UILabel()
+    let titleLabel = UILabel()
+    let tataImage = UIImageView()
+    let infoLabel = UILabel()
     
     //MARK: - life methods
     override init(style: UITableViewCellStyle, reuseIdentifier: String!)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addCellSubviews()
-        self.layoutCellSubviews()
-        self.configCellSubviews()
+        addCellSubviews()
+        layoutCellSubviews()
+        configCellSubviews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,71 +38,97 @@ class TataCell: UITableViewCell
     
     //MARK: - setup page subviews
     func addCellSubviews() {
-        self.contentView.addSubview(self.cellView)
+        contentView.addSubview(cellView)
         
-        self.cellView.addSubview(self.tataImage)
+        cellView.addSubview(dayLabel)
+        cellView.addSubview(dayOfWeekLabel)
+        cellView.addSubview(yearAndMonthLabel)
         
-//        self.cellView.addSubview(self.timestampIcon)
-//        self.timestampIcon.addSubview(self.timestamp)
+        cellView.addSubview(separator)
         
-        self.cellView.addSubview(self.tataTitle)
-        
-        self.cellView.addSubview(self.tataInfo)
+        cellView.addSubview(titleLabel)
+        cellView.addSubview(tataImage)
+        cellView.addSubview(infoLabel)
     }
     
     func layoutCellSubviews() {
-        self.cellView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView).offset(10)
-            make.left.bottom.right.equalTo(self.contentView)
+        cellView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(contentView).offset(10)
+            make.left.bottom.right.equalTo(contentView)
         }
         
-        self.tataImage.snp_makeConstraints { (make) -> Void in
-            make.top.left.equalTo(self.cellView).offset(10)
-            make.right.equalTo(self.cellView).offset(-10)
+        dayLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(cellView).offset(15)
+            make.left.equalTo(cellView).offset(10)
+            make.size.equalTo(CGSize(width: 30, height: 30))
+        }
+        
+        dayOfWeekLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(dayLabel)
+            make.left.equalTo(dayLabel.snp_right)
+            make.bottom.equalTo(dayLabel.snp_centerY)
+            make.width.equalTo(50)
+        }
+        
+        yearAndMonthLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(dayLabel.snp_centerY)
+            make.left.equalTo(dayLabel.snp_right)
+            make.bottom.equalTo(dayLabel.snp_bottom)
+            make.right.equalTo(dayOfWeekLabel)
+        }
+        
+        separator.snp_makeConstraints { (make) -> Void in
+            make.top.bottom.equalTo(dayLabel)
+            make.left.equalTo(dayOfWeekLabel.snp_right).offset(5)
+            make.width.equalTo(1)
+        }
+        
+        titleLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(dayLabel)
+            make.left.equalTo(separator.snp_right).offset(5)
+            make.bottom.equalTo(dayLabel)
+            make.right.equalTo(cellView).offset(-10)
+        }
+        
+        tataImage.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(dayLabel.snp_bottom).offset(15)
+            make.left.equalTo(cellView).offset(10)
+            make.right.equalTo(cellView).offset(-10)
             let width = SCREEN_WIDTH - 20
             make.height.equalTo(width * 2 / 3)
         }
         
-//        self.timestampIcon.snp_makeConstraints { (make) -> Void in
-//            make.size.equalTo(CGSizeMake(68, 25))
-//            make.left.equalTo(self.cellView)
-//            make.top.equalTo(self.cellView).offset(20)
-//        }
-//        
-//        self.timestamp.snp_makeConstraints { (make) -> Void in
-//            make.edges.equalTo(self.timestampIcon).inset(0)
-//        }
-        
-        self.tataTitle.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.tataImage.snp_bottom).offset(10)
-            make.left.right.equalTo(self.tataImage)
-            make.height.equalTo(20)
-        }
-        
-        self.tataInfo.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.tataTitle.snp_bottom).offset(10)
-            make.left.right.equalTo(self.tataTitle)
+        infoLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(tataImage.snp_bottom).offset(15)
+            make.left.right.equalTo(tataImage)
             make.height.equalTo(50)
         }
     }
     
     func configCellSubviews() {
-        self.backgroundColor = COLOR_BACKGROUND
-        self.contentView.backgroundColor = COLOR_BACKGROUND
+        contentView.backgroundColor = COLOR_BACKGROUND
+        cellView.backgroundColor = UIColor.whiteColor()
         
-        self.cellView.backgroundColor = UIColor.whiteColor()
+        dayLabel.font = UIFont.systemFontOfSize(28)
+        dayLabel.textColor = COLOR_TATA
+        dayLabel.textAlignment = NSTextAlignment.Center
         
-//        self.timestampIcon.image = UIImage(named: "tata_time_icon")
+        dayOfWeekLabel.font = UIFont.systemFontOfSize(14)
+        dayOfWeekLabel.textColor = titleColor
+        dayOfWeekLabel.textAlignment = NSTextAlignment.Center
         
-//        self.timestamp.textColor = UIColor.whiteColor()
-//        self.timestamp.font = UIFont.boldSystemFontOfSize(13)
-//        self.timestamp.textAlignment = NSTextAlignment.Center
+        yearAndMonthLabel.font = UIFont.systemFontOfSize(11)
+        yearAndMonthLabel.textColor = titleColor
+        yearAndMonthLabel.textAlignment = NSTextAlignment.Center
         
-        self.tataTitle.font = UIFont.systemFontOfSize(14)
-        self.tataTitle.textColor = COLOR_TATA
+        separator.backgroundColor = titleColor
         
-        self.tataInfo.numberOfLines = 3
-        self.tataInfo.textColor = COLOR_INFO
-        self.tataInfo.font = UIFont.systemFontOfSize(11)
+        titleLabel.font = UIFont.systemFontOfSize(12)
+        titleLabel.textColor = titleColor
+        titleLabel.numberOfLines = 2
+        
+        infoLabel.textColor = COLOR_INFO
+        infoLabel.font = UIFont.systemFontOfSize(11)
+        infoLabel.numberOfLines = 3
     }
 }

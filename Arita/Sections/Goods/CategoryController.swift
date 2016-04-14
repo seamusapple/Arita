@@ -119,9 +119,8 @@ class CategoryController: UIViewController, WKScriptMessageHandler
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
         let dataFromString = message.body.dataUsingEncoding(NSUTF8StringEncoding)
         let msg = JSON(data: dataFromString!)
-        let goodViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GoodContentView") as! GoodsWebViewController
-        goodViewController.goodJson = msg
-        self.presentViewController(goodViewController, animated: true, completion: {})
+        let goodController = GoodController(goodJson: msg)
+        self.presentViewController(goodController, animated: true, completion: {})
     }
     
     // MARK: - event response
